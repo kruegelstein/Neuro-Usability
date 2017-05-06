@@ -21,8 +21,6 @@ Cons:
   4. Two-way data bind - worse performance [3]
   5. Performance - Too many watchers [3]
   6. Typescript [4]
-  7.
-  8.
 
 --------------------------------------------------------
 React
@@ -44,11 +42,6 @@ Cons:
   1. not a full-scale framework [2]
   2. Packages - (too) many options [3], finding best choices is hard [4]
   3. Solving dependencies - No concepts, but many tools [3]
-  4.
-  5.
-  6.
-  7.
-  8.
 
 --------------------------------------------------------
 # Other stuff useful to mention to make a decision
@@ -58,6 +51,9 @@ Differences are large but but accomplish the same thing. Angular is a much fulle
 Library vs. Framework [2]
 
 nice sum up in [3]
+
+Angular - JS in HTML [?]
+React - HTML in JS [?]
 
 
 Angular:
