@@ -1,0 +1,34 @@
+# GWT
+- Google AdWords
+- Goggle Wallet
+- Blogger
+
+# React
+- Airbnb
+- 90min
+- BBC
+- Deezer
+- eBay
+- Expedia
+- Facebook
+- Instagram
+- Netflix
+- Reddit
+- Salesforce
+- Spotify Web player
+- New York Times
+- Twitter
+- Udemy
+- Walmart
+- Whatsapp Web
+- WeWork
+- Yahoo
+
+
+# Angular
+- iStockPhoto
+- weather.com
+- The Guardian
+- Paypal
+- Vevo
+- Lego
