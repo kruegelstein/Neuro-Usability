@@ -1,0 +1,24 @@
+# Decision due to the comparison
+
+For this project it should be worth the work switching
+to another frond-end technology, since GWT is limited
+to the level of abstraction. We identified the following needs:
+
+1. Performance and efficiency
+2. Easy to learn and to maintain
+3. Dealing with large (graph-)data sets
+
+We decided to build the prototype with ReactJS.
+
+The main reason is the virtual DOM which might give us an egde
+on the performance side. Due to the virtual DOM only changed values are
+re-rendered. For example having a list of 1 million items and changing
+the value of only one item would also cause a change of one item
+instead of 1 million. Taking this the graph interaction it could be quite
+interesting.
+We also think ReactJS could be better suited for this project since it is
+a library. The project has limited range in the usage. We basically have
+a list on the left side, an interactive graph in the center and options
+on the right. A framework like AngularJS might be an overkill here.
+With ReactJS we have slimmer solution and we load the suited packages
+if we need them, for example working with graphs.   
