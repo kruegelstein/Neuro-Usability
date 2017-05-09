@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import CarListItem from './CarListItem';
 
 class CarList extends Component {
   render() {
     return (
-      <div>Car list component</div>
+      <div>Cars
+        <CarListItem />
+      </div>
     )
   }
 }
