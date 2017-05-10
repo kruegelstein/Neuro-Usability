@@ -3,79 +3,46 @@ import Chart from 'chart.js'
 
 class Graph extends Component {
   componentDidMount() {
-    var ctx = document.getElementById("myChart");
-    var doughnutOptions = {
-    	//Boolean - Whether we should show a stroke on each segment
-    	segmentShowStroke : true,
+    var lineChartData = {
+    labels: ["Data 1", "Data 2", "Data 3", "Data 4", "Data 5", "Data 6", "Data 7"],
+    datasets: [{
+        fillColor: "rgba(220,220,220,0)",
+        strokeColor: "rgba(220,180,0,1)",
+        pointColor: "rgba(220,180,0,1)",
+        data: [20, 30, 80, 20, 40, 10, 60]
+    }, {
+        fillColor: "rgba(151,187,205,0)",
+        strokeColor: "rgba(151,187,205,1)",
+        pointColor: "rgba(151,187,205,1)",
+        data: [60, 10, 40, 30, 80, 30, 20]
+    }]
 
-    	//String - The colour of each segment stroke
-    	segmentStrokeColor : "#fff",
-
-    	//Number - The width of each segment stroke
-    	segmentStrokeWidth : 2,
-
-    	//The percentage of the chart that we cut out of the middle.
-    	percentageInnerCutout : 50,
-
-    	//Boolean - Whether we should animate the chart
-    	animation : true,
-
-    	//Number - Amount of animation steps
-    	animationSteps : 100,
-
-    	//String - Animation easing effect
-    	animationEasing : "easeOutBounce",
-
-    	//Boolean - Whether we animate the rotation of the Doughnut
-    	animateRotate : true,
-
-    	//Boolean - Whether we animate scaling the Doughnut from the centre
-    	animateScale : true,
-
-    	//Function - Will fire on animation completion.
-    	onAnimationComplete : null
     }
 
+    Chart.defaults.global.animationSteps = 50;
+    Chart.defaults.global.tooltipYPadding = 16;
+    Chart.defaults.global.tooltipCornerRadius = 0;
+    Chart.defaults.global.tooltipTitleFontStyle = "normal";
+    Chart.defaults.global.tooltipFillColor = "rgba(0,160,0,0.8)";
+    Chart.defaults.global.animationEasing = "easeOutBounce";
+    Chart.defaults.global.responsive = true;
+    Chart.defaults.global.scaleLineColor = "black";
+    Chart.defaults.global.scaleFontSize = 16;
 
-    // Doughnut Chart Data
-    var doughnutData = [
-    	{
-    		value: 30,
-    		color:"white"
-    	},
-    	{
-    		value : 50,
-    		color : "#1789D4"
-    	},
-    	{
-    		value : 100,
-    		color : "#CB4B16"
-    	},
-    	{
-    		value : 40,
-    		color : "#1F8261"
-    	},
-    	{
-    		value : 120,
-    		color : "#FFA500"
-    	}
-
-    ]
-
-
-    //Get the context of the Doughnut Chart canvas element we want to select
-    var ctx = document.getElementById("doughnutChart").getContext("2d");
-
-    // Create the Doughnut Chart
-    var mydoughnutChart = new Chart(ctx).Doughnut(doughnutData, doughnutOptions);
-   }
+    var ctx = document.getElementById("chart").getContext("2d");
+    var LineChartDemo = new Chart(ctx).Line(lineChartData, {
+        pointDotRadius: 10,
+        bezierCurve: false,
+        scaleShowVerticalLines: false,
+        scaleGridLineColor: "black"
+    });
+  }
 
   render() {
 
     return (
       <div className="col-md-6">
-        <h4>The Graph Component</h4>
-        <canvas id="doughnutChart" width="400" height="400"></canvas>
+        <canvas id="chart" width="400" height="400"></canvas>
       </div>
     )
   }

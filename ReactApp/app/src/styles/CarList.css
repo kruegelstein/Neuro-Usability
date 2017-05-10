@@ -21,6 +21,6 @@
 .carItemContainer {
   background-color: #F7F7F7;
   overflow-y:scroll;
-  height: 660px;
-  max-height: 660px;
+  height: 760px;
+  max-height: 760px;
 }
