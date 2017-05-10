@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Graph extends Component {
   render() {
     return (
-      <div>The Graph Component</div>
+      <div className="col-md-6">The Graph Component</div>
     )
   }
 }

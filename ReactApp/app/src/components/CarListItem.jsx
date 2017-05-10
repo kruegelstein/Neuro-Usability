@@ -1,27 +1,11 @@
 import React, { Component } from 'react';
+import '../styles/CarListItem.css';
 
 class CarListItem extends Component {
   render() {
     return (
-      <div>
-        <div>
-          <h4>1.Car</h4>
-        </div>
-        <div>
-          <h4>2.Car</h4>
-        </div>
-        <div>
-          <h4>3.Car</h4>
-        </div>
-        <div>
-          <h4>4.Car</h4>
-        </div>
-        <div>
-          <h4>5.Car</h4>
-        </div>
-        <div>
-          <h4>6.Car</h4>
-        </div>
+      <div className="carItem">
+        <h4 className="carItemText">Car-XYZ</h4>
       </div>
     )
   }
