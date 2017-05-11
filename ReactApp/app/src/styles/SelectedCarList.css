@@ -1,12 +1,11 @@
-.carList {
-  border: 1px solid #ABABAB;
-  border-radius: 5px;
+.selCarList {
   margin: 0 2rem 0 2rem;
   padding: 0;
 }
 
-.carListHeader {
+.selCarHeader {
   text-align: center;
+  border-radius: 5px 5px 0 0;
   background-color: #C4C4C4;
   margin: 0;
   padding: 10px 0 10px 0;
@@ -18,9 +17,10 @@
   position: sticky;
 }
 
-.carItemContainer {
-  background-color: #F7F7F7;
+.selCarContainer {
   overflow-y:scroll;
   height: 760px;
   max-height: 760px;
+  display: inline-block;
+  width: 100%;
 }

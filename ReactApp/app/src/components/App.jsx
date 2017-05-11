@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import CarList from './CarList';
 import Graph from './Graph';
-import Options from './Options';
+import SelectedCarList from './SelectedCarList';
 import '../styles/App.css';
 
 class App extends Component {
@@ -11,7 +11,7 @@ class App extends Component {
         <h2>DCAIT-Project</h2>
         <CarList />
         <Graph />
-        <Options />
+        <SelectedCarList />
       </div>
     )
   }
