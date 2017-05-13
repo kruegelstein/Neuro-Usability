@@ -8,7 +8,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h2>DCAIT-Project</h2>
+        <h2>Simulation of Vehicle-2-X Communication</h2>
         <CarList />
         <Graph />
         <SelectedCarList />

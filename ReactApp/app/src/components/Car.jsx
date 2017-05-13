@@ -7,15 +7,14 @@ class Car extends Component {
       <div className="carContainer">
         <div className="carHeader">
           <h6 className="carName">CarName</h6>
+          <a className="x">X</a>
         </div>
         <div className="carBody">
           <div className="iconContainer">
-            <i className="fa fa-car" aria-hidden="true"></i>
+            <a>
+              <i className="fa fa-car" aria-hidden="true"></i>
+            </a>
           </div>
-        </div>
-        <div className="carFooter">
-          <button className="options btn btn-primary">Options</button>
-          <button className="x btn btn-danger">X</button>
         </div>
       </div>
     )
