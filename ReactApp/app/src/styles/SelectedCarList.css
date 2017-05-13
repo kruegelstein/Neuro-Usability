@@ -1,0 +1,26 @@
+.selCarList {
+  margin: 0 2rem 0 2rem;
+  padding: 0;
+}
+
+.selCarHeader {
+  text-align: center;
+  border-radius: 5px 5px 0 0;
+  background-color: #C4C4C4;
+  margin: 0;
+  padding: 10px 0 10px 0;
+  border-bottom: 1px solid #ABABAB;
+  height: 40px;
+  max-height: 40px;
+  font-weight: bold;
+  top: 0;
+  position: sticky;
+}
+
+.selCarContainer {
+  overflow-y:scroll;
+  height: 760px;
+  max-height: 760px;
+  display: inline-block;
+  width: 100%;
+}
