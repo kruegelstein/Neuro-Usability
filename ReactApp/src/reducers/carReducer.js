@@ -1,16 +1,12 @@
 import { normalizeCars } from '../schema';
+import ActionTypes from '../constants';
 
 const cars = (state = {}, action = {}) => {
   switch (action.type) {
-  case 'FETCH_SUCCESS': {
-    switch (action.payload.resource) {
-    case 'cars':
+  case 'GET_CARS_FULFILLED': {
       return {
         ...state,
-        ...normalizeCars(action.payload.data),
-      }
-    default:
-        return { ...state }
+        ...normalizeCars(action.data),
       }
     }
   default:

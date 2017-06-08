@@ -1,20 +1,37 @@
-import * as api from './api';
+import ActionTypes from '../constants';
+import database from '../firebase';
 
-export const fetchStart = (resource, params) => ({ type: 'FETCH_START', payload: { resource, params } });
-export const fetchedData = (resource, params = {}, data = {}) => ({ type: 'FETCH_SUCCESS', payload: { resource, params, data } });
-export const fetchedError = (resource, params = {}, error = {}) => ({ type: 'FETCH_ERROR', payload: { resource, params, error } });
+export function getCars() {
+  return dispatch => {
+    dispatch(getCarsRequestedAction());
+    return database.ref('Cars').once('value', snap => {
+      const car = snap.val();
+      dispatch(getCarsFulfilledAction(car))
+    })
+    .catch((error) => {
+      console.log(error);
+      dispatch(getCarsRejectedAction());
+    });
+  }
+}
 
-export const loadData = (resource, params, callback = null) => ((dispatch) => {
-  dispatch(fetchStart(resource, params));
-  return api[resource](params)
-    .then(
-      (r) => {
-        if (callback) { callback(true, r); }
-        dispatch(fetchedData(resource, params, r));
-      },
-      (e) => {
-        if (callback) { callback(false, e); }
-        dispatch(fetchedError(resource, params, e));
-      }
-    );
-});
+
+
+function getCarsRequestedAction() {
+  return {
+    type: ActionTypes.GetCarsRequested
+  };
+}
+
+function getCarsRejectedAction() {
+  return {
+    type: ActionTypes.GetCarsRejected
+  }
+}
+
+function getCarsFulfilledAction(car) {
+  return {
+    type: ActionTypes.GetCarsFulfilled,
+    data: car
+  };
+}

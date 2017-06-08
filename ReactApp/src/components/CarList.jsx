@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 
-import { loadData } from '../actions/actions'
+import { getCars } from '../actions/actions.js'
 import CarListItem from './CarListItem';
 
 class CarList extends Component {
@@ -44,7 +44,7 @@ const mapStateToProps = (state, _ownProps) => {
 
 const mapDispatchToProps = (dispatch, _ownProps) => ({
   loadCarsFromDB: () => {
-    dispatch(loadData('cars'));
+    dispatch(getCars());
   },
 });
 
