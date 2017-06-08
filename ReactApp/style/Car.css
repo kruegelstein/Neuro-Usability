@@ -1,0 +1,73 @@
+.carContainer{
+  position: relative;
+  border: 1px solid #ABABAB;
+  border-radius: 10px;
+  display: inline-block;
+  height: 19rem;
+  width: 19rem;
+  margin: 1rem;
+}
+
+.carContainer:hover{
+  border: 1px solid #7ABA1E;
+}
+
+.carHeader{
+  width: 100%;
+  border-bottom: 1px solid #ABABAB;
+  text-overflow: ellipsis;
+}
+
+.carName{
+  margin-left: 1rem;
+  text-align: left;
+  font-size: 2rem;
+}
+
+.carBody{
+  height: 15.6rem;
+  position: relative;
+  text-align: center;
+}
+
+.iconContainer{
+  position: absolute;
+  height: 12rem;
+  width: 12rem;
+  left: 3.5rem;
+  top: 1.5rem;
+  border: 1px solid #ABABAB;
+  border-radius: 100%;
+  text-align: center;
+  background-color: #F7F7F7;
+}
+
+/*#container:hover > #cube { background-color: yellow; }*/
+.iconContainer:hover{
+  border: 1px solid #7ABA1E;
+  background-color: #F0F0F0;
+  cursor: pointer;
+}
+
+.iconContainer:hover .fa{font-size: 6.5rem}
+
+  .fa{
+    font-size: 6rem;
+    color: #7ABA1E;
+    padding-top: 2.5rem;
+  }
+
+.x{
+  color: red;
+  position: absolute;
+  margin-left: 2rem;
+  top: 0.5rem;
+  right: 1rem;
+  font-size: 2rem;
+}
+
+.x:hover{
+  text-decoration: none;
+  font-size: 2.3rem;
+  color: red;
+}
