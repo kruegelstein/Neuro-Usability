@@ -3,9 +3,10 @@ import React, { Component } from 'react';
 
 class CarListItem extends Component {
   render() {
+    const { email, title } = this.props.goal
     return (
       <div className="carItem">
-        <h4 className="carItemText">Car-XYZ</h4>
+        <h4 className="carItemText">{title}</h4>
       </div>
     )
   }
