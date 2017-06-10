@@ -1,11 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { PropTypes } from 'prop-types';
 
-const CarListItem = ({ name }) => {
+const CarListItem = ({ name, onClick }) => {
+  const onCarClickHandler = (event) => {
+    onClick(event);
+  };
   return (
-    <div className="carItem">
-      <h4 className="carItemText">{name}</h4>
-    </div>
+    <li className="carItem">
+      <a tabIndex="0" className="car" onClick={onCarClickHandler}>
+        <h4 className="carItemText">{name}</h4>
+      </a>
+    </li>
   )
 }
 
