@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { PropTypes } from 'prop-types';
+import { connect } from 'react-redux';
 import CarList from './CarList';
 import Graph from './Graph';
 import SelectedCarList from './SelectedCarList';
-// import '../../style/App.css';
+
 
 class App extends Component {
   render() {
@@ -15,6 +17,10 @@ class App extends Component {
       </div>
     )
   }
+}
+
+App.propTypes = {
+
 }
 
 export default App;
