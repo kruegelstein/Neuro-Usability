@@ -44,16 +44,18 @@ class CarList extends Component {
                 return (
                   <CarListItem
                     key={car.index}
+                    index={car.index}
                     name={car.name}
                     onClick={() => {
                         this.props.onSelectCarFromList(
-                        this.props.selectedCars.filter(c => c !== car.index).concat(car.index))
+                        this.props.selectedCars.filter(c => c !== car.index).concat(car.index), car.index)
                       }
                     }
                     onEdit={() => this.props.onOpenModal(car.index)}
                     onUnselect={() => this.props.onUnselectCar(car.index)}
                     onSelect= {() => this.props.onSelectCar(car.index)}
                     filterSelected={this.props.filterSelected}
+                    isSelected={car.index === this.props.selectedCars.find(c => c === car.index)}
                     />
                 )
               })
@@ -107,8 +109,9 @@ const mapDispatchToProps = (dispatch, _ownProps) => ({
   onSelectCar: (car) => {
     dispatch(selectCar(car))
   },
-  onSelectCarFromList: (car) => {
-    dispatch(selectCarFromList(car))
+  onSelectCarFromList: (carList, car) => {
+    dispatch(selectCarFromList(carList))
+    dispatch(selectCar(car))
   },
   onSetCarsFilter: (bool) => {
     dispatch(setCarsFilter(bool));
