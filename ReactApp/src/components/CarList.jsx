@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 
-import { getCars, selectCar } from '../actions/actions.js'
+import { getCars, selectCarFromList } from '../actions/actions.js'
 import CarListItem from './CarListItem';
 
 class CarList extends Component {
@@ -21,7 +21,12 @@ class CarList extends Component {
                 <CarListItem
                   key={car.index}
                   name={car.name}
-                  onClick={() => this.props.onSelectCar(this.props.selectedCars.concat(car.index))}
+                  onClick={() => {
+                      this.props.onSelectCarFromList(
+                      this.props.selectedCars.filter(c => c !== car.index).concat(car.index))
+                      console.log(this.props.selectedCars.filter(c => c !== car.index).concat(car.index));
+                    }
+                  }
                   />
               )
             })
@@ -35,7 +40,7 @@ class CarList extends Component {
 CarList.propTypes = {
   cars: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   loadCarsFromDB: PropTypes.func.isRequired,
-  onSelectCar: PropTypes.func.isRequired,
+  onSelectCarFromList: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state, _ownProps) => {
@@ -52,8 +57,8 @@ const mapDispatchToProps = (dispatch, _ownProps) => ({
   loadCarsFromDB: () => {
     dispatch(getCars());
   },
-  onSelectCar: (car) => {
-    dispatch(selectCar(car));
+  onSelectCarFromList: (car) => {
+    dispatch(selectCarFromList(car));
   },
 });
 
