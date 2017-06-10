@@ -10,21 +10,27 @@ class CarList extends Component {
     this.props.loadCarsFromDB();
   }
 
+  renderSelection() {
+    return (
+      <div className="aboveList">
+        <a
+          onClick={() => this.props.onSetCarsFilter(false)}
+        >
+          <p>Cars ({this.props.numOfAllCars})</p>
+        </a>
+        <a
+          onClick={() => this.props.onSetCarsFilter(true)}
+        >
+          <p>Selected Cars ({this.props.numOfSelCars})</p>
+        </a>
+      </div>
+    )
+  }
+
   render() {
     return (
       <div className="list col-md-3">
-        <div className="aboveList">
-          <a
-            onClick={() => this.props.onSetCarsFilter(false)}
-          >
-            <p>Cars ({this.props.numOfAllCars})</p>
-          </a>
-          <a
-            onClick={() => this.props.onSetCarsFilter(true)}
-          >
-            <p>Selected Cars ({this.props.numOfSelCars})</p>
-          </a>
-        </div>
+        {this.renderSelection()}
         <div className="carList">
           <div className="listHeader">
             <a className={`reset ${!this.props.filterSelected ? 'hidden' : ''}`} onClick={() => this.props.onUnselectAllCars()}>
@@ -72,7 +78,6 @@ CarList.propTypes = {
 const mapStateToProps = (state, _ownProps) => {
   let viewedCars = [];
   let headerText = "Cars";
-  console.log(!filterSelected);
 
   if(!state.navigation.selected.filterSelected) {
     const carIds = Object.keys(state.cars)
@@ -80,10 +85,8 @@ const mapStateToProps = (state, _ownProps) => {
   } else {
     const carIds = state.navigation.selected.cars || [];
     viewedCars = carIds.map(cId => state.cars[cId]);
-    console.log(viewedCars);
     headerText = "Selected Cars";
   }
-
   const numOfAllCars = Object.keys(state.cars).length
   const numOfSelCars = state.navigation.selected.cars.length
 

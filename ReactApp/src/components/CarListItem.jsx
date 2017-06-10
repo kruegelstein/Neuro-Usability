@@ -1,13 +1,13 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
-const CarListItem = ({ name, onClick, onEdit, onUnselect, filterSelected, onSelect }) => {
+const CarListItem = ({ name, onClick, onEdit, onUnselect, filterSelected, onSelect, index }) => {
   return (
-    <li className="carItem" onClick={onSelect}>
-      <a tabIndex="0" className="car" onClick={onClick}>
+    <li className="carItem" onClick={filterSelected ? onSelect : onClick}>
+      <a tabIndex="0" className="car">
         {name}
       </a>
-      <div className={`iconContainer ${!filterSelected ? 'hidden' : ''}`}>
+      <div className={`iconContainer ${filterSelected ? '' : 'hidden'}`}>
         <a className="x" onClick={onUnselect}>X</a>
           <a
             className="edit"
@@ -29,5 +29,3 @@ CarListItem.propTypes = {
 }
 
 export default CarListItem;
-
-// <div className={`iconContainer ${!this.props.filterSelected ? 'hidden' : ''}`}>

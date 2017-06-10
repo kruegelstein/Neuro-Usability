@@ -4,6 +4,7 @@
   border-bottom: 1px solid #ABABAB;
   margin: 0;
   width: 100%;
+  overflow-y: hidden;
   position: relative;
   display: inline-flex;
   overflow-x: hidden
@@ -33,7 +34,7 @@
 
 .iconContainer {
   position: absolute;
-  right: 1rem;
+  right: 0;
   width: 25%;
   height: 40px;
 }
