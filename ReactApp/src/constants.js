@@ -4,6 +4,8 @@ const actionTypes = {
   GetCarsFulfilled: 'GET_CARS_FULFILLED',
   SelectCar: 'SELECT_CAR',
   SelectCarFromList: 'SELECT_CAR_FROM_LIST',
+  OpenModal: 'OPEN_MODAL',
+  CloseModal: 'CLOSE_MODAL',
   DeleteSelectedCar: 'DELETE_SELECTED_CAR'
 };
 

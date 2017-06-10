@@ -1,6 +1,8 @@
 import ActionTypes from '../constants';
 import database from '../firebase';
 
+export const closeModal = () => ({ type: ActionTypes.CloseModal, payload: { data: false } });
+export const openModal = () => ({ type: ActionTypes.OpenModal, payload: { data: true } });
 export const selectCar = car => ({ type: ActionTypes.SelectCar, payload: { car } });
 export const selectCarFromList = car => ({ type: ActionTypes.SelectCarFromList, payload: { car } });
 export const deleteSelectedCar = car => ({ type: ActionTypes.DeleteSelectedCar, payload: { car } });
