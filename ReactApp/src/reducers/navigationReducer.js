@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 
 
 const initial = {
-  cars: null,
+  cars: [],
   car: null,
 };
 
@@ -12,7 +12,15 @@ function modal(state = null, action) {
 
 function selected(
   state = { ...initial } , action = {}) {
-    return { ...state }
+    switch(action.type) {
+      case 'SELECT_CAR':
+        return {
+          ...state,
+          cars: action.payload.car
+        }
+      default:
+        return state
+    }
 }
 
 const navigation = combineReducers({

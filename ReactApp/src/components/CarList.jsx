@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 
-import { getCars } from '../actions/actions.js'
+import { getCars, selectCar } from '../actions/actions.js'
 import CarListItem from './CarListItem';
 
 class CarList extends Component {
@@ -21,6 +21,7 @@ class CarList extends Component {
                 <CarListItem
                   key={car.index}
                   name={car.name}
+                  onClick={() => this.props.onSelectCar(this.props.selectedCars.concat(car.index))}
                   />
               )
             })
@@ -42,12 +43,16 @@ const mapStateToProps = (state, _ownProps) => {
   cars = carIds.map(cId => state.cars[cId]);
   return {
     cars,
+    selectedCars: state.navigation.selected.cars
   };
 };
 
 const mapDispatchToProps = (dispatch, _ownProps) => ({
   loadCarsFromDB: () => {
     dispatch(getCars());
+  },
+  onSelectCar: (car) => {
+    dispatch(selectCar(car));
   },
 });
 
