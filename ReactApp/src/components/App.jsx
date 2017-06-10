@@ -6,7 +6,6 @@ import Modal from 'react-modal';
 import { closeModal } from '../actions/actions.js'
 import CarList from './CarList';
 import Graph from './Graph';
-import SelectedCarList from './SelectedCarList';
 
 
 class App extends Component {
@@ -26,7 +25,6 @@ class App extends Component {
           </a>
         </Modal>
         <Graph />
-        <SelectedCarList />
       </div>
     )
   }

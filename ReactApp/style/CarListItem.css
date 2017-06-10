@@ -3,8 +3,9 @@
   max-height: 40px;
   border-bottom: 1px solid #ABABAB;
   margin: 0;
+  width: 100%;
+  display: inline-flex;
   overflow-x: hidden
-
 }
 
 .carItem:hover{
@@ -15,8 +16,49 @@
   color: green;
 }
 
-.carItemText {
-  padding: 10px 15px 0 15px;
-  margin: 0;
+.car {
+  padding: 10px 15px 10px 15px;
   font-size: 13px;
+  position: absolute;
+  left: 1rem;
+  color: black;
+  width: 75%;
+}
+
+.car:hover {
+  text-decoration: none;
+  color: black;
+}
+
+.iconContainer {
+  position: absolute;
+  right: 1rem;
+  width: 25%;
+  height: 40px;
+}
+
+.edit {
+  color: #7ABA1E;
+  position: absolute;
+  right: 4rem;
+  top: 10px;
+}
+
+.edit:hover {
+  color: #7ABA1E;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.x {
+  color: red;
+  position: absolute;
+  right: 1rem;
+}
+
+.x:hover {
+  color: red;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
 }

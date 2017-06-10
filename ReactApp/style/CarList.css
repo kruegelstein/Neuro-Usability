@@ -1,21 +1,59 @@
 .carList {
   border: 1px solid #ABABAB;
   border-radius: 5px;
-  margin: 0 2rem 0 2rem;
+  margin: 0;
   padding: 0 !important;
 }
 
-.carListHeader {
+.aboveList {
+  display: inline-flex;
   text-align: center;
+}
+
+.aboveList a {
+  margin: 0 20px 5px 23px;
+  height: 20px;
+  color: #7ABA1E;
+}
+
+.aboveList a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+  color: #7ABA1E;
+}
+
+.listHeader {
   background-color: #C4C4C4;
   margin: 0;
-  padding: 10px 0 10px 0;
+  padding: 5px 0 5px 0;
   border-bottom: 1px solid #ABABAB;
   height: 40px;
   max-height: 40px;
   font-weight: bold;
   top: 0;
+  display: grid;
   position: sticky;
+  width: 100%;
+}
+
+.header {
+  width:100%;
+  text-align: center;
+  height: 16px;
+}
+
+.reset {
+  color: red;
+  font-weight: normal;
+  font-size: 12px;
+  height: 13px;
+  position: absolute;
+  right: 15px;
+}
+
+.reset:hover {
+  color: red;
+  cursor: pointer;
 }
 
 .carItemContainer {

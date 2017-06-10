@@ -4,6 +4,7 @@ import { combineReducers } from 'redux';
 const initial = {
   cars: [],
   car: null,
+  filterSelected: false,
 };
 
 function modal(state = false, action) {
@@ -30,15 +31,20 @@ function selected(
           ...state,
           cars: action.payload.car
         }
-      case 'DESELECT_CAR':
+      case 'UNSELECT_CAR':
         return {
           ...state,
           cars: state.cars.filter(c => c !== action.payload.car)
         }
-      case 'DESELECT_ALL_CARS':
+      case 'UNSELECT_ALL_CARS':
         return {
           ...state,
           cars: []
+        }
+      case 'SET_CARS_FILTER':
+        return {
+          ...state,
+          filterSelected: action.payload
         }
       default:
         return state
