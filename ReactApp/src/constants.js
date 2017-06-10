@@ -6,7 +6,8 @@ const actionTypes = {
   SelectCarFromList: 'SELECT_CAR_FROM_LIST',
   OpenModal: 'OPEN_MODAL',
   CloseModal: 'CLOSE_MODAL',
-  DeleteSelectedCar: 'DELETE_SELECTED_CAR'
+  DeselectAllCars: 'DESELECT_ALL_CARS',
+  DeselectCar: 'DESELECT_CAR'
 };
 
 export default actionTypes;

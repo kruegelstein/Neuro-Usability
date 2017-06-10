@@ -5,7 +5,8 @@ export const closeModal = () => ({ type: ActionTypes.CloseModal, payload: { data
 export const openModal = () => ({ type: ActionTypes.OpenModal, payload: { data: true } });
 export const selectCar = car => ({ type: ActionTypes.SelectCar, payload: { car } });
 export const selectCarFromList = car => ({ type: ActionTypes.SelectCarFromList, payload: { car } });
-export const deleteSelectedCar = car => ({ type: ActionTypes.DeleteSelectedCar, payload: { car } });
+export const deselectCar = car => ({ type: ActionTypes.DeselectCar, payload: { car } });
+export const deselectAllCars = () => ({ type: ActionTypes.DeselectAllCars, payload: { } })
 
 export function getCars() {
   return dispatch => {
