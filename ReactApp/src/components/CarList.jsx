@@ -35,6 +35,7 @@ class CarList extends Component {
 CarList.propTypes = {
   cars: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   loadCarsFromDB: PropTypes.func.isRequired,
+  onSelectCar: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state, _ownProps) => {
@@ -43,7 +44,7 @@ const mapStateToProps = (state, _ownProps) => {
   cars = carIds.map(cId => state.cars[cId]);
   return {
     cars,
-    selectedCars: state.navigation.selected.cars
+    selectedCars: state.navigation.selected.cars,
   };
 };
 
