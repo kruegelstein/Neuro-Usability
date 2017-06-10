@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 
-import { deleteSelectedCar, selectCar, openModal } from '../actions/actions.js'
+import { deselectCar, deselectAllCars, selectCar, openModal } from '../actions/actions.js'
 import SelectedCar from './SelectedCar';
 
 class SelectedCarList extends Component {
@@ -10,6 +10,9 @@ class SelectedCarList extends Component {
     return (
       <div className="selCarList col-md-3">
         <h4 className="selCarHeader">Selected Cars</h4>
+        <a onClick={() => this.props.onDeselectAllCars()}>
+          <p>Deselect all</p>
+        </a>
         <div className="selCarContainer">
           {
             this.props.selectedCars.map((sCar) => {
@@ -18,7 +21,7 @@ class SelectedCarList extends Component {
                   key={sCar.index}
                   name={sCar.name}
                   onClick={() =>
-                    this.props.onDeleteSelectedCar(sCar.index)}
+                    this.props.onDeselectCar(sCar.index)}
                   onEdit={() => this.props.onOpenModal(sCar.index)}
                   />
               )
@@ -46,14 +49,17 @@ const mapStateToProps = (state, _ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, _ownProps) => ({
-  onDeleteSelectedCar: (car) => {
+  onDeselectCar: (car) => {
     dispatch(selectCar(car));
-    dispatch(deleteSelectedCar(car));
+    dispatch(deselectCar(car));
   },
   onOpenModal: (car) => {
     dispatch(selectCar(car));
     dispatch(openModal());
   },
+  onDeselectAllCars: () => {
+    dispatch(deselectAllCars())
+  }
 });
 
 SelectedCarList = connect(

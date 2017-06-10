@@ -30,10 +30,15 @@ function selected(
           ...state,
           cars: action.payload.car
         }
-      case 'DELETE_SELECTED_CAR':
+      case 'DESELECT_CAR':
         return {
           ...state,
           cars: state.cars.filter(c => c !== action.payload.car)
+        }
+      case 'DESELECT_ALL_CARS':
+        return {
+          ...state,
+          cars: []
         }
       default:
         return state
