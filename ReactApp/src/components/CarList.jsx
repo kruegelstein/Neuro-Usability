@@ -18,7 +18,10 @@ class CarList extends Component {
           {
             this.props.cars.map((car) => {
               return (
-                <CarListItem car={car}/>
+                <CarListItem
+                  key={car.index}
+                  name={car.name}
+                  />
               )
             })
           }

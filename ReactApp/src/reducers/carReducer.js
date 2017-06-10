@@ -6,7 +6,7 @@ const cars = (state = {}, action = {}) => {
   case 'GET_CARS_FULFILLED': {
       return {
         ...state,
-        ...normalizeCars(action.data),
+        ...action.data,
       }
     }
   default:
