@@ -6,8 +6,15 @@ const initial = {
   car: null,
 };
 
-function modal(state = null, action) {
-  return { ...state }
+function modal(state = false, action) {
+  switch(action.type) {
+    case 'OPEN_MODAL':
+      return action.payload.data
+    case 'CLOSE_MODAL':
+      return action.payload.data
+    default:
+      return state
+  }
 }
 
 function selected(

@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
-const SelectedCar = ({ name, onClick }) => {
+const SelectedCar = ({ name, onClick, onEdit }) => {
   const onCarClickHandler = (event) => {
     onClick(event);
   }
@@ -13,7 +13,9 @@ const SelectedCar = ({ name, onClick }) => {
       </div>
       <div className="carBody">
         <div className="iconContainer">
-          <a>
+          <a
+            onClick={onEdit}
+            >
             <i className="fa fa-car" aria-hidden="true"></i>
           </a>
         </div>
