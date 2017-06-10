@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 
+import { deleteSelectedCar, selectCar } from '../actions/actions.js'
 import SelectedCar from './SelectedCar';
 
 class SelectedCarList extends Component {
@@ -16,6 +17,8 @@ class SelectedCarList extends Component {
                 <SelectedCar
                   key={sCar.index}
                   name={sCar.name}
+                  onClick={() =>
+                    this.props.onDeleteSelectedCar(sCar.index)}
                   />
               )
             })
@@ -28,6 +31,7 @@ class SelectedCarList extends Component {
 
 SelectedCarList.propTypes = {
   selectedCars: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  onDeleteSelectedCar: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state, _ownProps) => {
@@ -39,9 +43,16 @@ const mapStateToProps = (state, _ownProps) => {
   };
 };
 
+const mapDispatchToProps = (dispatch, _ownProps) => ({
+  onDeleteSelectedCar: (car) => {
+    dispatch(selectCar(car));
+    dispatch(deleteSelectedCar(car));
+  },
+});
+
 SelectedCarList = connect(
   mapStateToProps,
-  null,
+  mapDispatchToProps,
 )(SelectedCarList);
 
 export default SelectedCarList;

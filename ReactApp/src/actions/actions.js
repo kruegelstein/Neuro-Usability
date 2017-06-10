@@ -2,6 +2,8 @@ import ActionTypes from '../constants';
 import database from '../firebase';
 
 export const selectCar = car => ({ type: ActionTypes.SelectCar, payload: { car } });
+export const selectCarFromList = car => ({ type: ActionTypes.SelectCarFromList, payload: { car } });
+export const deleteSelectedCar = car => ({ type: ActionTypes.DeleteSelectedCar, payload: { car } });
 
 export function getCars() {
   return dispatch => {
