@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import '../../style/Car.css';
 
 class Car extends Component {
   render() {

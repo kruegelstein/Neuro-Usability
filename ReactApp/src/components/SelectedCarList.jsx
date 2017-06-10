@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Car from './Car';
-// import '../../style/SelectedCarList.css';
 
 class SelectedCarList extends Component {
   render() {
@@ -8,12 +7,6 @@ class SelectedCarList extends Component {
       <div className="selCarList col-md-3">
         <h4 className="selCarHeader">Selected Cars</h4>
         <div className="selCarContainer">
-          <Car />
-          <Car />
-          <Car />
-          <Car />
-          <Car />
-          <Car />
           <Car />
         </div>
       </div>
