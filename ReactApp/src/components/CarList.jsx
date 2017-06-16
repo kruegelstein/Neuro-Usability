@@ -43,19 +43,19 @@ class CarList extends Component {
               this.props.viewedCars.map((car) => {
                 return (
                   <CarListItem
-                    key={car.index}
-                    index={car.index}
+                    key={car.id}
+                    index={car.id}
                     name={car.name}
                     onClick={() => {
                         this.props.onSelectCarFromList(
-                        this.props.selectedCars.filter(c => c !== car.index).concat(car.index), car.index)
+                        this.props.selectedCars.filter(c => c !== car.id).concat(car.id), car.id)
                       }
                     }
-                    onEdit={() => this.props.onOpenModal(car.index)}
-                    onUnselect={() => this.props.onUnselectCar(car.index)}
-                    onSelect= {() => this.props.onSelectCar(car.index)}
+                    onEdit={() => this.props.onOpenModal(car.id)}
+                    onUnselect={() => this.props.onUnselectCar(car.id)}
+                    onSelect= {() => this.props.onSelectCar(car.id)}
                     filterSelected={this.props.filterSelected}
-                    isSelected={car.index === this.props.selectedCars.find(c => c === car.index)}
+                    isSelected={car.id === this.props.selectedCars.find(c => c === car.id)}
                     />
                 )
               })
@@ -89,7 +89,7 @@ const mapStateToProps = (state, _ownProps) => {
     viewedCars = carIds.map(cId => state.cars[cId]);
     headerText = "Selected Cars";
   }
-  const numOfAllCars = Object.keys(state.cars).length
+  const numOfAllCars = Object.keys(state.cars).length 
   const numOfSelCars = state.navigation.selected.cars.length
 
   return {

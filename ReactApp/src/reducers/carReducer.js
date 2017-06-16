@@ -6,7 +6,9 @@ const cars = (state = {}, action = {}) => {
   case 'GET_CARS_FULFILLED': {
       return {
         ...state,
-        ...action.data,
+        ...action.data.map((d, index) => {
+          return {id: index, name: d}
+        }),
       }
     }
   default:
