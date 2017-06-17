@@ -12,7 +12,7 @@ export const unselectAllCars = () => ({ type: ActionTypes.UnselectAllCars, paylo
 export function getCars() {
   return dispatch => {
     dispatch(getCarsRequestedAction());
-    return database.ref('result').limitToFirst(10).once('value', snap => {
+    return database.ref('result').limitToFirst(1).once('value', snap => {
       const cars = Object.keys(snap.val());
       dispatch(getCarsFulfilledAction(cars))
     })
