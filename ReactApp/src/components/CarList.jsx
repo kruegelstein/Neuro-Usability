@@ -29,7 +29,7 @@ class CarList extends Component {
 
   render() {
     return (
-      <div className="list col-md-3">
+      <div className="col-sm-3 col-md-3 col-lg-3 list">
         {this.renderSelection()}
         <div className="carList">
           <div className="listHeader">
@@ -89,7 +89,7 @@ const mapStateToProps = (state, _ownProps) => {
     viewedCars = carIds.map(cId => state.cars[cId]);
     headerText = "Selected Cars";
   }
-  const numOfAllCars = Object.keys(state.cars).length 
+  const numOfAllCars = Object.keys(state.cars).length
   const numOfSelCars = state.navigation.selected.cars.length
 
   return {
