@@ -41,7 +41,7 @@ class Graph extends Component {
   render() {
 
     return (
-      <div className="col-md-6">
+      <div className="col-sm-12 col-md-8 col-lg-8">
         <canvas id="chart" width="400" height="400"></canvas>
       </div>
     )
