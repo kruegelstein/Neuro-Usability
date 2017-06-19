@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import Chart from 'chart.js'
+import Highcharts from 'highcharts'
+import GraphTest from '../scripts/Graph_Test'
+
 
 class Graph extends Component {
   // componentDidMount() {
@@ -37,12 +40,41 @@ class Graph extends Component {
   //       scaleGridLineColor: "black"
   //   });
   // }
+  // graph() {
+  //   var myChart = Highcharts.chart('container', {
+  //       chart: {
+  //           type: 'bar'
+  //       },
+  //       title: {
+  //           text: 'Fruit Consumption'
+  //       },
+  //       xAxis: {
+  //           categories: ['Apples', 'Bananas', 'Oranges']
+  //       },
+  //       yAxis: {
+  //           title: {
+  //               text: 'Fruit eaten'
+  //           }
+  //       },
+  //       series: [{
+  //           name: 'Jane',
+  //           data: [1, 0, 4]
+  //       }, {
+  //           name: 'John',
+  //           data: [5, 7, 3]
+  //       }]
+  //   });
+  // }
 
   render() {
 
     return (
       <div className="col-sm-12 col-md-8 col-lg-8">
-        <canvas id="chart" width="400" height="400"></canvas>
+        <canvas id="chart" width="00" height="00">
+          <script>
+            {GraphTest}
+          </script>
+        </canvas>
       </div>
     )
   }
