@@ -9,10 +9,24 @@ export const selectCarFromList = car => ({ type: ActionTypes.SelectCarFromList, 
 export const unselectCar = car => ({ type: ActionTypes.UnselectCar, payload: { car } });
 export const unselectAllCars = () => ({ type: ActionTypes.UnselectAllCars, payload: { } })
 
+export function loadAdditionalData(carName, car) {
+  return dispatch => {
+    dispatch(getCarsDataRequestedAction(carName));
+    return database.ref('result').once('value', snap => {
+      const data = snap.child(carName).val();
+      dispatch(getCarsDataFullfilledAction(data, carName, car))
+    })
+    .catch((error) => {
+      connsole.log(error);
+      dispatch(getCarsDataRejectedAction(error))
+    })
+  }
+}
+
 export function getCars() {
   return dispatch => {
     dispatch(getCarsRequestedAction());
-    return database.ref('result').limitToFirst(1).once('value', snap => {
+    return database.ref('result').limitToFirst(2).once('value', snap => {
       const cars = Object.keys(snap.val());
       dispatch(getCarsFulfilledAction(cars))
     })
@@ -23,7 +37,26 @@ export function getCars() {
   }
 }
 
+function getCarsDataFullfilledAction(data, carName, car) {
+  return {
+    type: ActionTypes.getCarsDataFullfilled,
+    payload: {timestamps: data , carName, car}
+  }
+}
 
+function getCarsDataRequestedAction(car) {
+  return {
+    type: ActionTypes.GetCarsDataRequested,
+    resource: car,
+  };
+}
+
+function getCarsDataRejectedAction(error) {
+  return {
+    type: ActionTypes.getCarsDataRejected,
+    payload: error,
+  }
+}
 
 function getCarsRequestedAction() {
   return {
