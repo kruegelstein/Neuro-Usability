@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 
-import { getCars, setCarsFilter, unselectCar, selectCarFromList, unselectAllCars, selectCar, openModal, filterSelected } from '../actions/actions.js'
+import {
+  getCars, setCarsFilter,
+  unselectCar, selectCarFromList,
+  unselectAllCars, selectCar,
+  openModal, filterSelected,
+  loadAdditionalData } from '../actions/actions.js'
 import CarListItem from './CarListItem';
 
 class CarList extends Component {
@@ -48,7 +53,7 @@ class CarList extends Component {
                     name={car.name}
                     onClick={() => {
                         this.props.onSelectCarFromList(
-                        this.props.selectedCars.filter(c => c !== car.id).concat(car.id), car.id)
+                        this.props.selectedCars.filter(c => c !== car.id).concat(car.id), car.id, car.name)
                       }
                     }
                     onEdit={() => this.props.onOpenModal(car.id)}
@@ -109,9 +114,10 @@ const mapDispatchToProps = (dispatch, _ownProps) => ({
   onSelectCar: (car) => {
     dispatch(selectCar(car))
   },
-  onSelectCarFromList: (carList, car) => {
+  onSelectCarFromList: (carList, car, carName) => {
     dispatch(selectCarFromList(carList))
     dispatch(selectCar(car))
+    dispatch(loadAdditionalData(carName, car))
   },
   onSetCarsFilter: (bool) => {
     dispatch(setCarsFilter(bool));
