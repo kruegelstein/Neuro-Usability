@@ -11,7 +11,11 @@ const actionTypes = {
   CloseModal: 'CLOSE_MODAL',
   SetCarsFilter: 'SET_CARS_FILTER',
   UnselectAllCars: 'UNSELECT_ALL_CARS',
-  UnselectCar: 'UNSELECT_CAR'
+  UnselectCar: 'UNSELECT_CAR',
+  SelectColor: 'SELECT_COLOR',
+  SelectGraph: 'SELECT_GRAPH',
+  SelectAttribute: 'SELECT_ATTRIBUTE',
+  UnselectAttribute: 'UNSELECT_ATTRIBUTE',
 };
 
 export default actionTypes;
