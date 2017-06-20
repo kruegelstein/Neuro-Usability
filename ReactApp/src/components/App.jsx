@@ -125,7 +125,7 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <h2>Simulation of Vehicle-2-X Communication</h2>
+        {/*<h2>Simulation of Vehicle-2-X Communication</h2>*/}
         <CarList />
         {this.showModal()}
         <Graph />

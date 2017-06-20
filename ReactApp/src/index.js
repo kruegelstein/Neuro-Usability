@@ -7,6 +7,37 @@ import thunk from 'redux-thunk';
 
 import App from './components/App';
 import reducers from './reducers.js';
+import GraphTest from './scripts/Graph_Test.js'
+
+const ReactHighcharts = require('react-highcharts');
+
+const config = {
+  
+        chart: {
+            renderTo: 'graph',
+            type: 'line',
+            zoomtype: 'xy'
+        },
+        title: {
+            text: 'Dummy Data'
+        },
+        xAxis: {
+            timestamp: ['0', '1', '2']
+        },
+        yAxis: {
+            title: {
+                text: 'Value'
+            }
+        },
+        series: [{
+            name: 'PosY',
+            data: [1, 0, 4]
+        }, {
+            name: 'PosX',
+            data: [5, 7, 3]
+        }]
+    
+};
 
 function isProduction() {
   return process.env.NODE_ENV === 'production';
@@ -35,3 +66,6 @@ ReactDOM.render(
     <App />
   </Provider>
   , document.querySelector('.container'));
+
+ReactDOM.render(<ReactHighcharts config = {config}></ReactHighcharts>, document.querySelector('.highgraph'));
+
