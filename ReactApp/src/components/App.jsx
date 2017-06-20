@@ -50,6 +50,14 @@ class App extends Component {
       </div>
     )
   }
+  checked(a) {
+    if(this.props.attributeIsSelected.includes(a)){
+      console.log(true);
+      return true
+    } else {
+      return false
+    }
+  }
   showAttributes() {
     return (
       <div className="attributesList">
@@ -59,11 +67,13 @@ class App extends Component {
             <li className="attributes">
               <FormGroup className="checkbox" controlId="checked">
                 <Radio
+                  checked={this.checked(a)}
                   onClick= {() => {
-                    if(!this.props.selAttributes ){
-                      this.props.onSelectAttribute({a}, true)
+                    if(!this.checked(a)) {
+                      console.log("right path");
+                      this.props.onSelectAttribute(a, true)
                     } else {
-                      this.props.onUnSelectAttribute({a}, false)
+                      this.props.onUnSelectAttribute(a, false)
                     }
                   }
                   }
@@ -147,8 +157,15 @@ const mapStateToProps = (state, _ownProps) => {
     carName = state.cars[selectedCar].name
   }
   let selAttributes = Object.keys(state.form.selected).map(a =>  state.form.selected[a].selected === true)
-  console.log(selAttributes);
+  let attributeIsSelected = []
+  selAttributes.forEach((value, index) => {
+    if(value) {
+      attributeIsSelected.push(state.form.general.attributes[index])
+    }
+  })
   return {
+    attributesInForm: state.form.selected,
+    attributeIsSelected,
     selAttributes,
     attributes: state.form.general.attributes,
     colors: state.form.general.colors,

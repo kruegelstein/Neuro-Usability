@@ -79,16 +79,19 @@ function general(
 function selected(
   state = { ...initialSelected } , action = {}) {
     switch(action.type) {
-      case ActionTypes.SelectAttribute: {
+      case ActionTypes.UnselectAttribute:
+      case ActionTypes.SelectAttribute:
         return {
           ...state,
-          ...selected.map(a => {
-            if(a.name === action.payload.attribute){
-              return {selected: action.payload.bool}
+          ...Object.keys(initialSelected).map(a => {
+            if(initialSelected[a].name === action.payload.attribute){
+              console.log(initialSelected[a].name);
+              return { ...state[a], selected: action.payload.value}
+            } else {
+              return state[a]
             }
           })
         }
-      }
       default:
         return state
     }

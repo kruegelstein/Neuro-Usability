@@ -11,7 +11,7 @@ export const unselectAllCars = () => ({ type: ActionTypes.UnselectAllCars, paylo
 export const selectGraph = (graph) => ({ type: ActionTypes.SelectGraph, payload: { graph }})
 export const selectColor = (color) => ({ type: ActionTypes.SelectColor, payload: { color }})
 export const selectAttribute = (attribute, bool) => ({ type: ActionTypes.SelectAttribute, payload: { attribute, value: true }})
-export const unselectAttribute = (attribute, bool) => ({ type: ActionTypes.UnselectAttribute, payload: { attribute, value: true }})
+export const unselectAttribute = (attribute, bool) => ({ type: ActionTypes.UnselectAttribute, payload: { attribute, value: false }})
 
 export function loadAdditionalData(carName, car) {
   return dispatch => {
