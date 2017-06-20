@@ -1,7 +1,7 @@
 # Decision due to the comparison
 
 For this project it should be worth the work switching
-to another frond-end technology, since GWT is limited
+to another front-end technology, since GWT is limited
 to the level of abstraction. We identified the following needs:
 
 1. Performance and efficiency
