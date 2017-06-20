@@ -4,10 +4,9 @@ import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import { Button, Radio, FormGroup, DropdownButton, MenuItem } from 'react-bootstrap';
 
-import { closeModal } from '../actions/actions.js'
+import { closeModal, selectGraph, selectColor, selectAttribute, unselectAttribute } from '../actions/actions.js'
 import CarList from './CarList';
 import Graph from './Graph';
-
 
 class App extends Component {
   showModal() {
@@ -29,7 +28,7 @@ class App extends Component {
   showModalHeader() {
     return (
       <div className="modalHeader">
-        <h4> CARNAME </h4>
+        <h4> {this.props.carName} </h4>
         <a
 
           onClick={() => this.props.onCloseModal()}
@@ -55,132 +54,51 @@ class App extends Component {
     return (
       <div className="attributesList">
         <form className="attributesForm">
-          <li className="attributes">
-            <FormGroup className="checkbox" controlId="checked">
-              <Radio >Attribute name</Radio>
-            </FormGroup>
-            <FormGroup className="graph" controlId="graph">
-              <DropdownButton className="graphDd" title="Line">
-                <MenuItem eventKey="1">Line</MenuItem>
-                <MenuItem eventKey="2">Bar</MenuItem>
-                <MenuItem eventKey="3">...</MenuItem>
-                <MenuItem eventKey="4">...</MenuItem>
-              </DropdownButton>
-            </FormGroup>
-            <FormGroup className="color">
-              <DropdownButton className="colorDd" title="Line">
-                <MenuItem eventKey="1">Blue</MenuItem>
-                <MenuItem eventKey="2">Green</MenuItem>
-                <MenuItem eventKey="3">...</MenuItem>
-                <MenuItem eventKey="4">...</MenuItem>
-              </DropdownButton>
-            </FormGroup>
-          </li>
-          <li className="attributes">
-            <FormGroup className="checkbox" controlId="checked">
-              <Radio >Attribute name</Radio>
-            </FormGroup>
-            <FormGroup className="graph" controlId="graph">
-              <DropdownButton className="graphDd" title="Line">
-                <MenuItem eventKey="1">Line</MenuItem>
-                <MenuItem eventKey="2">Bar</MenuItem>
-                <MenuItem eventKey="3">...</MenuItem>
-                <MenuItem eventKey="4">...</MenuItem>
-              </DropdownButton>
-            </FormGroup>
-            <FormGroup className="color">
-              <DropdownButton className="colorDd" title="Line">
-                <MenuItem eventKey="1">Blue</MenuItem>
-                <MenuItem eventKey="2">Green</MenuItem>
-                <MenuItem eventKey="3">...</MenuItem>
-                <MenuItem eventKey="4">...</MenuItem>
-              </DropdownButton>
-            </FormGroup>
-          </li>
-          <li className="attributes">
-            <FormGroup className="checkbox" controlId="checked">
-              <Radio >Attribute name</Radio>
-            </FormGroup>
-            <FormGroup className="graph" controlId="graph">
-              <DropdownButton className="graphDd" title="Line">
-                <MenuItem eventKey="1">Line</MenuItem>
-                <MenuItem eventKey="2">Bar</MenuItem>
-                <MenuItem eventKey="3">...</MenuItem>
-                <MenuItem eventKey="4">...</MenuItem>
-              </DropdownButton>
-            </FormGroup>
-            <FormGroup className="color">
-              <DropdownButton className="colorDd" title="Line">
-                <MenuItem eventKey="1">Blue</MenuItem>
-                <MenuItem eventKey="2">Green</MenuItem>
-                <MenuItem eventKey="3">...</MenuItem>
-                <MenuItem eventKey="4">...</MenuItem>
-              </DropdownButton>
-            </FormGroup>
-          </li>
-          <li className="attributes">
-            <FormGroup className="checkbox" controlId="checked">
-              <Radio >Attribute name</Radio>
-            </FormGroup>
-            <FormGroup className="graph" controlId="graph">
-              <DropdownButton className="graphDd" title="Line">
-                <MenuItem eventKey="1">Line</MenuItem>
-                <MenuItem eventKey="2">Bar</MenuItem>
-                <MenuItem eventKey="3">...</MenuItem>
-                <MenuItem eventKey="4">...</MenuItem>
-              </DropdownButton>
-            </FormGroup>
-            <FormGroup className="color">
-              <DropdownButton className="colorDd" title="Line">
-                <MenuItem eventKey="1">Blue</MenuItem>
-                <MenuItem eventKey="2">Green</MenuItem>
-                <MenuItem eventKey="3">...</MenuItem>
-                <MenuItem eventKey="4">...</MenuItem>
-              </DropdownButton>
-            </FormGroup>
-          </li>
-          <li className="attributes">
-            <FormGroup className="checkbox" controlId="checked">
-              <Radio >Attribute name</Radio>
-            </FormGroup>
-            <FormGroup className="graph" controlId="graph">
-              <DropdownButton className="graphDd" title="Line">
-                <MenuItem eventKey="1">Line</MenuItem>
-                <MenuItem eventKey="2">Bar</MenuItem>
-                <MenuItem eventKey="3">...</MenuItem>
-                <MenuItem eventKey="4">...</MenuItem>
-              </DropdownButton>
-            </FormGroup>
-            <FormGroup className="color">
-              <DropdownButton className="colorDd" title="Line">
-                <MenuItem eventKey="1">Blue</MenuItem>
-                <MenuItem eventKey="2">Green</MenuItem>
-                <MenuItem eventKey="3">...</MenuItem>
-                <MenuItem eventKey="4">...</MenuItem>
-              </DropdownButton>
-            </FormGroup>
-          </li>
-          <li className="attributes">
-            <FormGroup className="checkbox" controlId="checked">
-              <Radio >Attribute name</Radio>
-            </FormGroup>
-            <FormGroup className="graph" controlId="graph">
-              <DropdownButton className="graphDd" title="Line">
-                <MenuItem eventKey="1">Line</MenuItem>
-                <MenuItem eventKey="2">Bar</MenuItem>
-                <MenuItem eventKey="3">...</MenuItem>
-                <MenuItem eventKey="4">...</MenuItem>
-              </DropdownButton>
-            </FormGroup>
-            <FormGroup className="color">
-              <DropdownButton className="colorDd" title="Line">
-                <MenuItem eventKey="1">Blue</MenuItem>
-                <MenuItem eventKey="2">Green</MenuItem>
-                <MenuItem eventKey="3">...</MenuItem>
-                <MenuItem eventKey="4">...</MenuItem>
-              </DropdownButton>
-            </FormGroup>
-          </li>
+        {this.props.attributes.map(a => {
+          return (
+            <li className="attributes">
+              <FormGroup className="checkbox" controlId="checked">
+                <Radio
+                  onClick= {() => {
+                    if(!this.props.selAttributes ){
+                      this.props.onSelectAttribute({a}, true)
+                    } else {
+                      this.props.onUnSelectAttribute({a}, false)
+                    }
+                  }
+                  }
+                >{a}</Radio>
+              </FormGroup>
+              <FormGroup className="graph" controlId="graph">
+                <DropdownButton className="graphDd" title="Line">
+                {this.props.graphs.map(g => {
+                  return (
+                    <MenuItem
+                      eventKey="1"
+                      onSelect={() => this.props.onSelectGraphType({g})}
+                    >{g}</MenuItem>
+                  )
+                })
+                }
+                </DropdownButton>
+              </FormGroup>
+              <FormGroup className="color">
+                <DropdownButton className="colorDd" title="Line">
+                {this.props.colors.map(c => {
+                  return (
+                    <MenuItem
+                      eventKey="1"
+                      onSelect={() => this.props.onSelectColorType({c})}
+                    >{c}</MenuItem>
+                  )
+                })
+                }
+                </DropdownButton>
+              </FormGroup>
+            </li>
+          )
+        })
+        }
         </form>
       </div>
     )
@@ -218,10 +136,25 @@ class App extends Component {
 
 App.propTypes = {
   modal: PropTypes.bool.isRequired,
+  carName: PropTypes.string.isRequired,
+  selectedCar: PropTypes.number,
 }
 
 const mapStateToProps = (state, _ownProps) => {
+  let selectedCar = state.navigation.selected.car
+  let carName = ''
+  if(selectedCar !== null) {
+    carName = state.cars[selectedCar].name
+  }
+  let selAttributes = Object.keys(state.form.selected).map(a =>  state.form.selected[a].selected === true)
+  console.log(selAttributes);
   return {
+    selAttributes,
+    attributes: state.form.general.attributes,
+    colors: state.form.general.colors,
+    graphs: state.form.general.graphs,
+    selectedCar,
+    carName,
     modal: state.navigation.modal,
   };
 };
@@ -230,6 +163,18 @@ const mapDispatchToProps = (dispatch, _ownProps) => ({
   onCloseModal: (car) => {
     dispatch(closeModal());
   },
+  onSelectColorType: (color) => {
+    dispatch(selectColor(color))
+  },
+  onSelectGraphType: (graph) => {
+    dispatch(selectGraph(graph))
+  },
+  onSelectAttribute: (attribute, bool) => {
+    dispatch(selectAttribute(attribute, bool))
+  },
+  onUnSelectAttribute: (attribute, bool) => {
+    dispatch(unselectAttribute(attribute, bool))
+  }
 });
 
 App = connect(

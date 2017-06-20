@@ -8,6 +8,10 @@ export const selectCar = (car) => ({ type: ActionTypes.SelectCar, payload: { car
 export const selectCarFromList = car => ({ type: ActionTypes.SelectCarFromList, payload: { car } });
 export const unselectCar = car => ({ type: ActionTypes.UnselectCar, payload: { car } });
 export const unselectAllCars = () => ({ type: ActionTypes.UnselectAllCars, payload: { } })
+export const selectGraph = (graph) => ({ type: ActionTypes.SelectGraph, payload: { graph }})
+export const selectColor = (color) => ({ type: ActionTypes.SelectColor, payload: { color }})
+export const selectAttribute = (attribute, bool) => ({ type: ActionTypes.SelectAttribute, payload: { attribute, value: true }})
+export const unselectAttribute = (attribute, bool) => ({ type: ActionTypes.UnselectAttribute, payload: { attribute, value: true }})
 
 export function loadAdditionalData(carName, car) {
   return dispatch => {
