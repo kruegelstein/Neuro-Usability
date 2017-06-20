@@ -85,13 +85,34 @@ function selected(
           ...state,
           ...Object.keys(initialSelected).map(a => {
             if(initialSelected[a].name === action.payload.attribute){
-              console.log(initialSelected[a].name);
               return { ...state[a], selected: action.payload.value}
             } else {
               return state[a]
             }
           })
         }
+      case ActionTypes.SelectGraph:
+        return {
+          ...state,
+          ...Object.keys(initialSelected).map(a => {
+            if(initialSelected[a].name === action.payload.attribute){
+              return { ...state[a], graph: action.payload.value}
+            } else {
+              return state[a]
+            }
+          })
+        }
+      case ActionTypes.SelectColor:
+      return {
+        ...state,
+        ...Object.keys(initialSelected).map(a => {
+          if(initialSelected[a].name === action.payload.attribute){
+            return { ...state[a], color: action.payload.value}
+          } else {
+            return state[a]
+          }
+        })
+      }
       default:
         return state
     }

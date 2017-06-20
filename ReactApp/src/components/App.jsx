@@ -50,14 +50,25 @@ class App extends Component {
       </div>
     )
   }
+
   checked(a) {
     if(this.props.attributeIsSelected.includes(a)){
-      console.log(true);
       return true
     } else {
       return false
     }
   }
+
+  color(a) {
+    let attrPos = this.props.attributes.indexOf(a)
+    return this.props.attributesInForm[attrPos].color
+  }
+
+  graph(a) {
+    let attrPos = this.props.attributes.indexOf(a)
+    return this.props.attributesInForm[attrPos].graph
+  }
+
   showAttributes() {
     return (
       <div className="attributesList">
@@ -68,9 +79,8 @@ class App extends Component {
               <FormGroup className="checkbox" controlId="checked">
                 <Radio
                   checked={this.checked(a)}
-                  onClick= {() => {
+                  onChange= {() => {
                     if(!this.checked(a)) {
-                      console.log("right path");
                       this.props.onSelectAttribute(a, true)
                     } else {
                       this.props.onUnSelectAttribute(a, false)
@@ -80,25 +90,25 @@ class App extends Component {
                 >{a}</Radio>
               </FormGroup>
               <FormGroup className="graph" controlId="graph">
-                <DropdownButton className="graphDd" title="Line">
+                <DropdownButton className="graphDd" title={this.graph(a)}>
                 {this.props.graphs.map(g => {
                   return (
                     <MenuItem
                       eventKey="1"
-                      onSelect={() => this.props.onSelectGraphType({g})}
+                      onSelect={() => this.props.onSelectGraphType(a, g)}
                     >{g}</MenuItem>
                   )
                 })
                 }
                 </DropdownButton>
               </FormGroup>
-              <FormGroup className="color">
-                <DropdownButton className="colorDd" title="Line">
+              <FormGroup className="color" controlId="color">
+                <DropdownButton className="colorDd" title={this.color(a)}>
                 {this.props.colors.map(c => {
                   return (
                     <MenuItem
                       eventKey="1"
-                      onSelect={() => this.props.onSelectColorType({c})}
+                      onSelect={() => this.props.onSelectColorType(a, c)}
                     >{c}</MenuItem>
                   )
                 })
@@ -151,6 +161,7 @@ App.propTypes = {
 }
 
 const mapStateToProps = (state, _ownProps) => {
+  let attributes = state.form.general.attributes
   let selectedCar = state.navigation.selected.car
   let carName = ''
   if(selectedCar !== null) {
@@ -163,11 +174,12 @@ const mapStateToProps = (state, _ownProps) => {
       attributeIsSelected.push(state.form.general.attributes[index])
     }
   })
+  let attributesInForm =  state.form.selected
   return {
-    attributesInForm: state.form.selected,
+    attributesInForm,
     attributeIsSelected,
     selAttributes,
-    attributes: state.form.general.attributes,
+    attributes,
     colors: state.form.general.colors,
     graphs: state.form.general.graphs,
     selectedCar,
@@ -180,11 +192,11 @@ const mapDispatchToProps = (dispatch, _ownProps) => ({
   onCloseModal: (car) => {
     dispatch(closeModal());
   },
-  onSelectColorType: (color) => {
-    dispatch(selectColor(color))
+  onSelectColorType: (attribute, color) => {
+    dispatch(selectColor(attribute, color))
   },
-  onSelectGraphType: (graph) => {
-    dispatch(selectGraph(graph))
+  onSelectGraphType: (attribute, graph) => {
+    dispatch(selectGraph(attribute, graph))
   },
   onSelectAttribute: (attribute, bool) => {
     dispatch(selectAttribute(attribute, bool))
