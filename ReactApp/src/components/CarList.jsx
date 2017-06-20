@@ -34,7 +34,7 @@ class CarList extends Component {
 
   render() {
     return (
-      <div className="col-sm-3 col-md-3 col-lg-3 list">
+      <div>
         {this.renderSelection()}
         <div className="carList">
           <div className="listHeader">
