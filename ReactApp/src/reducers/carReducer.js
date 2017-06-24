@@ -2,19 +2,6 @@ import { normalizeCars } from '../schema';
 import { getValue, mapObject, filterObject } from '../helper/helper';
 import ActionTypes from '../constants';
 
-export const carHandler = (state = {}, action = {}) => {
-  switch (action.type) {
-  case ActionTypes.getCarsDataFullfilled : {
-    return {
-      ...state,
-      timestamps: action.payload.timestamps
-    };
-  }
-  default:
-    return { ...state };
-  }
-};
-
 
 const cars = (state = {}, action = {}) => {
   switch (action.type) {
@@ -27,7 +14,16 @@ const cars = (state = {}, action = {}) => {
     }
   }
   case ActionTypes.getCarsDataFullfilled: {
-    return mapObject(state, (_, car) => carHandler(car, action));
+    return {
+      ...state,
+      ...Object.keys(state).map(a => {
+        if(state[a].name === action.payload.carName){
+          return { ...state[a], timestamps: action.payload.timestamps }
+        } else {
+          return state[a]
+        }
+      })
+    }
   }
   default:
       return { ...state }

@@ -116,7 +116,7 @@ const mapDispatchToProps = (dispatch, _ownProps) => ({
   onSelectCarFromList: (carList, car, carName) => {
     dispatch(selectCarFromList(carList))
     dispatch(selectCar(car))
-    // dispatch(loadAdditionalData(carName, car))
+    dispatch(loadAdditionalData(carName, car))
   },
   onSetCarsFilter: (bool) => {
     dispatch(setCarsFilter(bool));
