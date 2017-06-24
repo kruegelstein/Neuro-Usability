@@ -36,7 +36,7 @@ export function getCars() {
     })
     .catch((error) => {
       console.log(error);
-      dispatch(getCarsRejectedAction());
+      dispatch(getCarsRejectedAction(error));
     });
   }
 }
@@ -68,9 +68,10 @@ function getCarsRequestedAction() {
   };
 }
 
-function getCarsRejectedAction() {
+function getCarsRejectedAction(error) {
   return {
-    type: ActionTypes.GetCarsRejected
+    type: ActionTypes.GetCarsRejected,
+    payload: error
   }
 }
 
