@@ -1,36 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Chart from 'chart.js'
 import Highcharts from 'highcharts'
 import ReactHighcharts from 'react-highcharts'
 import GraphTest from '../scripts/Graph_Test'
-
-const config = {
-
-        chart: {
-            renderTo: 'graph',
-            type: 'line',
-            zoomtype: 'xy'
-        },
-        title: {
-            text: 'Dummy Data'
-        },
-        xAxis: {
-            timestamp: ['0', '1', '2']
-        },
-        yAxis: {
-            title: {
-                text: 'Value'
-            }
-        },
-        series: [{
-            name: 'PosY',
-            data: [1, 0, 400]
-        }, {
-            name: 'PosX',
-            data: [5, 100, 3]
-        }]
-
-};
 
 class Graph extends Component {
 
@@ -41,10 +14,21 @@ class Graph extends Component {
     return (
 
       <div className="graph col-sm-12 col-md-9 col-lg-9">
-        <ReactHighcharts config = {config}></ReactHighcharts>
+        <ReactHighcharts config = {this.props.config}></ReactHighcharts>
       </div>
     )
   }
 }
+
+const mapStateToProps = (state, _ownProps) => {
+  return {
+    config: state.test,
+  };
+};
+
+Graph = connect(
+  mapStateToProps,
+  null,
+)(Graph);
 
 export default Graph;
