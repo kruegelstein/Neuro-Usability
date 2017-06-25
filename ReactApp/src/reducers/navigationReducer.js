@@ -2,7 +2,6 @@ import { combineReducers } from 'redux';
 
 
 const initial = {
-  cars: [],
   car: null,
   filterSelected: false,
 };
@@ -25,21 +24,6 @@ function selected(
         return {
           ...state,
           car: action.payload.car
-        }
-      case 'SELECT_CAR_FROM_LIST':
-        return {
-          ...state,
-          cars: action.payload.car
-        }
-      case 'UNSELECT_CAR':
-        return {
-          ...state,
-          cars: state.cars.filter(c => c !== action.payload.car)
-        }
-      case 'UNSELECT_ALL_CARS':
-        return {
-          ...state,
-          cars: []
         }
       case 'SET_CARS_FILTER':
         return {

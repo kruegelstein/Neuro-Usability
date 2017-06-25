@@ -4,10 +4,9 @@ import { connect } from 'react-redux';
 
 import {
   getCars, setCarsFilter,
-  unselectCar, selectCarFromList,
-  unselectAllCars, selectCar,
-  openModal, filterSelected,
-  loadAdditionalData } from '../actions/actions.js'
+  unselectCar, unselectAllCars,
+  selectCar, openModal,
+  filterSelected, loadAdditionalData } from '../actions/actions.js'
 import CarListItem from './CarListItem';
 
 class CarList extends Component {
@@ -51,16 +50,17 @@ class CarList extends Component {
                     key={car.id}
                     index={car.id}
                     name={car.name}
-                    onClick={() => {
-                        this.props.onSelectCarFromList(
-                        this.props.selectedCars.filter(c => c !== car.id).concat(car.id), car.id, car.name)
-                      }
-                    }
                     onEdit={() => this.props.onOpenModal(car.id)}
                     onUnselect={() => this.props.onUnselectCar(car.id)}
-                    onSelect= {() => this.props.onSelectCar(car.id)}
+                    onClick={() => this.props.onSelectCar(car.id, car.name)}
                     filterSelected={this.props.filterSelected}
-                    isSelected={car.id === this.props.selectedCars.find(c => c === car.id)}
+                    isSelected={Object.keys(this.props.cars).map(a => {
+                      if(this.props.cars[a].selected === 1) {
+                        return this.props.cars[a].id
+                      } else {
+                        return -1
+                      }
+                    }).includes(car.id)}
                     />
                 )
               })
@@ -74,7 +74,6 @@ class CarList extends Component {
 
 CarList.propTypes = {
   loadCarsFromDB: PropTypes.func.isRequired,
-  onSelectCarFromList: PropTypes.func.isRequired,
   onSetCarsFilter: PropTypes.func.isRequired,
   onUnselectCar: PropTypes.func.isRequired,
   onUnselectAllCars: PropTypes.func.isRequired,
@@ -82,24 +81,25 @@ CarList.propTypes = {
 }
 
 const mapStateToProps = (state, _ownProps) => {
+  let cars = state.cars;
   let viewedCars = [];
   let headerText = "Cars";
 
   if(!state.navigation.selected.filterSelected) {
-    const carIds = Object.keys(state.cars)
-    viewedCars = carIds.map(cId => state.cars[cId]);
+    const carIds = Object.keys(cars)
+    viewedCars = carIds.map(cId => cars[cId]);
   } else {
-    const carIds = state.navigation.selected.cars || [];
-    viewedCars = carIds.map(cId => state.cars[cId]);
+    const carIds = Object.keys(cars).filter(c => cars[c].selected === 1) || [];
+    viewedCars = carIds.map(cId => cars[cId]);
     headerText = "Selected Cars";
   }
-  const numOfAllCars = Object.keys(state.cars).length
-  const numOfSelCars = state.navigation.selected.cars.length
+  const numOfAllCars = Object.keys(cars).length
+  const numOfSelCars = Object.keys(cars).filter(a => cars[a].selected === 1).length
 
   return {
+    cars,
     headerText,
     viewedCars,
-    selectedCars: state.navigation.selected.cars,
     filterSelected: state.navigation.selected.filterSelected,
     numOfAllCars,
     numOfSelCars,
@@ -110,14 +110,15 @@ const mapDispatchToProps = (dispatch, _ownProps) => ({
   loadCarsFromDB: () => {
     dispatch(getCars());
   },
-  onSelectCar: (car) => {
-    dispatch(selectCar(car))
-  },
-  onSelectCarFromList: (carList, car, carName) => {
-    dispatch(selectCarFromList(carList))
+  onSelectCar: (car, carName) => {
     dispatch(selectCar(car))
     dispatch(loadAdditionalData(carName, car))
   },
+  // onSelectCarFromList: (carList, car, carName) => {
+  //   dispatch(selectCarFromList(carList))
+  //   dispatch(selectCar(car))
+  //   dispatch(loadAdditionalData(carName, car))
+  // },
   onSetCarsFilter: (bool) => {
     dispatch(setCarsFilter(bool));
   },
@@ -126,7 +127,6 @@ const mapDispatchToProps = (dispatch, _ownProps) => ({
     dispatch(openModal());
   },
   onUnselectCar: (car) => {
-    dispatch(selectCar(null, car));
     dispatch(unselectCar(car));
   },
   onUnselectAllCars: () => {
