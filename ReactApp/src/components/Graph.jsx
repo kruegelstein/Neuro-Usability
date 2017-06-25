@@ -21,8 +21,22 @@ class Graph extends Component {
 }
 
 const mapStateToProps = (state, _ownProps) => {
+  // Get all the currently seleceted cars in an array
+  let selCars = []
+  Object.keys(state.cars).map((c , index)=> {
+    if(state.cars[c].selected === 1) {
+      selCars.push(state.cars[c])
+    }
+  })
+  console.log('selCars', selCars);
+
+  // Get all the currently selected attributes in an array
+  let attributes = []
+  let config = {}
+
   return {
-    config: state.test,
+    config,
+    selCars,
   };
 };
 

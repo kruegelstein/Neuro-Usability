@@ -20,10 +20,13 @@ const initial = {
   },
   series: [{
       name: 'PosY',
-      data: [1, 0, 400]
+      data: [1, 0, 400],
+      color: 'red',
+      type: 'bar'
   }, {
       name: 'PosX',
-      data: [5, 100, 3]
+      data: [5, 100, 3],
+      color: 'green'
   }]
 };
 
