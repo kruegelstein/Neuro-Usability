@@ -20,12 +20,12 @@ class CarList extends Component {
         <a
           onClick={() => this.props.onSetCarsFilter(false)}
         >
-          <p>Cars ({this.props.numOfAllCars})</p>
+          <p>All ({this.props.numOfAllCars})</p>
         </a>
         <a
           onClick={() => this.props.onSetCarsFilter(true)}
         >
-          <p>Selected Cars ({this.props.numOfSelCars})</p>
+          <p>Selected ({this.props.numOfSelCars})</p>
         </a>
       </div>
     )
@@ -33,7 +33,7 @@ class CarList extends Component {
 
   render() {
     return (
-      <div>
+      <div className="col-sm-12 col-md-2 col-lg-2">
         {this.renderSelection()}
         <div className="carList">
           <div className="listHeader">
@@ -114,11 +114,6 @@ const mapDispatchToProps = (dispatch, _ownProps) => ({
     dispatch(selectCar(car))
     dispatch(loadAdditionalData(carName, car))
   },
-  // onSelectCarFromList: (carList, car, carName) => {
-  //   dispatch(selectCarFromList(carList))
-  //   dispatch(selectCar(car))
-  //   dispatch(loadAdditionalData(carName, car))
-  // },
   onSetCarsFilter: (bool) => {
     dispatch(setCarsFilter(bool));
   },
