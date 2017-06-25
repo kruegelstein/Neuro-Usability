@@ -8,11 +8,13 @@
 .aboveList {
   display: inline-flex;
   text-align: center;
+  width: 100%
 }
 
 .aboveList a {
-  margin: 0 20px 5px 23px;
+  margin-bottom: 5px;
   height: 20px;
+  width: 50%;
   color: #7ABA1E;
 }
 
