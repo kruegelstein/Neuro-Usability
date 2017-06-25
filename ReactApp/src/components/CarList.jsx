@@ -52,7 +52,7 @@ class CarList extends Component {
                     name={car.name}
                     onEdit={() => this.props.onOpenModal(car.id)}
                     onUnselect={() => this.props.onUnselectCar(car.id)}
-                    onClick={() => this.props.onSelectCar(car.id, car.name)}
+                    onClick={() => this.props.onSelectCar(car.id)}
                     filterSelected={this.props.filterSelected}
                     isSelected={Object.keys(this.props.cars).map(a => {
                       if(this.props.cars[a].selected === 1) {
@@ -110,15 +110,15 @@ const mapDispatchToProps = (dispatch, _ownProps) => ({
   loadCarsFromDB: () => {
     dispatch(getCars());
   },
-  onSelectCar: (car, carName) => {
+  onSelectCar: (car) => {
     dispatch(selectCar(car))
-    dispatch(loadAdditionalData(carName, car))
+    dispatch(openModal())
   },
   onSetCarsFilter: (bool) => {
     dispatch(setCarsFilter(bool));
   },
   onOpenModal: (car) => {
-    dispatch(selectCar(null, car));
+    dispatch(selectCar(car));
     dispatch(openModal());
   },
   onUnselectCar: (car) => {

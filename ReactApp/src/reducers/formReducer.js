@@ -113,6 +113,9 @@ function selected(
           }
         })
       }
+      case ActionTypes.CloseModal: {
+        return { ...initialSelected }
+      }
       default:
         return state
     }

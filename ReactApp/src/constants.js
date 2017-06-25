@@ -15,6 +15,7 @@ const actionTypes = {
   SelectGraph: 'SELECT_GRAPH',
   SelectAttribute: 'SELECT_ATTRIBUTE',
   UnselectAttribute: 'UNSELECT_ATTRIBUTE',
+  SubmitOptions: 'SUBMIT_OPTIONS',
 };
 
 export default actionTypes;
