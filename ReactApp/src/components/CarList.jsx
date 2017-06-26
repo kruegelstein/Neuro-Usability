@@ -51,7 +51,15 @@ class CarList extends Component {
                     name={car.name}
                     onEdit={() => this.props.onOpenModal(car.id, this.props.graphdata)}
                     onUnselect={() => this.props.onUnselectCar(car.id)}
-                    onClick={() => this.props.onSelectCar(car.id, this.props.graphdata)}
+                    onClick={() => {
+                      if(this.props.cars[car.id].selected === 1) {
+                        // show alert because car is already selected
+                        alert('This car has already been selected')
+                      }else {
+                        // select the car since the car is not yet selected
+                        this.props.onSelectCar(car.id, this.props.graphdata)
+                      }
+                    }}
                     filterSelected={this.props.filterSelected}
                     isSelected={Object.keys(this.props.cars).map(a => {
                       if(this.props.cars[a].selected === 1) {
@@ -99,21 +107,7 @@ const mapStateToProps = (state, _ownProps) => {
   const numOfAllCars = Object.keys(cars).length
   const numOfSelCars = Object.keys(cars).filter(a => cars[a].selected === 1).length
 
-  // Show the correct form values
-  // If selected car has form values in graphdata show those else show default values
-  // let form = state.form.selected
-  // console.log('1', form);
-  // console.log(Object.keys(state.graphdata).map(a => Number(a)));
-  // console.log(state.navigation.selected.car);
-  // if(Object.keys(state.graphdata)
-  //     .map(a => Number(a))
-  //     .includes(state.navigation.selected.car)) {
-  //   form = state.graphdata[state.navigation.selected.car].settings
-  //   console.log('2', form)
-  // }
-  // console.log('3', form)
   return {
-    // form,
     graphdata: state.graphdata,
     cars,
     headerText,
