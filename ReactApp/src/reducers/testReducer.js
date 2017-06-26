@@ -23,9 +23,17 @@ const initial = {
       data: [1, 0, 400]
   }, {
       name: 'PosX',
-      data: [5, 100, 3]
+      data: [5, 100, 3],
+      color: 'red',
+      type: 'bar'
   }]
 };
+
+// series
+// name: attribute.name
+// data: state.cars.timestampsdata
+// color: kommt aus graphdata
+// type: kommt aus graphdata
 
 function test(
   state = { ...initial } , action = {}) {
