@@ -18,6 +18,10 @@
   color: #7ABA1E;
 }
 
+.aboveList a .badge {
+  background-color: #C4C4C4;
+}
+
 .aboveList a:hover {
   text-decoration: underline;
   cursor: pointer;
@@ -45,17 +49,17 @@
 }
 
 .reset {
-  color: red;
+  color: black;
   font-weight: normal;
-  font-size: 12px;
+  font-size: 18px;
   height: 13px;
   position: absolute;
   right: 10px;
-  bottom: 3px;
+  bottom: 18px;
 }
 
 .reset:hover {
-  color: red;
+  color: #7ABA1E;
   cursor: pointer;
 }
 
