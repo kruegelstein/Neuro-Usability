@@ -4,7 +4,12 @@ import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import { Button, Radio, FormGroup, DropdownButton, MenuItem } from 'react-bootstrap';
 
-import { closeModal, selectGraph, selectColor, selectAttribute, unselectAttribute } from '../actions/actions.js'
+import {
+  closeModal, selectGraph,
+  selectColor, selectAttribute,
+  unselectAttribute, submitOptions,
+  selectCar, unselectCar,
+  loadAdditionalData} from '../actions/actions.js'
 import CarList from './CarList';
 import Graph from './Graph';
 
@@ -31,7 +36,7 @@ class App extends Component {
         <h4> {this.props.carName} </h4>
         <a
 
-          onClick={() => this.props.onCloseModal()}
+          onClick={() => this.props.onCloseModal(this.props.selectedCar)}
           className="modalClose"
         >
           <p>X</p>
@@ -129,12 +134,13 @@ class App extends Component {
       <div className="modalFooter">
         <Button
           bsStyle="success"
+          onClick={() => this.props.onSubmitOptions(this.props.form, this.props.carName, this.props.selectedCar)}
         >
           Submit
         </Button>
         <Button
           bsStyle="danger"
-          onClick={() => this.props.onCloseModal()}
+          onClick={() => this.props.onCloseModal(this.props.selectedCar, this.props.graphdata)}
         >
           Cancel
         </Button>
@@ -174,8 +180,9 @@ const mapStateToProps = (state, _ownProps) => {
       attributeIsSelected.push(state.form.general.attributes[index])
     }
   })
-  let attributesInForm =  state.form.selected
+  let attributesInForm =  state.form.selected 
   return {
+    form: state.form.selected,
     attributesInForm,
     attributeIsSelected,
     selAttributes,
@@ -185,12 +192,23 @@ const mapStateToProps = (state, _ownProps) => {
     selectedCar,
     carName,
     modal: state.navigation.modal,
+    graphdata: state.graphdata,
   };
 };
 
 const mapDispatchToProps = (dispatch, _ownProps) => ({
-  onCloseModal: (car) => {
-    dispatch(closeModal());
+  onSubmitOptions: (form, carName, car) => {
+    dispatch(submitOptions(form, car))
+    dispatch(loadAdditionalData(carName, car))
+    dispatch(closeModal())
+  },
+  onCloseModal: (car, graphdata) => {
+    if(Object.keys(graphdata).map(a => graphdata[a].carId).includes(car)) {
+      dispatch(closeModal());
+    } else {
+      dispatch(closeModal());
+      dispatch(unselectCar(car))
+    }
   },
   onSelectColorType: (attribute, color) => {
     dispatch(selectColor(attribute, color))

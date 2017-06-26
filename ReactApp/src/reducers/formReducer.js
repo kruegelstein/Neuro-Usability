@@ -113,6 +113,18 @@ function selected(
           }
         })
       }
+      case ActionTypes.OpenModal: {
+
+        if(Object.keys(action.payload.graphdata).map(a => Number(a)).includes(action.payload.car)) {
+            console.log(...action.payload.graphdata[action.payload.car]);
+            return {...action.payload.graphdata[action.payload.car].settings}
+          } else {
+            return state
+          }
+      }
+      case ActionTypes.CloseModal: {
+        return { ...initialSelected }
+      }
       default:
         return state
     }

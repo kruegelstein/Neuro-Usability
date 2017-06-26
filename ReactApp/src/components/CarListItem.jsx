@@ -9,7 +9,9 @@ const CarListItem = ({ name, onClick, onEdit, onUnselect, filterSelected, isSele
         {name}
       </a>
       <div className={`iconContainer ${(filterSelected || isSelected) ? '' : 'hidden'}`}>
-        <a className={`x ${filterSelected ? '' : 'hidden'}`} onClick={onUnselect}>X</a>
+        <a className={`x ${filterSelected ? '' : 'hidden'}`} onClick={onUnselect}>
+          <i className="fa fa-trash-o" aria-hidden="true"></i>
+        </a>
           { (!filterSelected && isSelected) ?
             <a
               className="edit"

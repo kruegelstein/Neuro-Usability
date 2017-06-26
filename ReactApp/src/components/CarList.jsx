@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
+import {Badge} from 'react-bootstrap';
 
 import {
   getCars, setCarsFilter,
@@ -20,12 +21,12 @@ class CarList extends Component {
         <a
           onClick={() => this.props.onSetCarsFilter(false)}
         >
-          <p>All ({this.props.numOfAllCars})</p>
+          <p>All <Badge>{this.props.numOfAllCars}</Badge></p>
         </a>
         <a
           onClick={() => this.props.onSetCarsFilter(true)}
         >
-          <p>Selected ({this.props.numOfSelCars})</p>
+          <p>Selected <Badge>{this.props.numOfSelCars}</Badge></p>
         </a>
       </div>
     )
@@ -38,21 +39,28 @@ class CarList extends Component {
         <div className="carList">
           <div className="listHeader">
             <a className={`reset ${!this.props.filterSelected ? 'hidden' : ''}`} onClick={() => this.props.onUnselectAllCars()}>
-              Reset
+              <i className="fa fa-undo" aria-hidden="true"></i>
             </a>
               <span className="header">{this.props.headerText}</span>
           </div>
           <div className="carItemContainer">
-            {
-              this.props.viewedCars.map((car) => {
+            { this.props.viewedCars.map((car) => {
                 return (
                   <CarListItem
                     key={car.id}
                     index={car.id}
                     name={car.name}
-                    onEdit={() => this.props.onOpenModal(car.id)}
+                    onEdit={() => this.props.onOpenModal(car.id, this.props.graphdata)}
                     onUnselect={() => this.props.onUnselectCar(car.id)}
-                    onClick={() => this.props.onSelectCar(car.id, car.name)}
+                    onClick={() => {
+                      if(this.props.cars[car.id].selected === 1) {
+                        // show alert because car is already selected
+                        alert('This car has already been selected')
+                      }else {
+                        // select the car since the car is not yet selected
+                        this.props.onSelectCar(car.id, this.props.graphdata)
+                      }
+                    }}
                     filterSelected={this.props.filterSelected}
                     isSelected={Object.keys(this.props.cars).map(a => {
                       if(this.props.cars[a].selected === 1) {
@@ -81,10 +89,12 @@ CarList.propTypes = {
 }
 
 const mapStateToProps = (state, _ownProps) => {
+  // Helpers
   let cars = state.cars;
   let viewedCars = [];
   let headerText = "Cars";
 
+  // Choose which cars are being displayed
   if(!state.navigation.selected.filterSelected) {
     const carIds = Object.keys(cars)
     viewedCars = carIds.map(cId => cars[cId]);
@@ -93,10 +103,13 @@ const mapStateToProps = (state, _ownProps) => {
     viewedCars = carIds.map(cId => cars[cId]);
     headerText = "Selected Cars";
   }
+
+  // Calculate the numbers of all cars and the number of selected cars
   const numOfAllCars = Object.keys(cars).length
   const numOfSelCars = Object.keys(cars).filter(a => cars[a].selected === 1).length
 
   return {
+    graphdata: state.graphdata,
     cars,
     headerText,
     viewedCars,
@@ -110,16 +123,17 @@ const mapDispatchToProps = (dispatch, _ownProps) => ({
   loadCarsFromDB: () => {
     dispatch(getCars());
   },
-  onSelectCar: (car, carName) => {
+  onSelectCar: (car, graphdata) => {
     dispatch(selectCar(car))
-    dispatch(loadAdditionalData(carName, car))
+    dispatch(openModal(car, graphdata))
   },
   onSetCarsFilter: (bool) => {
     dispatch(setCarsFilter(bool));
   },
-  onOpenModal: (car) => {
-    dispatch(selectCar(null, car));
-    dispatch(openModal());
+  onOpenModal: (car, graphdata) => {
+    dispatch(selectCar(car))
+    dispatch(openModal(car, graphdata))
+
   },
   onUnselectCar: (car) => {
     dispatch(unselectCar(car));

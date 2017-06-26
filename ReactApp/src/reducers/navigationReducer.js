@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import ActionTypes from '../constants';
 
 
 const initial = {
@@ -8,10 +9,10 @@ const initial = {
 
 function modal(state = false, action) {
   switch(action.type) {
-    case 'OPEN_MODAL':
-      return action.payload.data
-    case 'CLOSE_MODAL':
-      return action.payload.data
+    case ActionTypes.OpenModal:
+      return action.payload.modal
+    case ActionTypes.CloseModal:
+      return action.payload.modal
     default:
       return state
   }
@@ -20,16 +21,22 @@ function modal(state = false, action) {
 function selected(
   state = { ...initial } , action = {}) {
     switch(action.type) {
-      case 'SELECT_CAR':
+      case ActionTypes.SelectCar:
         return {
           ...state,
           car: action.payload.car
         }
-      case 'SET_CARS_FILTER':
+      case ActionTypes.SetCarsFilter:
         return {
           ...state,
           filterSelected: action.payload
         }
+      case ActionTypes.CloseModal: {
+        return {
+          ...state,
+          car: null
+        }
+      }
       default:
         return state
     }
