@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
+import {Badge} from 'react-bootstrap';
 
 import {
   getCars, setCarsFilter,
@@ -20,12 +21,12 @@ class CarList extends Component {
         <a
           onClick={() => this.props.onSetCarsFilter(false)}
         >
-          <p>All ({this.props.numOfAllCars})</p>
+          <p>All <Badge>{this.props.numOfAllCars}</Badge></p>
         </a>
         <a
           onClick={() => this.props.onSetCarsFilter(true)}
         >
-          <p>Selected ({this.props.numOfSelCars})</p>
+          <p>Selected <Badge>{this.props.numOfSelCars}</Badge></p>
         </a>
       </div>
     )
@@ -38,7 +39,7 @@ class CarList extends Component {
         <div className="carList">
           <div className="listHeader">
             <a className={`reset ${!this.props.filterSelected ? 'hidden' : ''}`} onClick={() => this.props.onUnselectAllCars()}>
-              Reset
+              <i className="fa fa-undo" aria-hidden="true"></i>
             </a>
               <span className="header">{this.props.headerText}</span>
           </div>
