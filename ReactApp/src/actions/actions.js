@@ -2,8 +2,8 @@ import ActionTypes from '../constants';
 import database from '../firebase';
 
 export const setCarsFilter = (bool) => ({ type: ActionTypes.SetCarsFilter,  payload: bool })
-export const closeModal = () => ({ type: ActionTypes.CloseModal, payload: { data: false } });
-export const openModal = () => ({ type: ActionTypes.OpenModal, payload: { data: true } });
+export const closeModal = () => ({ type: ActionTypes.CloseModal, payload: { modal: false } });
+export const openModal = (car, graphdata) => ({ type: ActionTypes.OpenModal, payload: { modal: true, car: car, graphdata: graphdata } });
 export const selectCar = (car) => ({ type: ActionTypes.SelectCar, payload: { car } });
 export const unselectCar = car => ({ type: ActionTypes.UnselectCar, payload: { car } });
 export const unselectAllCars = () => ({ type: ActionTypes.UnselectAllCars, payload: { } })

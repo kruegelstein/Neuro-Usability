@@ -140,7 +140,7 @@ class App extends Component {
         </Button>
         <Button
           bsStyle="danger"
-          onClick={() => this.props.onCloseModal(this.props.selectedCar)}
+          onClick={() => this.props.onCloseModal(this.props.selectedCar, this.props.graphdata)}
         >
           Cancel
         </Button>
@@ -180,7 +180,7 @@ const mapStateToProps = (state, _ownProps) => {
       attributeIsSelected.push(state.form.general.attributes[index])
     }
   })
-  let attributesInForm =  state.form.selected
+  let attributesInForm =  state.form.selected 
   return {
     form: state.form.selected,
     attributesInForm,
@@ -192,6 +192,7 @@ const mapStateToProps = (state, _ownProps) => {
     selectedCar,
     carName,
     modal: state.navigation.modal,
+    graphdata: state.graphdata,
   };
 };
 
@@ -201,9 +202,13 @@ const mapDispatchToProps = (dispatch, _ownProps) => ({
     dispatch(loadAdditionalData(carName, car))
     dispatch(closeModal())
   },
-  onCloseModal: (car) => {
-    dispatch(closeModal());
-    dispatch(unselectCar(car))
+  onCloseModal: (car, graphdata) => {
+    if(Object.keys(graphdata).map(a => graphdata[a].carId).includes(car)) {
+      dispatch(closeModal());
+    } else {
+      dispatch(closeModal());
+      dispatch(unselectCar(car))
+    }
   },
   onSelectColorType: (attribute, color) => {
     dispatch(selectColor(attribute, color))
