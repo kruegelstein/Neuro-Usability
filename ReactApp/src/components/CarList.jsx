@@ -43,16 +43,15 @@ class CarList extends Component {
               <span className="header">{this.props.headerText}</span>
           </div>
           <div className="carItemContainer">
-            {
-              this.props.viewedCars.map((car) => {
+            { this.props.viewedCars.map((car) => {
                 return (
                   <CarListItem
                     key={car.id}
                     index={car.id}
                     name={car.name}
-                    onEdit={() => this.props.onOpenModal(car.id)}
+                    onEdit={() => this.props.onOpenModal(car.id, this.props.graphdata)}
                     onUnselect={() => this.props.onUnselectCar(car.id)}
-                    onClick={() => this.props.onSelectCar(car.id, car.name)}
+                    onClick={() => this.props.onSelectCar(car.id, this.props.graphdata)}
                     filterSelected={this.props.filterSelected}
                     isSelected={Object.keys(this.props.cars).map(a => {
                       if(this.props.cars[a].selected === 1) {
@@ -81,10 +80,12 @@ CarList.propTypes = {
 }
 
 const mapStateToProps = (state, _ownProps) => {
+  // Helpers
   let cars = state.cars;
   let viewedCars = [];
   let headerText = "Cars";
 
+  // Choose which cars are being displayed
   if(!state.navigation.selected.filterSelected) {
     const carIds = Object.keys(cars)
     viewedCars = carIds.map(cId => cars[cId]);
@@ -93,10 +94,27 @@ const mapStateToProps = (state, _ownProps) => {
     viewedCars = carIds.map(cId => cars[cId]);
     headerText = "Selected Cars";
   }
+
+  // Calculate the numbers of all cars and the number of selected cars
   const numOfAllCars = Object.keys(cars).length
   const numOfSelCars = Object.keys(cars).filter(a => cars[a].selected === 1).length
 
+  // Show the correct form values
+  // If selected car has form values in graphdata show those else show default values
+  // let form = state.form.selected
+  // console.log('1', form);
+  // console.log(Object.keys(state.graphdata).map(a => Number(a)));
+  // console.log(state.navigation.selected.car);
+  // if(Object.keys(state.graphdata)
+  //     .map(a => Number(a))
+  //     .includes(state.navigation.selected.car)) {
+  //   form = state.graphdata[state.navigation.selected.car].settings
+  //   console.log('2', form)
+  // }
+  // console.log('3', form)
   return {
+    // form,
+    graphdata: state.graphdata,
     cars,
     headerText,
     viewedCars,
@@ -110,16 +128,17 @@ const mapDispatchToProps = (dispatch, _ownProps) => ({
   loadCarsFromDB: () => {
     dispatch(getCars());
   },
-  onSelectCar: (car, carName) => {
+  onSelectCar: (car, graphdata) => {
     dispatch(selectCar(car))
-    dispatch(loadAdditionalData(carName, car))
+    dispatch(openModal(car, graphdata))
   },
   onSetCarsFilter: (bool) => {
     dispatch(setCarsFilter(bool));
   },
-  onOpenModal: (car) => {
-    dispatch(selectCar(null, car));
-    dispatch(openModal());
+  onOpenModal: (car, graphdata) => {
+    dispatch(selectCar(car))
+    dispatch(openModal(car, graphdata))
+
   },
   onUnselectCar: (car) => {
     dispatch(unselectCar(car));
