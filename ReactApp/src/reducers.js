@@ -4,6 +4,7 @@ import cars from './reducers/carReducer';
 import navigation from './reducers/navigationReducer';
 import form from './reducers/formReducer';
 import graphdata from './reducers/graphdataReducer';
+import graphConfig from './reducers/graphConfigReducer';
 import test from './reducers/testReducer';
 
 export default combineReducers({
@@ -11,5 +12,6 @@ export default combineReducers({
   navigation,
   form,
   graphdata,
+  graphConfig,
   test,
 });

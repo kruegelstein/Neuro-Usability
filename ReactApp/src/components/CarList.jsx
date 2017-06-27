@@ -107,6 +107,7 @@ const mapStateToProps = (state, _ownProps) => {
   // Calculate the numbers of all cars and the number of selected cars
   const numOfAllCars = Object.keys(cars).length
   const numOfSelCars = Object.keys(cars).filter(a => cars[a].selected === 1).length
+  console.log('#selCars', numOfSelCars);
 
   return {
     graphdata: state.graphdata,
