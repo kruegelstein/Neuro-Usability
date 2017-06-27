@@ -2,8 +2,8 @@ import ActionTypes from '../constants';
 import database from '../firebase';
 
 export const setCarsFilter = (bool) => ({ type: ActionTypes.SetCarsFilter,  payload: bool })
-export const closeModal = () => ({ type: ActionTypes.CloseModal, payload: { data: false } });
-export const openModal = () => ({ type: ActionTypes.OpenModal, payload: { data: true } });
+export const closeModal = () => ({ type: ActionTypes.CloseModal, payload: { modal: false } });
+export const openModal = (car, graphdata) => ({ type: ActionTypes.OpenModal, payload: { modal: true, car: car, graphdata: graphdata } });
 export const selectCar = (car) => ({ type: ActionTypes.SelectCar, payload: { car } });
 export const unselectCar = car => ({ type: ActionTypes.UnselectCar, payload: { car } });
 export const unselectAllCars = () => ({ type: ActionTypes.UnselectAllCars, payload: { } })
@@ -11,6 +11,7 @@ export const selectGraph = (attribute, graph) => ({ type: ActionTypes.SelectGrap
 export const selectColor = (attribute, color) => ({ type: ActionTypes.SelectColor, payload: { attribute, value: color }})
 export const selectAttribute = (attribute, bool) => ({ type: ActionTypes.SelectAttribute, payload: { attribute, value: true }})
 export const unselectAttribute = (attribute, bool) => ({ type: ActionTypes.UnselectAttribute, payload: { attribute, value: false }})
+export const submitOptions = (form, car) => ({ type: ActionTypes.SubmitOptions, payload: { form, car }})
 
 export function loadAdditionalData(carName, car) {
   return dispatch => {
