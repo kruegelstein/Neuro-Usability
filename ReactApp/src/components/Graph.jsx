@@ -40,21 +40,24 @@ const mapStateToProps = (state, _ownProps) => {
 
   let series = []
   let data = []
-  console.log(selectedCars[0]);
   if(selectedCars[0] !== undefined) {
-    Object.keys(selectedCars[0].timestamps).forEach(key => {
-      selectedCars[0].timestamps[key].hasOwnProperty('1000000000100000005') ? data.push(Number(selectedCars[0].timestamps[key]['1000000000100000005'])) : data.push(null)
-    })
+    if(selectedCars[0].timestamps !== undefined) {
+      Object.keys(selectedCars[0].timestamps).forEach(key => {
+        selectedCars[0].timestamps[key].hasOwnProperty('1000000000100000005') ? data.push(Number(selectedCars[0].timestamps[key]['1000000000100000005'])) : data.push(null)
+      })
+    }
   }
 
   if(selectedCars[0] !== undefined) {
-    series[0] = {
-      name: selectedCars[0].name + 'Speed',
-      data: data,
-      color: state.graphdata[0].settings[3].color,
-      type: 'line',
-      turboThreshold: 12032
-      // type: state.graphdata[0].settings[3].graph.toLowerCase()
+    if(state.graphdata[0]!== undefined) {
+      series[0] = {
+        name: selectedCars[0].name + 'Speed',
+        data: data,
+        color: state.graphdata[0].settings[3].color,
+        type: 'line',
+        turboThreshold: 12032
+        // type: state.graphdata[0].settings[3].graph.toLowerCase()
+      }
     }
   }
 
