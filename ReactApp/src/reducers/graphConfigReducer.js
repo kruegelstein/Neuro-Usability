@@ -5,31 +5,36 @@ const initial = {
   chart: {
       renderTo: 'graph',
       type: 'line',
-      zoomtype: 'xy'
+      zoomType: 'x',
+      panning: true,
+      panKey: 'shift'
   },
   title: {
       text: 'Graphs'
   },
   xAxis: {
-      timestamp: ['0', '1', '2']
+      //needs to get the timestamps
+      max: null,
   },
   yAxis: {
       title: {
-          text: 'Value'
+          text: 'Value',
+          max: null,
       }
   },
-  series: [{
-      name: 'PosY',
-      data: [1, 0, 400],
-      color: 'red',
-      type: 'bar'
-  }, {
-      name: 'PosX',
-      data: [5, 100, 3],
-      color: 'red',
-      type: 'bar'
-  }]
-};
+}
+//   series: [{
+//       name: 'PosY',
+//       data: [1, 0, 400],
+//       color: 'red',
+//       type: 'bar'
+//   }, {
+//       name: 'PosX',
+//       data: [5, 100, 3],
+//       color: 'red',
+//       type: 'bar'
+//   }]
+// };
 
 // series
 // name: attribute.name
@@ -37,7 +42,7 @@ const initial = {
 // color: kommt aus graphdata
 // type: kommt aus graphdata
 
-function test(
+function graphConfig(
   state = { ...initial } , action = {}) {
     switch(action.type) {
       default:
@@ -45,4 +50,4 @@ function test(
     }
 }
 
-export default test;
+export default graphConfig;
