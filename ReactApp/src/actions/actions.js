@@ -13,6 +13,21 @@ export const selectAttribute = (attribute, bool) => ({ type: ActionTypes.SelectA
 export const unselectAttribute = (attribute, bool) => ({ type: ActionTypes.UnselectAttribute, payload: { attribute, value: false }})
 export const submitOptions = (form, car) => ({ type: ActionTypes.SubmitOptions, payload: { form, car }})
 
+//Export to Mongo actions
+export const loadInfosInMongo = (id, name) => ({
+  // load in collection cars
+  type: 'loadInfosInMongo',
+  payload: {id, name}
+
+})
+
+export const loadDataInMongo = (id, timestamps) => ({
+  // load in collection cars
+  type: 'loadDataInMongo',
+  payload: {id, timestamps}
+})
+
+// Firebase shit
 export function loadAdditionalData(carName, car) {
   return dispatch => {
     dispatch(getCarsDataRequestedAction(carName));

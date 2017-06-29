@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import {Badge} from 'react-bootstrap';
+import {Badge, Button} from 'react-bootstrap';
 
 import {
   getCars, setCarsFilter,
   unselectCar, unselectAllCars,
   selectCar, openModal,
-  filterSelected, loadAdditionalData } from '../actions/actions.js'
+  filterSelected, loadAdditionalData, loadInfosInMongo, loadDataInMongo } from '../actions/actions.js'
 import CarListItem from './CarListItem';
 
 class CarList extends Component {
@@ -75,6 +75,9 @@ class CarList extends Component {
             }
           </div>
         </div>
+        <Button bsSize="small" onClick={() => {
+            Object.keys(this.props.cars).map(c => this.props.onLoadInMongo(this.props.cars[c].id, this.props.cars[c].name, this.props.cars[c].timestamps))
+          }}>Small button</Button>
       </div>
     )
   }
@@ -120,6 +123,10 @@ const mapStateToProps = (state, _ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, _ownProps) => ({
+  onLoadInMongo: (id, name, timestamps) => {
+    dispatch(loadInfosInMongo(id, name))
+    dispatch(loadDataInMongo(id, timestamps))
+  },
   loadCarsFromDB: () => {
     dispatch(getCars());
   },
