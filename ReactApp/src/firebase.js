@@ -1,13 +1,13 @@
 import * as firebase from 'firebase';
 
-const config = {
-  apiKey: "AIzaSyB7Y7ceHC7TFf1Jo14Jm3oIQ2oPAddaFcM",
-    authDomain: "dcaiti-1.firebaseapp.com",
-    databaseURL: "https://dcaiti-1.firebaseio.com",
-    projectId: "dcaiti-1",
-    storageBucket: "",
-    messagingSenderId: "892824990983"
-};
+var config = {
+    apiKey: "AIzaSyD6FCirB5lUn9IQ8ZWVd2_ted_oLIN3OW0",
+    authDomain: "dcaiti-2.firebaseapp.com",
+    databaseURL: "https://dcaiti-2.firebaseio.com",
+    projectId: "dcaiti-2",
+    storageBucket: "dcaiti-2.appspot.com",
+    messagingSenderId: "208276902236"
+  };
 
 firebase.initializeApp(config);
 const database = firebase.database();
