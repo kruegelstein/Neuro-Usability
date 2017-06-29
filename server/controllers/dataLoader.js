@@ -1,4 +1,4 @@
-const Car = require('../models/car');
+const CarData = require('../models/carData');
 
 
 exports.getCars = function(req, res, next){
@@ -7,7 +7,7 @@ exports.getCars = function(req, res, next){
 
 exports.getCarData = function(req, res, next){
     const carName = req.body.name;
-    Car.findOne({name:carName}, function(err, carData){
+    CarData.findOne({name:carName}, function(err, carData){
         if(err) {return next(err);}
 
         if(!carData){

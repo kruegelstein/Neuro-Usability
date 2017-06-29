@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// Define Model TODO
-const carSchema = new Schema({
+const carDataSchema = new Schema({
     id: String,
     timestamps: {
         //TODO
@@ -15,10 +14,12 @@ const carSchema = new Schema({
         type: { String, String},
         type: { String, String}
     },
-    name: String
+
 });
 
 // create model class
 
-const ModelClass = mongoose.model('car', carSchema);
+const ModelClass = mongoose.model('carData', carDataSchema);
+
+//export the model
 exports.model = ModelClass;
