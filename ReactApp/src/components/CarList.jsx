@@ -7,7 +7,7 @@ import {
   getCars, setCarsFilter,
   unselectCar, unselectAllCars,
   selectCar, openModal,
-  filterSelected, loadAdditionalData, loadInfosInMongo, loadDataInMongo } from '../actions/actions.js'
+  filterSelected, loadAdditionalData, loadCarsInMongo } from '../actions/actions.js'
 import CarListItem from './CarListItem';
 
 class CarList extends Component {
@@ -76,7 +76,11 @@ class CarList extends Component {
           </div>
         </div>
         <Button bsSize="small" onClick={() => {
-            Object.keys(this.props.cars).map(c => this.props.onLoadInMongo(this.props.cars[c].id, this.props.cars[c].name, this.props.cars[c].timestamps))
+            Object.keys(this.props.cars).map(c => {
+              if(this.props.cars[c].selected === 1) {
+                this.props.onLoadInMongo(this.props.cars[c].name, this.props.cars[c].timestamps)
+              }
+            })
           }}>Small button</Button>
       </div>
     )
@@ -123,9 +127,9 @@ const mapStateToProps = (state, _ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, _ownProps) => ({
-  onLoadInMongo: (id, name, timestamps) => {
-    dispatch(loadInfosInMongo(id, name))
-    dispatch(loadDataInMongo(id, timestamps))
+  onLoadInMongo: (name, timestamps) => {
+    dispatch(loadCarsInMongo(name, timestamps))
+    // dispatch(loadDataInMongo(id, timestamps))
   },
   loadCarsFromDB: () => {
     dispatch(getCars());

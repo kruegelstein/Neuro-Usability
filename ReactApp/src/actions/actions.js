@@ -1,5 +1,8 @@
 import ActionTypes from '../constants';
 import database from '../firebase';
+import axios from 'axios';
+
+const ROOT_URL = 'http://localhost:3090';
 
 export const setCarsFilter = (bool) => ({ type: ActionTypes.SetCarsFilter,  payload: bool })
 export const closeModal = () => ({ type: ActionTypes.CloseModal, payload: { modal: false } });
@@ -14,18 +17,16 @@ export const unselectAttribute = (attribute, bool) => ({ type: ActionTypes.Unsel
 export const submitOptions = (form, car) => ({ type: ActionTypes.SubmitOptions, payload: { form, car }})
 
 //Export to Mongo actions
-export const loadInfosInMongo = (id, name) => ({
+export function loadCarsInMongo(name, timestamps) {
   // load in collection cars
-  type: 'loadInfosInMongo',
-  payload: {id, name}
+  // type: 'loadCarsInMongo',
+  // payload: {id, name}
+  return function(dispatch) {
+    axios.post(`${ROOT_URL}/signup`, {name, timestamps})
+  }
 
-})
+}
 
-export const loadDataInMongo = (id, timestamps) => ({
-  // load in collection cars
-  type: 'loadDataInMongo',
-  payload: {id, timestamps}
-})
 
 // Firebase shit
 export function loadAdditionalData(carName, car) {
@@ -45,7 +46,7 @@ export function loadAdditionalData(carName, car) {
 export function getCars() {
   return dispatch => {
     dispatch(getCarsRequestedAction());
-    return database.ref('result').limitToFirst(2).once('value', snap => {
+    return database.ref('result').once('value', snap => {
       const cars = Object.keys(snap.val());
       dispatch(getCarsFulfilledAction(cars))
     })
