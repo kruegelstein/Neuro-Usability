@@ -1,12 +1,11 @@
 const DataLoader = require('./controllers/dataLoader');
-const DataImport = require('./controllers/DataImport');
+const Authentication = require('./controllers/Authentication')
 
 module.exports = function(app){
-    app.post('/getCars', DataLoader.getCars);
+    app.get('/getCarNames', DataLoader.getCarNames);
+
+    app.post('/getCarData', DataLoader.getCarData);
     //post muss vermutlich noch ersetzt werden (post benutzt wenn daten in
     //DB kommen, wir wollen Daten aus DB bekommen)
-}
-
-module.exports = function(app){
-    app.post('/importCars', DataImport.importCars);
+    app.post('/signup', Authentication.signup);
 }
