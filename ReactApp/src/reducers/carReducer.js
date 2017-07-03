@@ -9,18 +9,19 @@ const cars = (state = {}, action = {}) => {
   case ActionTypes.GetCarsFulfilled: {
     return {
       ...state,
-      ...action.data.map((d, index) => {
-        return { id: index, name: d, selected: 0}
+      ...action.data.data.map((d, index) => {
+        return { id: index, name: d.name, selected: 0}
       }),
     }
   }
   // After being selected get --> Get the timestamps data for the given car
   case ActionTypes.getCarsDataFullfilled: {
+    console.log('car', action.payload.timestamps.data[0].name);
     return {
       ...state,
       ...Object.keys(state).map(c => {
-        if(state[c].name === action.payload.carName){
-          return { ...state[c], timestamps: action.payload.timestamps }
+        if(state[c].name === action.payload.timestamps.data[0].name){
+          return { ...state[c], timestamps: action.payload.timestamps.data[0].timestamps }
         } else {
           return state[c]
         }

@@ -1,5 +1,8 @@
 import ActionTypes from '../constants';
 import database from '../firebase';
+import axios from 'axios';
+
+const ROOT_URL = 'http://localhost:3090';
 
 export const setCarsFilter = (bool) => ({ type: ActionTypes.SetCarsFilter,  payload: bool })
 export const closeModal = () => ({ type: ActionTypes.CloseModal, payload: { modal: false } });
@@ -14,47 +17,45 @@ export const unselectAttribute = (attribute, bool) => ({ type: ActionTypes.Unsel
 export const submitOptions = (form, car) => ({ type: ActionTypes.SubmitOptions, payload: { form, car }})
 
 //Export to Mongo actions
-export const loadInfosInMongo = (id, name) => ({
+export function loadCarsInMongo(name, timestamps) {
   // load in collection cars
-  type: 'loadInfosInMongo',
-  payload: {id, name}
-
-})
-
-export const loadDataInMongo = (id, timestamps) => ({
-  // load in collection cars
-  type: 'loadDataInMongo',
-  payload: {id, timestamps}
-})
-
-// Firebase shit
-export function loadAdditionalData(carName, car) {
-  return dispatch => {
-    dispatch(getCarsDataRequestedAction(carName));
-    return database.ref('result').once('value', snap => {
-      const data = snap.child(carName).val();
-      dispatch(getCarsDataFullfilledAction(data, carName, car))
-    })
-    .catch((error) => {
-      connsole.log(error);
-      dispatch(getCarsDataRejectedAction(error))
-    })
+  // type: 'loadCarsInMongo',
+  // payload: {id, name}
+  return function(dispatch) {
+    axios.post(`${ROOT_URL}/signup`, {name, timestamps})
   }
+
 }
 
-export function getCars() {
-  return dispatch => {
-    dispatch(getCarsRequestedAction());
-    return database.ref('result').limitToFirst(2).once('value', snap => {
-      const cars = Object.keys(snap.val());
-      dispatch(getCarsFulfilledAction(cars))
-    })
-    .catch((error) => {
-      console.log(error);
-      dispatch(getCarsRejectedAction(error));
-    });
-  }
-}
+export const getCars = (callback = null) => ((dispatch) => {
+  dispatch(getCarsRequestedAction());
+  return axios.get(`${ROOT_URL}/getCarNames`)
+    .then(
+      (r) => {
+        if (callback) { callback(true, r); }
+        dispatch(getCarsFulfilledAction(r));
+      },
+      (e) => {
+        if (callback) { callback(false, e); }
+        dispatch(getCarsRejectedAction(e));
+      }
+    );
+});
+
+export const loadAdditionalData = (carName, car, callback = null) => ((dispatch) => {
+  dispatch(getCarsDataRequestedAction(carName));
+  return axios.post(`${ROOT_URL}/getCarData`, {carName, car})
+    .then(
+      (r) => {
+        if (callback) { callback(true, r); }
+        dispatch(getCarsDataFullfilledAction(r));
+      },
+      (e) => {
+        if (callback) { callback(false, e); }
+        dispatch(getCarsDataRejectedAction(e));
+      }
+    );
+});
 
 function getCarsDataFullfilledAction(data, carName, car) {
   return {
