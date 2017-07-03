@@ -27,35 +27,35 @@ export function loadCarsInMongo(name, timestamps) {
 
 }
 
+export const getCars = (callback = null) => ((dispatch) => {
+  dispatch(getCarsRequestedAction());
+  return axios.get(`${ROOT_URL}/getCarNames`)
+    .then(
+      (r) => {
+        if (callback) { callback(true, r); }
+        dispatch(getCarsFulfilledAction(r));
+      },
+      (e) => {
+        if (callback) { callback(false, e); }
+        dispatch(getCarsRejectedAction(e));
+      }
+    );
+});
 
-// Firebase shit
-export function loadAdditionalData(carName, car) {
-  return dispatch => {
-    dispatch(getCarsDataRequestedAction(carName));
-    return database.ref('result').once('value', snap => {
-      const data = snap.child(carName).val();
-      dispatch(getCarsDataFullfilledAction(data, carName, car))
-    })
-    .catch((error) => {
-      connsole.log(error);
-      dispatch(getCarsDataRejectedAction(error))
-    })
-  }
-}
-
-export function getCars() {
-  return dispatch => {
-    dispatch(getCarsRequestedAction());
-    return database.ref('result').once('value', snap => {
-      const cars = Object.keys(snap.val());
-      dispatch(getCarsFulfilledAction(cars))
-    })
-    .catch((error) => {
-      console.log(error);
-      dispatch(getCarsRejectedAction(error));
-    });
-  }
-}
+export const loadAdditionalData = (carName, car, callback = null) => ((dispatch) => {
+  dispatch(getCarsDataRequestedAction(carName));
+  return axios.post(`${ROOT_URL}/getCarData`, {carName, car})
+    .then(
+      (r) => {
+        if (callback) { callback(true, r); }
+        dispatch(getCarsDataFullfilledAction(r));
+      },
+      (e) => {
+        if (callback) { callback(false, e); }
+        dispatch(getCarsDataRejectedAction(e));
+      }
+    );
+});
 
 function getCarsDataFullfilledAction(data, carName, car) {
   return {
