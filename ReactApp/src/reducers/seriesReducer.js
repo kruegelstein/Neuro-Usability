@@ -22,6 +22,8 @@ function series(state = { ...initial }, action) {
         ...state,
         series: series
       }
+    case ActionTypes.UnselectAllCars:
+      return { ...initial }
     default:
       return state
   }
