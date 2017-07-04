@@ -28,24 +28,90 @@ exports.buildSeries = function(req, res, next){
     }
     console.log('#######################################');
     const car = result
-    const carName = car.name
-    const timestamps = car.timestamps
+    const carName = car[0].name
+    const timestamps = car[0].timestamps
     const numOfAttributes = Object.keys(form).length
+    let attributes = []
     let i = 0
     for (i; i < numOfAttributes; i++) {
-      let attributes = []
+
       if(form[i].selected) {
 
+        const getData = (name) => {
+          let latKey = '1000000000100000001'
+          let lngKey = '1000000000100000002'
+          let headingKey = '1000000000100000004'
+          let speedKey = '1000000000100000005'
+          let oddeKey = '40080001'
+          let odrKey = '40080002'
+          let oddiKey = '40080003'
+          let pfKey = '40108'
+          let baKey = '40051'
+          let data = []
+          switch(name) {
+            case 'Lat':
+              Object.keys(timestamps).forEach(key => {
+                timestamps[key].hasOwnProperty(latKey) ? data.push(Number(timestamps[key][latKey])) : data.push(null)
+              })
+              return data
+            case 'Lng':
+              Object.keys(timestamps).forEach(key => {
+                timestamps[key].hasOwnProperty(latKey) ? data.push(Number(timestamps[key][latKey])) : data.push(null)
+              })
+              return data
+            case 'Heading':
+              Object.keys(timestamps).forEach(key => {
+                timestamps[key].hasOwnProperty(latKey) ? data.push(Number(timestamps[key][latKey])) : data.push(null)
+              })
+              return data
+            case 'Speed':
+              Object.keys(timestamps).forEach(key => {
+                timestamps[key].hasOwnProperty(latKey) ? data.push(Number(timestamps[key][latKey])) : data.push(null)
+              })
+              return data
+            case 'simTD_ObjectDetection_Detected':
+              Object.keys(timestamps).forEach(key => {
+                timestamps[key].hasOwnProperty(latKey) ? data.push(Number(timestamps[key][latKey])) : data.push(null)
+              })
+              return data
+            case 'simTD_ObjectDetection_RelativeSpeed':
+              Object.keys(timestamps).forEach(key => {
+                timestamps[key].hasOwnProperty(latKey) ? data.push(Number(timestamps[key][latKey])) : data.push(null)
+              })
+              return data
+            case 'simTD_ObjectDetection_Distance':
+              Object.keys(timestamps).forEach(key => {
+                timestamps[key].hasOwnProperty(latKey) ? data.push(Number(timestamps[key][latKey])) : data.push(null)
+              })
+              return data
+            case 'pedalForce':
+              Object.keys(timestamps).forEach(key => {
+                timestamps[key].hasOwnProperty(latKey) ? data.push(Number(timestamps[key][latKey])) : data.push(null)
+              })
+              return data
+            case 'brakeActuation':
+              Object.keys(timestamps).forEach(key => {
+                timestamps[key].hasOwnProperty(latKey) ? data.push(Number(timestamps[key][latKey])) : data.push(null)
+              })
+              return data
+            default:
+              return data
+          }
+        }
         let attribute = {
-          carName: carName,
           name: form[i].name,
           color: form[i].color,
           type: form[i].graph.toLowerCase(),
-          data: getData(),
-          turboTreshold: 13000,
+          data: getData(form[i].name)
         }
+        attributes.push(attribute)
+        console.log('1', attributes.length);
       }
+      console.log('2', attributes.length);
+      // attributes.push(attribute)
+      // console.log('attributes length', attributes.length)
     }
-    // res.send(result)
+    console.log('attributes befor sending', attributes.length);
+    res.send(attributes)
   })
 }
