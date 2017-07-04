@@ -15,13 +15,17 @@ exports.getCarNames = function(req, res, next){
   })
 }
 
-exports.getCarData = function(req, res, next){
-  console.log('req.body', req.body);
+exports.buildSeries = function(req, res, next){
   const name = req.body.carName
-  User.find({name: name}, {name: 1, timestamps: 1}, function(err, result){
-    if(err){
-      return next(err)
-    }
-    res.send(result)
-  })
+  const form = req.body.form
+  console.log('req.body', req.body);
+  console.log('name', name);
+  console.log('form', form);
+
+  // User.find({name: name}, {name: 1, timestamps: 1}, function(err, result){
+  //   if(err){
+  //     return next(err)
+  //   }
+  //   res.send(result)
+  // })
 }
