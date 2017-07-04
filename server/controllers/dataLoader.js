@@ -22,10 +22,30 @@ exports.buildSeries = function(req, res, next){
   console.log('name', name);
   console.log('form', form);
 
-  // User.find({name: name}, {name: 1, timestamps: 1}, function(err, result){
-  //   if(err){
-  //     return next(err)
-  //   }
-  //   res.send(result)
-  // })
+  User.find({name: name}, {name: 1, timestamps: 1}, function(err, result){
+    if(err){
+      return next(err)
+    }
+    console.log('#######################################');
+    const car = result
+    const carName = car.name
+    const timestamps = car.timestamps
+    const numOfAttributes = Object.keys(form).length
+    let i = 0
+    for (i; i < numOfAttributes; i++) {
+      let attributes = []
+      if(form[i].selected) {
+
+        let attribute = {
+          carName: carName,
+          name: form[i].name,
+          color: form[i].color,
+          type: form[i].graph.toLowerCase(),
+          data: getData(),
+          turboTreshold: 13000,
+        }
+      }
+    }
+    // res.send(result)
+  })
 }
