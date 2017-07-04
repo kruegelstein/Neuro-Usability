@@ -1,5 +1,4 @@
 import ActionTypes from '../constants';
-import database from '../firebase';
 import axios from 'axios';
 
 const ROOT_URL = 'http://localhost:3090';
