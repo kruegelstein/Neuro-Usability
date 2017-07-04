@@ -34,6 +34,7 @@ const mapStateToProps = (state, _ownProps) => {
   let series = state.series.series
   config['series'] =  series
 
+  console.log('config', config);
 
   return {
     config,
