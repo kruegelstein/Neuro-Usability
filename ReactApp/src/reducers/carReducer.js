@@ -16,7 +16,6 @@ const cars = (state = {}, action = {}) => {
   }
   // After being selected get --> Get the timestamps data for the given car
   case ActionTypes.getCarsDataFullfilled: {
-    console.log('car', action.payload.timestamps.data[0].name);
     return {
       ...state,
       ...Object.keys(state).map(c => {
