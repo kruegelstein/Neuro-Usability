@@ -6,6 +6,7 @@ let initial = {
 
 function series(state = { ...initial }, action) {
   switch(action.type) {
+    // TODO: Check wether the attributes have changed with the new series (remove the other attributes)
     case ActionTypes.GenerateSeriesSuccess:
     let series = state.series
       if(series.length === 0) {
@@ -21,6 +22,19 @@ function series(state = { ...initial }, action) {
       return {
         ...state,
         series: series
+      }
+    case ActionTypes.UnselectCar:
+      let i = 0
+      for(i; i < state.series.length; i++) {
+        if(state.series[i].car === action.payload.name){
+          let index = state.series.indexOf(state.series[i])
+          console.log('index', index);
+          state.series.splice(index, 1)
+        }
+      }
+      return {
+        ...state,
+        series: state.series
       }
     case ActionTypes.UnselectAllCars:
       return { ...initial }

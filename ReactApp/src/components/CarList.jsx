@@ -51,7 +51,7 @@ class CarList extends Component {
                     index={car.id}
                     name={car.name}
                     onEdit={() => this.props.onOpenModal(car.id, this.props.graphdata)}
-                    onUnselect={() => this.props.onUnselectCar(car.id)}
+                    onUnselect={() => this.props.onUnselectCar(car.id, car.name)}
                     onClick={() => {
                       if(this.props.cars[car.id].selected === 1) {
                         // show alert because car is already selected
@@ -146,8 +146,8 @@ const mapDispatchToProps = (dispatch, _ownProps) => ({
     dispatch(openModal(car, graphdata))
 
   },
-  onUnselectCar: (car) => {
-    dispatch(unselectCar(car));
+  onUnselectCar: (car, carName) => {
+    dispatch(unselectCar(car, carName));
   },
   onUnselectAllCars: () => {
     dispatch(unselectAllCars())

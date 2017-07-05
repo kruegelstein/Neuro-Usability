@@ -7,7 +7,7 @@ export const setCarsFilter = (bool) => ({ type: ActionTypes.SetCarsFilter,  payl
 export const closeModal = () => ({ type: ActionTypes.CloseModal, payload: { modal: false } });
 export const openModal = (car, graphdata) => ({ type: ActionTypes.OpenModal, payload: { modal: true, car: car, graphdata: graphdata } });
 export const selectCar = (car) => ({ type: ActionTypes.SelectCar, payload: { car } });
-export const unselectCar = car => ({ type: ActionTypes.UnselectCar, payload: { car } });
+export const unselectCar = (car, carName) => ({ type: ActionTypes.UnselectCar, payload: { car, name: carName } });
 export const unselectAllCars = () => ({ type: ActionTypes.UnselectAllCars, payload: { } })
 export const selectGraph = (attribute, graph) => ({ type: ActionTypes.SelectGraph, payload: { attribute, value: graph }})
 export const selectColor = (attribute, color) => ({ type: ActionTypes.SelectColor, payload: { attribute, value: color }})
