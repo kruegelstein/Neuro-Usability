@@ -7,7 +7,8 @@ const initial = {
       type: 'line',
       zoomType: 'x',
       panning: true,
-      panKey: 'shift'
+      panKey: 'shift',
+      height: 800
   },
   title: {
       text: 'Graphs'
