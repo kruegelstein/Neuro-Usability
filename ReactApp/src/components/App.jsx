@@ -9,7 +9,7 @@ import {
   selectColor, selectAttribute,
   unselectAttribute, submitOptions,
   selectCar, unselectCar,
-  loadAdditionalData} from '../actions/actions.js'
+  buildSeries} from '../actions/actions.js'
 import CarList from './CarList';
 import Graph from './Graph';
 
@@ -180,7 +180,7 @@ const mapStateToProps = (state, _ownProps) => {
       attributeIsSelected.push(state.form.general.attributes[index])
     }
   })
-  let attributesInForm =  state.form.selected 
+  let attributesInForm =  state.form.selected
   return {
     form: state.form.selected,
     attributesInForm,
@@ -199,7 +199,7 @@ const mapStateToProps = (state, _ownProps) => {
 const mapDispatchToProps = (dispatch, _ownProps) => ({
   onSubmitOptions: (form, carName, car) => {
     dispatch(submitOptions(form, car))
-    dispatch(loadAdditionalData(carName, car))
+    dispatch(buildSeries(carName, form))
     dispatch(closeModal())
   },
   onCloseModal: (car, graphdata) => {

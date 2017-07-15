@@ -5,7 +5,7 @@ import navigation from './reducers/navigationReducer';
 import form from './reducers/formReducer';
 import graphdata from './reducers/graphdataReducer';
 import graphConfig from './reducers/graphConfigReducer';
-import test from './reducers/testReducer';
+import series from './reducers/seriesReducer';
 
 export default combineReducers({
   cars,
@@ -13,5 +13,5 @@ export default combineReducers({
   form,
   graphdata,
   graphConfig,
-  test,
+  series,
 });

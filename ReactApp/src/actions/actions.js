@@ -7,7 +7,7 @@ export const setCarsFilter = (bool) => ({ type: ActionTypes.SetCarsFilter,  payl
 export const closeModal = () => ({ type: ActionTypes.CloseModal, payload: { modal: false } });
 export const openModal = (car, graphdata) => ({ type: ActionTypes.OpenModal, payload: { modal: true, car: car, graphdata: graphdata } });
 export const selectCar = (car) => ({ type: ActionTypes.SelectCar, payload: { car } });
-export const unselectCar = car => ({ type: ActionTypes.UnselectCar, payload: { car } });
+export const unselectCar = (car, carName) => ({ type: ActionTypes.UnselectCar, payload: { car, name: carName } });
 export const unselectAllCars = () => ({ type: ActionTypes.UnselectAllCars, payload: { } })
 export const selectGraph = (attribute, graph) => ({ type: ActionTypes.SelectGraph, payload: { attribute, value: graph }})
 export const selectColor = (attribute, color) => ({ type: ActionTypes.SelectColor, payload: { attribute, value: color }})
@@ -41,38 +41,38 @@ export const getCars = (callback = null) => ((dispatch) => {
     );
 });
 
-export const loadAdditionalData = (carName, car, callback = null) => ((dispatch) => {
-  dispatch(getCarsDataRequestedAction(carName));
-  return axios.post(`${ROOT_URL}/getCarData`, {carName, car})
+export const buildSeries = (carName, form, callback = null) => ((dispatch) => {
+  dispatch(generateSeries(carName, form));
+  return axios.post(`${ROOT_URL}/getCarData`, {carName, form})
     .then(
       (r) => {
         if (callback) { callback(true, r); }
-        dispatch(getCarsDataFullfilledAction(r));
+        dispatch(generateSeriesSuccess(r));
       },
       (e) => {
         if (callback) { callback(false, e); }
-        dispatch(getCarsDataRejectedAction(e));
+        dispatch(generateSeriesError(e));
       }
     );
 });
 
-function getCarsDataFullfilledAction(data, carName, car) {
+function generateSeriesSuccess(r) {
   return {
-    type: ActionTypes.getCarsDataFullfilled,
-    payload: {timestamps: data , carName, car}
+    type: ActionTypes.GenerateSeriesSuccess,
+    payload: r
   }
 }
 
-function getCarsDataRequestedAction(car) {
+function generateSeries(car, form) {
   return {
-    type: ActionTypes.GetCarsDataRequested,
-    resource: car,
+    type: ActionTypes.GenerateSeries,
+    resource: {car, form}
   };
 }
 
-function getCarsDataRejectedAction(error) {
+function generateSeriesError(error) {
   return {
-    type: ActionTypes.getCarsDataRejected,
+    type: ActionTypes.GenerateSeriesError,
     payload: error,
   }
 }
