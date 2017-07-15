@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const ROOT_URL = 'http://localhost:3090';
 
+// actions in frontend
 export const setCarsFilter = (bool) => ({ type: ActionTypes.SetCarsFilter,  payload: bool })
 export const closeModal = () => ({ type: ActionTypes.CloseModal, payload: { modal: false } });
 export const openModal = (car, graphdata) => ({ type: ActionTypes.OpenModal, payload: { modal: true, car: car, graphdata: graphdata } });
@@ -15,17 +16,16 @@ export const selectAttribute = (attribute, bool) => ({ type: ActionTypes.SelectA
 export const unselectAttribute = (attribute, bool) => ({ type: ActionTypes.UnselectAttribute, payload: { attribute, value: false }})
 export const submitOptions = (form, car) => ({ type: ActionTypes.SubmitOptions, payload: { form, car }})
 
-//Export to Mongo actions
+// Export to Mongo actions not
+// Was only needed to import the cars into mongo-db
 export function loadCarsInMongo(name, timestamps) {
-  // load in collection cars
-  // type: 'loadCarsInMongo',
-  // payload: {id, name}
   return function(dispatch) {
     axios.post(`${ROOT_URL}/signup`, {name, timestamps})
   }
 
 }
 
+//call to server to get the cars
 export const getCars = (callback = null) => ((dispatch) => {
   dispatch(getCarsRequestedAction());
   return axios.get(`${ROOT_URL}/getCarNames`)
@@ -41,6 +41,7 @@ export const getCars = (callback = null) => ((dispatch) => {
     );
 });
 
+// call to server to build requested series
 export const buildSeries = (carName, form, callback = null) => ((dispatch) => {
   dispatch(generateSeries(carName, form));
   return axios.post(`${ROOT_URL}/getCarData`, {carName, form})
@@ -56,6 +57,7 @@ export const buildSeries = (carName, form, callback = null) => ((dispatch) => {
     );
 });
 
+// actions to generate series
 function generateSeriesSuccess(r) {
   return {
     type: ActionTypes.GenerateSeriesSuccess,
@@ -77,6 +79,7 @@ function generateSeriesError(error) {
   }
 }
 
+//actions to get cars
 function getCarsRequestedAction() {
   return {
     type: ActionTypes.GetCarsRequested

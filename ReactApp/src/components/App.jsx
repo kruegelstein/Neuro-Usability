@@ -148,6 +148,7 @@ class App extends Component {
     )
   }
 
+// Main render method
   render() {
     return (
       <div className="app">

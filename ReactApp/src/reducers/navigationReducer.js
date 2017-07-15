@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux';
 import ActionTypes from '../constants';
 
+// reducer for navigation within the app
 
+// build initial state
 const initial = {
   car: null,
   filterSelected: false,
@@ -9,8 +11,10 @@ const initial = {
 
 function modal(state = false, action) {
   switch(action.type) {
+    // open a modal
     case ActionTypes.OpenModal:
       return action.payload.modal
+    // close a modal
     case ActionTypes.CloseModal:
       return action.payload.modal
     default:
@@ -21,16 +25,19 @@ function modal(state = false, action) {
 function selected(
   state = { ...initial } , action = {}) {
     switch(action.type) {
+      //selecting a car
       case ActionTypes.SelectCar:
         return {
           ...state,
           car: action.payload.car
         }
+      // which list is active
       case ActionTypes.SetCarsFilter:
         return {
           ...state,
           filterSelected: action.payload
         }
+      // closing modal
       case ActionTypes.CloseModal: {
         return {
           ...state,

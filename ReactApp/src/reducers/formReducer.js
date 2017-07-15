@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux';
 import ActionTypes from '../constants';
 
+// reducer for everything concerning the form
 
+// build initial state
 const initial = {
   attributes: [
     'Lat', 'Lng', 'Heading', 'Speed', 'simTD_ObjectDetection_Detected',
@@ -79,6 +81,7 @@ function general(
 function selected(
   state = { ...initialSelected } , action = {}) {
     switch(action.type) {
+      // select and unselect an attibute
       case ActionTypes.UnselectAttribute:
       case ActionTypes.SelectAttribute:
         return {
@@ -91,6 +94,7 @@ function selected(
             }
           })
         }
+      // selecting a car
       case ActionTypes.SelectGraph:
         return {
           ...state,
@@ -102,6 +106,7 @@ function selected(
             }
           })
         }
+      // selecting a color
       case ActionTypes.SelectColor:
       return {
         ...state,
@@ -113,6 +118,7 @@ function selected(
           }
         })
       }
+      // opening a modal
       case ActionTypes.OpenModal: {
 
         if(Object.keys(action.payload.graphdata).map(a => Number(a)).includes(action.payload.car)) {
@@ -122,6 +128,7 @@ function selected(
             return state
           }
       }
+      // closing a modal
       case ActionTypes.CloseModal: {
         return { ...initialSelected }
       }

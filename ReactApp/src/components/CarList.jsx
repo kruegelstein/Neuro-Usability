@@ -11,6 +11,7 @@ import {
 import CarListItem from './CarListItem';
 
 class CarList extends Component {
+  // get the cars in the list initially
   componentDidMount() {
     this.props.loadCarsFromDB();
   }
@@ -32,6 +33,7 @@ class CarList extends Component {
     )
   }
 
+// main render method
   render() {
     return (
       <div className="col-sm-12 col-md-2 col-lg-2">
@@ -75,13 +77,6 @@ class CarList extends Component {
             }
           </div>
         </div>
-        <Button bsSize="small" onClick={() => {
-            Object.keys(this.props.cars).map(c => {
-              if(this.props.cars[c].selected === 1) {
-                this.props.onLoadInMongo(this.props.cars[c].name, this.props.cars[c].timestamps)
-              }
-            })
-          }}>Small button</Button>
       </div>
     )
   }
@@ -127,10 +122,6 @@ const mapStateToProps = (state, _ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, _ownProps) => ({
-  onLoadInMongo: (name, timestamps) => {
-    dispatch(loadCarsInMongo(name, timestamps))
-    // dispatch(loadDataInMongo(id, timestamps))
-  },
   loadCarsFromDB: () => {
     dispatch(getCars());
   },

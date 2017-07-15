@@ -1,7 +1,10 @@
 import ActionTypes from '../constants';
 
+// reducer for the specific graph data and attributes selected
+
 function graphdata(state = {}, action) {
   switch(action.type) {
+    // submitting options
     case ActionTypes.SubmitOptions: {
       return {
         ...state,
@@ -11,6 +14,7 @@ function graphdata(state = {}, action) {
         }
       }
     }
+    // unselecting a car
     case ActionTypes.UnselectCar: {
       return {
         ...state,
@@ -23,6 +27,7 @@ function graphdata(state = {}, action) {
         })
       }
     }
+    // unselecting all cars
     case ActionTypes.UnselectAllCars: {
       return {}
     }

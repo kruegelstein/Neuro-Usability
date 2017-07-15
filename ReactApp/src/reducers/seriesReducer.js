@@ -1,12 +1,13 @@
 import ActionTypes from '../constants';
 
+// reducer for specific series
+
 let initial = {
   series: []
 }
 
 function series(state = { ...initial }, action) {
   switch(action.type) {
-    // TODO: Check wether the attributes have changed with the new series (remove the other attributes)
     case ActionTypes.GenerateSeriesSuccess:
     let series = state.series
       if(series.length === 0) {

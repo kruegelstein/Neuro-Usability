@@ -12,7 +12,7 @@ import GraphTest from './scripts/Graph_Test.js'
 const ReactHighcharts = require('react-highcharts');
 
 
-
+// connecting to chrome dev tools
 function isProduction() {
   return process.env.NODE_ENV === 'production';
 }
@@ -33,12 +33,9 @@ function makeStore(initialState, middlewares) {
 }
 
 const store = makeStore({}, [thunk]);
-// const createStoreWithMiddleware = applyMiddleware()(createStore);
 
 ReactDOM.render(
   <Provider store={store}>
     <App />
   </Provider>
   , document.querySelector('.container'));
-
-// ReactDOM.render(<ReactHighcharts config = {config}></ReactHighcharts>, document.querySelector('.highgraph'));

@@ -1,3 +1,5 @@
+// constants for the actions
+
 const actionTypes = {
   GetCarsRequested: 'GET_CARNAMES',
   GetCarsRejected: 'GET_CARNAMES_ERROR',

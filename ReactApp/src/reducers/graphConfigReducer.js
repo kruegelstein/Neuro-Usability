@@ -1,6 +1,8 @@
 import ActionTypes from '../constants';
 
+// reducer for the general graph config
 
+// build initial state
 const initial = {
   chart: {
       renderTo: 'graph',
