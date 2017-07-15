@@ -1,55 +1,60 @@
 # DCAIT-Project
 Master Module
 
-------------------------------
-Getting started:
-  1. Create a local folder
-  2. Navigate to folder in command line
-  3. git clone ...
+This is the setup guide to run the project on your maschine. Please note that the
+setup guide is for MacOS. If you run a different system the commands may be different
+but the procedure will be the same. It was tested under macOS Sierra.   
+
+------------------------------------------------
+Run:
+In order to run the project you will need three services running:
+1. Webpack dev server
+2. NodeJS server
+3. Mongo database
+
+Webpack dev server:
+1st tab in the terminal
+- navigate into 'ReactApp'
+- npm start
+
+NodeJS server:
+2nd tab in the terminal
+- navigate into 'server'
+- npm run dev
+
+Mongo database:
+3rd tab in the terminal
+- mongod
 
 ------------------------------
-Good to know:
-  - always branch from dev
-  - review existing pull-request (require changes if needed)
+Requirements to run:
+0. npm und brew or alternatives to both
+1. Webpack dev server
+2. NodeJS server
+3. Mongo Database
 
 ------------------------------
-General workflow:
-  1. checkout dev
-  2. git pull (get all changes that might have happened)
-  3. On github lock for a task
-  4. create a branch for that task
-  5. do the task
-  6. save work and make it accessible
-  7. create a pull request for your branch
-
--------------------------------
-git commands:
-
-create branch:
-  git checkout -b brachchname
-change to existing branch:
-  git checkout branchname
-view all existing branches:
-  git branch
-get changes:
-  1. go to dev branch
-  2. git pull
-save work and make it accessible:
-  1. git add .
-  2. git commit -m "Commit message"
-  -> is saved now
-  3. git push
-get your status:
-  git status
-delete a branch with nothing to commit:
-  git branch -d branchname
-delete a branch with still has commits:
-  git branch -D branchname
-solve merge conflicts:
-  1. checkout your branch
-  2. git merge dev
-  3. solve merge conflicts in files
-  4. git add .
-  5. git commit -m "solved merge conflicts"
-  6. git push
-  7. new pull request
+Setup:
+1. Get the lastest version and install dependencies
+In the terminal:
+ - create and navigate into a working directory
+ - git clone https://github.com/kruegelstein/DCAIT-Project.git
+ - navigate into 'ReactApp' --> npm install
+ - navigate into 'server' --> npm install
+2. Get Mongo Database and set it up
+ - choose your system on https://docs.mongodb.com/getting-started/shell/installation/
+ In the terminal:
+ - brew update
+ - brew install mongodb
+ Create data directory and set permissions:
+ - sudo mkdir -p /data/db
+ - sudo chown -R $USER /data/db
+3. Fill the mongo db with the relevant data:
+  - get Robo 3T at http://blog.robomongo.org/robomongo-is-robo-3t/#Download
+  - Install and open Robo 3T
+  - Create a new connection with name 'localhost' (all other settings are fine)
+  - Connect and with right-click create a new database within called 'cars'
+  - unzip 'cars.bson.zip' in the 'mongoDump' folder within the project
+  In the Terminal:
+  - mongorestore -d cars -c cars fullpath/to/cars.bson
+  - in Robo 3T in db cars and Collections 'cars' the should be the data now
