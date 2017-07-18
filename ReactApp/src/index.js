@@ -7,7 +7,6 @@ import thunk from 'redux-thunk';
 
 import App from './components/App';
 import reducers from './reducers.js';
-import GraphTest from './scripts/Graph_Test.js'
 
 const ReactHighcharts = require('react-highcharts');
 

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import Chart from 'chart.js'
 import Highcharts from 'highcharts'
 import ReactHighcharts from 'react-highcharts'
-import GraphTest from '../scripts/Graph_Test'
 
 class Graph extends Component {
 

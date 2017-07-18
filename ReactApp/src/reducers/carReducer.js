@@ -1,5 +1,3 @@
-import { normalizeCars } from '../schema';
-import { getValue, mapObject, filterObject } from '../helper/helper';
 import ActionTypes from '../constants';
 
 // reducer for all cars
