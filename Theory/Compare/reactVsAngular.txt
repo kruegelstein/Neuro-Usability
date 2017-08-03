@@ -46,7 +46,10 @@ Cons:
 --------------------------------------------------------
 # Other stuff useful to mention to make a decision
 
-Differences are large but accomplish the same thing. Angular is a much fuller featured framework than React, which isn’t really a framework at all, but that doesn’t mean a lot when I don’t see the need for most of the features that Angular provides. I’ve found that I have to write less code to do more in React, and React has better performance than Angular due to React’s implementation of a virtual DOM [1]
+Differences are large but accomplish the same thing. Angular is a much fuller featured framework than React, 
+which isn’t really a framework at all, but that doesn’t mean a lot when I don’t see the need for most of the 
+features that Angular provides. I’ve found that I have to write less code to do more in React, and React has 
+better performance than Angular due to React’s implementation of a virtual DOM [1]
 
 Library vs. Framework [2]
 
