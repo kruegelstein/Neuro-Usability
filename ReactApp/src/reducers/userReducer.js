@@ -1,10 +1,6 @@
 import ActionTypes from '../constants';
 
-// reducer for all cars
-const initialState = {
-  id: null,
-  name: null,
-}
+const initialState = {}
 
 const user = (state = initialState, action = {}) => {
   switch (action.type) {

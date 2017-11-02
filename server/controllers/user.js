@@ -4,7 +4,7 @@ exports.add = function(req, res, next){
   console.log('On the right path....');
   const id = req.body.id;
   const name = req.body.name;
-  const entry = { user: id, name: name };
+  const entry = { user: id, name: name, interactions: {} };
 
   MongoClient.connect("mongodb://localhost:27017/neuro", function (err, db) {
     if(err){

@@ -3,7 +3,7 @@ import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup, Col, FormControl } from 'react-bootstrap';
 
-import { addUserToDb } from '../actions/actions.js';
+import { addUserToDb, changeFormValue } from '../actions/actions.js';
 
 class App extends Component {
   constructor(props) {
@@ -12,14 +12,20 @@ class App extends Component {
       activeUser: this.props.activeUser,
     }
     this.onSubmitForm = this.onSubmitForm.bind(this)
-    // this.onChangeCount = this.onChangeCount.bind(this)
+    // this.validInput = this.validInput.bind(this)
   }
 
   onSubmitForm(e) {
     e.preventDefault();
-    const id = this.inputId.value;
-    const name = this.inputName.value;
+    const id = this.props.id;
+    const name = this.props.name;
     this.props.onSubmitNewUser(id, name);
+  }
+
+  handleChange(e) {
+    let fieldName = e.target.name;
+    let fieldVal = e.target.value;
+    this.props.onChangeFormValue(fieldName, fieldVal);
   }
 
 // Main render method
@@ -33,12 +39,27 @@ class App extends Component {
           onSubmit={this.onSubmitForm}
         >
           <FormGroup id="input">
-            <FormControl inputRef={ref => { this.inputId = ref; }} id="inputField" autoFocus type="id" placeholder="Id" />
-            <FormControl inputRef={ref => { this.inputName = ref; }} id="inputField" type="username" placeholder="Username" />
+            <FormControl
+              name="id"
+              onChange={this.handleChange.bind(this)}
+              value={this.props.id}
+              id="inputField"
+              autoFocus
+              type="number"
+              placeholder="Id"
+            />
+            <FormControl
+              name="name"
+              onChange={this.handleChange.bind(this)}
+              value={this.props.name}
+              id="inputField"
+              type="username"
+              placeholder="Username" />
           </FormGroup>
           <Button
-            // id="submit"
+            id="submit"
             type="submit"
+            disabled={this.props.isValidFormInput}
           >
             Submit
           </Button>
@@ -50,12 +71,19 @@ class App extends Component {
 
 App.propTypes = {
   activeUser: PropTypes.bool,
+  isValidFormInput: PropTypes.bool,
 }
 
 const mapStateToProps = (state, _ownProps) => {
   const activeUser = state.user.id !== null ? true : false;
+  const isValidFormInput = state.form.id === null && state.form.name === null ? true : false;
+  const id = state.form.id;
+  const name = state.form.name;
   return {
+    id,
+    name,
     activeUser,
+    isValidFormInput,
   };
 };
 
@@ -63,6 +91,9 @@ const mapDispatchToProps = (dispatch, _ownProps) => ({
   onSubmitNewUser: (id, name) => {
     dispatch(addUserToDb(id, name))
   },
+  onChangeFormValue: (field, value) => {
+    dispatch(changeFormValue(field, value))
+  }
 });
 
 App = connect(

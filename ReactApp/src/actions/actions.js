@@ -4,7 +4,7 @@ import axios from 'axios';
 const ROOT_URL = 'http://localhost:3090';
 
 // actions in frontend
-// export const testing = (bool) => ({ type: ActionTypes.Test,  payload: bool })
+export const changeFormValue = (field, value) => ({ type: ActionTypes.ChangeForm,  payload: { field, value } })
 
 // Actions to backend
 
