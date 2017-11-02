@@ -1,4 +1,0 @@
-Needed Props for state (still being completed)
-- CarList
-- Selected cars
-- bool showModals for each selected Car

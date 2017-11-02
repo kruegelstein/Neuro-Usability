@@ -1,228 +1,77 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import Modal from 'react-modal';
-import { Button, Radio, FormGroup, DropdownButton, MenuItem } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
-import {
-  closeModal, selectGraph,
-  selectColor, selectAttribute,
-  unselectAttribute, submitOptions,
-  selectCar, unselectCar,
-  buildSeries} from '../actions/actions.js'
-import CarList from './CarList';
-import Graph from './Graph';
+import { testing, setTest } from '../actions/actions.js';
 
 class App extends Component {
-  showModal() {
-    return (
-      <Modal
-        isOpen={this.props.modal}
-        contentLabel="Modal"
-        id="modal"
-        >
-        <div className="editModal">
-          {this.showModalHeader()}
-          {this.showModalContent()}
-          {this.showModalFooter()}
-        </div>
-      </Modal>
-    )
-  }
-
-  showModalHeader() {
-    return (
-      <div className="modalHeader">
-        <h4> {this.props.carName} </h4>
-        <a
-
-          onClick={() => this.props.onCloseModal(this.props.selectedCar)}
-          className="modalClose"
-        >
-          <p>X</p>
-        </a>
-      </div>
-    )
-  }
-
-  showModalContent() {
-    return (
-      <div className="modalContent">
-        <div>
-          <p>Select attributes to render in graph</p>
-          {this.showAttributes()}
-        </div>
-      </div>
-    )
-  }
-
-  checked(a) {
-    if(this.props.attributeIsSelected.includes(a)){
-      return true
-    } else {
-      return false
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentStatus: this.props.testing,
+      count: this.props.count
     }
+    this.onChangeStatus = this.onChangeStatus.bind(this)
+    this.onChangeCount = this.onChangeCount.bind(this)
   }
 
-  color(a) {
-    let attrPos = this.props.attributes.indexOf(a)
-    return this.props.attributesInForm[attrPos].color
+  onChangeStatus() {
+    const status = this.props.testing;
+    this.props.onSubmitChangeTestingStatus(!status)
   }
 
-  graph(a) {
-    let attrPos = this.props.attributes.indexOf(a)
-    return this.props.attributesInForm[attrPos].graph
-  }
-
-  showAttributes() {
-    return (
-      <div className="attributesList">
-        <form className="attributesForm">
-        {this.props.attributes.map(a => {
-          return (
-            <li className="attributes">
-              <FormGroup className="checkbox" controlId="checked">
-                <Radio
-                  checked={this.checked(a)}
-                  onChange= {() => {
-                    if(!this.checked(a)) {
-                      this.props.onSelectAttribute(a, true)
-                    } else {
-                      this.props.onUnSelectAttribute(a, false)
-                    }
-                  }
-                  }
-                >{a}</Radio>
-              </FormGroup>
-              <FormGroup className="graph" controlId="graph">
-                <DropdownButton className="graphDd" title={this.graph(a)}>
-                {this.props.graphs.map(g => {
-                  return (
-                    <MenuItem
-                      eventKey="1"
-                      onSelect={() => this.props.onSelectGraphType(a, g)}
-                    >{g}</MenuItem>
-                  )
-                })
-                }
-                </DropdownButton>
-              </FormGroup>
-              <FormGroup className="color" controlId="color">
-                <DropdownButton className="colorDd" title={this.color(a)}>
-                {this.props.colors.map(c => {
-                  return (
-                    <MenuItem
-                      eventKey="1"
-                      onSelect={() => this.props.onSelectColorType(a, c)}
-                    >{c}</MenuItem>
-                  )
-                })
-                }
-                </DropdownButton>
-              </FormGroup>
-            </li>
-          )
-        })
-        }
-        </form>
-      </div>
-    )
-  }
-
-  showModalFooter() {
-    return (
-      <div className="modalFooter">
-        <Button
-          bsStyle="success"
-          onClick={() => this.props.onSubmitOptions(this.props.form, this.props.carName, this.props.selectedCar)}
-        >
-          Submit
-        </Button>
-        <Button
-          bsStyle="danger"
-          onClick={() => this.props.onCloseModal(this.props.selectedCar, this.props.graphdata)}
-        >
-          Cancel
-        </Button>
-      </div>
-    )
+  onChangeCount() {
+    const id = 1;
+    this.props.onSubmitButtonClickToBackend(id, this.props.count)
   }
 
 // Main render method
   render() {
+    const testStatus = this.props.testing === true ? 'true' : 'false'
     return (
       <div className="app">
-        <h2>Simulation of Vehicle-2-X Communication</h2>
-        <CarList />
-        {this.showModal()}
-        <Graph />
+        <h2>Hello World</h2>
+        <h2>This is a Test: {testStatus}</h2>
+        <Button
+          className="statusButton"
+          onClick={this.onChangeStatus}
+        >
+          Click me to change test status
+        </Button>
+        <Button
+          className="statusButton"
+          onClick={this.onChangeCount}
+        >
+          Click me to increase click-count in backend
+        </Button>
+        <div>current count: {this.props.count}</div>
       </div>
     )
   }
 }
 
 App.propTypes = {
-  modal: PropTypes.bool.isRequired,
-  carName: PropTypes.string.isRequired,
-  selectedCar: PropTypes.number,
+  testing: PropTypes.bool,
+  count: PropTypes.number
 }
 
 const mapStateToProps = (state, _ownProps) => {
-  let attributes = state.form.general.attributes
-  let selectedCar = state.navigation.selected.car
-  let carName = ''
-  if(selectedCar !== null) {
-    carName = state.cars[selectedCar].name
-  }
-  let selAttributes = Object.keys(state.form.selected).map(a =>  state.form.selected[a].selected === true)
-  let attributeIsSelected = []
-  selAttributes.forEach((value, index) => {
-    if(value) {
-      attributeIsSelected.push(state.form.general.attributes[index])
-    }
-  })
-  let attributesInForm =  state.form.selected
+  const testing = state.test.testing;
+  const count = state.test.count;
   return {
-    form: state.form.selected,
-    attributesInForm,
-    attributeIsSelected,
-    selAttributes,
-    attributes,
-    colors: state.form.general.colors,
-    graphs: state.form.general.graphs,
-    selectedCar,
-    carName,
-    modal: state.navigation.modal,
-    graphdata: state.graphdata,
+    testing,
+    count,
   };
 };
 
 const mapDispatchToProps = (dispatch, _ownProps) => ({
-  onSubmitOptions: (form, carName, car) => {
-    dispatch(submitOptions(form, car))
-    dispatch(buildSeries(carName, form))
-    dispatch(closeModal())
+  onSubmitChangeTestingStatus: (bool) => {
+    dispatch(testing(bool))
   },
-  onCloseModal: (car, graphdata) => {
-    if(Object.keys(graphdata).map(a => graphdata[a].carId).includes(car)) {
-      dispatch(closeModal());
-    } else {
-      dispatch(closeModal());
-      dispatch(unselectCar(car))
-    }
+  onSubmitButtonClickToBackend: (id, count) => {
+    dispatch(setTest(id, count))
   },
-  onSelectColorType: (attribute, color) => {
-    dispatch(selectColor(attribute, color))
-  },
-  onSelectGraphType: (attribute, graph) => {
-    dispatch(selectGraph(attribute, graph))
-  },
-  onSelectAttribute: (attribute, bool) => {
-    dispatch(selectAttribute(attribute, bool))
-  },
-  onUnSelectAttribute: (attribute, bool) => {
-    dispatch(unselectAttribute(attribute, bool))
-  }
 });
 
 App = connect(

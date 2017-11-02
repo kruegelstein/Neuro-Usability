@@ -4,98 +4,44 @@ import axios from 'axios';
 const ROOT_URL = 'http://localhost:3090';
 
 // actions in frontend
-export const setCarsFilter = (bool) => ({ type: ActionTypes.SetCarsFilter,  payload: bool })
-export const closeModal = () => ({ type: ActionTypes.CloseModal, payload: { modal: false } });
-export const openModal = (car, graphdata) => ({ type: ActionTypes.OpenModal, payload: { modal: true, car: car, graphdata: graphdata } });
-export const selectCar = (car) => ({ type: ActionTypes.SelectCar, payload: { car } });
-export const unselectCar = (car, carName) => ({ type: ActionTypes.UnselectCar, payload: { car, name: carName } });
-export const unselectAllCars = () => ({ type: ActionTypes.UnselectAllCars, payload: { } })
-export const selectGraph = (attribute, graph) => ({ type: ActionTypes.SelectGraph, payload: { attribute, value: graph }})
-export const selectColor = (attribute, color) => ({ type: ActionTypes.SelectColor, payload: { attribute, value: color }})
-export const selectAttribute = (attribute, bool) => ({ type: ActionTypes.SelectAttribute, payload: { attribute, value: true }})
-export const unselectAttribute = (attribute, bool) => ({ type: ActionTypes.UnselectAttribute, payload: { attribute, value: false }})
-export const submitOptions = (form, car) => ({ type: ActionTypes.SubmitOptions, payload: { form, car }})
+export const testing = (bool) => ({ type: ActionTypes.Test,  payload: bool })
 
-// Export to Mongo actions not
-// Was only needed to import the cars into mongo-db
-export function loadCarsInMongo(name, timestamps) {
-  return function(dispatch) {
-    axios.post(`${ROOT_URL}/signup`, {name, timestamps})
-  }
+// Actions to backend
 
-}
-
-//call to server to get the cars
-export const getCars = (callback = null) => ((dispatch) => {
-  dispatch(getCarsRequestedAction());
-  return axios.get(`${ROOT_URL}/getCarNames`)
+// call to server to access db
+export const setTest = (id, count, callback = null) => ((dispatch) => {
+  dispatch(setTest1(id, count));
+  return axios.post(`${ROOT_URL}/testRoute`, {id, count})
     .then(
       (r) => {
         if (callback) { callback(true, r); }
-        dispatch(getCarsFulfilledAction(r));
+        dispatch(setTestSuccess(r));
       },
       (e) => {
         if (callback) { callback(false, e); }
-        dispatch(getCarsRejectedAction(e));
+        dispatch(setTestError(e));
       }
     );
 });
 
-// call to server to build requested series
-export const buildSeries = (carName, form, callback = null) => ((dispatch) => {
-  dispatch(generateSeries(carName, form));
-  return axios.post(`${ROOT_URL}/getCarData`, {carName, form})
-    .then(
-      (r) => {
-        if (callback) { callback(true, r); }
-        dispatch(generateSeriesSuccess(r));
-      },
-      (e) => {
-        if (callback) { callback(false, e); }
-        dispatch(generateSeriesError(e));
-      }
-    );
-});
-
-// actions to generate series
-function generateSeriesSuccess(r) {
+// actions recieved by success
+function setTestSuccess(r) {
   return {
-    type: ActionTypes.GenerateSeriesSuccess,
+    type: ActionTypes.SetTestSuccess,
     payload: r
   }
 }
 
-function generateSeries(car, form) {
+function setTest1(id, count) {
   return {
-    type: ActionTypes.GenerateSeries,
-    resource: {car, form}
+    type: ActionTypes.SetTest,
+    resource: {id, count}
   };
 }
 
-function generateSeriesError(error) {
+function setTestError(error) {
   return {
-    type: ActionTypes.GenerateSeriesError,
+    type: ActionTypes.SetTestError,
     payload: error,
   }
-}
-
-//actions to get cars
-function getCarsRequestedAction() {
-  return {
-    type: ActionTypes.GetCarsRequested
-  };
-}
-
-function getCarsRejectedAction(error) {
-  return {
-    type: ActionTypes.GetCarsRejected,
-    payload: error
-  }
-}
-
-function getCarsFulfilledAction(car) {
-  return {
-    type: ActionTypes.GetCarsFulfilled,
-    data: car
-  };
 }
