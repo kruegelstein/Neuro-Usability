@@ -3,7 +3,7 @@ import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup, Col, FormControl } from 'react-bootstrap';
 
-import { } from '../actions/actions.js';
+import { addUserToDb } from '../actions/actions.js';
 
 class App extends Component {
   constructor(props) {
@@ -11,8 +11,15 @@ class App extends Component {
     this.state = {
       activeUser: this.props.activeUser,
     }
-    // this.onChangeStatus = this.onChangeStatus.bind(this)
+    this.onSubmitForm = this.onSubmitForm.bind(this)
     // this.onChangeCount = this.onChangeCount.bind(this)
+  }
+
+  onSubmitForm(e) {
+    e.preventDefault();
+    const id = this.inputId.value;
+    const name = this.inputName.value;
+    this.props.onSubmitNewUser(id, name);
   }
 
 // Main render method
@@ -21,12 +28,18 @@ class App extends Component {
       <div className="app">
         <h2 className="header">Neuro-Usability Project</h2>
         <h4 className="subHeader">To start a new session please register a new user or privide an existing user</h4>
-        <Form className="inputForm">
+        <Form
+          className="inputForm"
+          onSubmit={this.onSubmitForm}
+        >
           <FormGroup id="input">
-            <FormControl id="inputField" autoFocus type="id" placeholder="Id" />
-            <FormControl id="inputField" type="username" placeholder="Username" />
+            <FormControl inputRef={ref => { this.inputId = ref; }} id="inputField" autoFocus type="id" placeholder="Id" />
+            <FormControl inputRef={ref => { this.inputName = ref; }} id="inputField" type="username" placeholder="Username" />
           </FormGroup>
-          <Button id="submit" type="submit">
+          <Button
+            // id="submit"
+            type="submit"
+          >
             Submit
           </Button>
         </Form>
@@ -47,12 +60,9 @@ const mapStateToProps = (state, _ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, _ownProps) => ({
-  // onSubmitChangeTestingStatus: (bool) => {
-  //   dispatch(testing(bool))
-  // },
-  // onSubmitButtonClickToBackend: (id, count) => {
-  //   dispatch(setTest(id, count))
-  // },
+  onSubmitNewUser: (id, name) => {
+    dispatch(addUserToDb(id, name))
+  },
 });
 
 App = connect(
