@@ -1,8 +1,8 @@
 import ActionTypes from '../constants';
 
 const initialState = {
-  intro: true,
-  stage: 0
+  intro: false,
+  stage: 1
 }
 
 const navigation = (state = initialState, action = {}) => {

@@ -1,0 +1,35 @@
+.header {
+  text-align: center;
+}
+
+.buttonContainer {
+  margin-top: 5rem;
+}
+
+#btnBlue {
+  height: 14rem;
+  width: 15%;
+  margin: 4rem;
+  background-color: blue;
+}
+
+#btnGreen {
+  height: 14rem;
+  width: 15%;
+  margin: 4rem;
+  background-color: green;
+}
+
+#btnRed {
+  height: 14rem;
+  width: 15%;
+  margin: 4rem;
+  background-color: red;
+}
+
+#btnYellow {
+  height: 14rem;
+  width: 15%;
+  margin: 4rem;
+  background-color: yellow;
+}

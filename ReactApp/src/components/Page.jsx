@@ -1,57 +1,42 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
+import { FABButton, Icon } from 'react-mdl';
 
-import {  } from '../actions/actions.js';
+import { colors } from './constants/colors.js';
+
+import { saveSelection } from '../actions/actions.js';
 
 class Page extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     activeUser: this.props.activeUser,
-  //   }
-  //   this.onSubmitForm = this.onSubmitForm.bind(this)
-  // }
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this)
+  }
 
-  handleClick(color) {
-    console.log('######', color)
+  handleClick(e) {
+    const color = e.target.name
+    this.props.onChooseColor(color);
   }
 
 // Main render method
   render() {
-    const colors = [
-      {
-        name: 'Blue',
-        text: 'Hey'
-      },
-      {
-        name: 'Green',
-        text: 'Hello'
-      },
-      {
-        name: 'Red',
-        text: 'Hi'
-      },
-      {
-        name: 'Yellow',
-        text: 'Greetz'
-      },
-    ];
     return (
       <div className="page">
         <h2 className="header">Please click any button</h2>
-        {colors.map(color => {
-          return (
-            <div className={`btn${color.name}`}>
-              <a onClick={this.handleClick(color.name)}>
-                <p>
-                  {color.text}
-                </p>
-              </a>
-            </div>
-          )
-        }
-      )}
+        <div className="buttonContainer">
+          {colors.map(color => {
+            return (
+              <button
+                key={color.id}
+                name={color.name}
+                onClick={this.handleClick}
+                id={`btn${color.name}`}
+                className="mdl-button mdl-js-button mdl-button--fab mdl-button--colored"
+              />
+            )
+          }
+        )}
+        </div>
       </div>
     )
   }
@@ -69,12 +54,9 @@ const mapStateToProps = (state, _ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, _ownProps) => ({
-  // onSubmitNewUser: (id, name) => {
-  //   dispatch(addUserToDb(id, name))
-  // },
-  // onChangeFormValue: (field, value) => {
-  //   dispatch(changeFormValue(field, value))
-  // }
+  onChooseColor: (color) => {
+    dispatch(saveSelection(color))
+  },
 });
 
 Page = connect(
