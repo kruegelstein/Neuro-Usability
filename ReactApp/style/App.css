@@ -3,26 +3,3 @@
   height: 100%;
   width: 100%;
 }
-
-.header {
-  text-align: center;
-}
-
-.subHeader {
-  text-align: center;
-  margin: 5rem 0;
-}
-
-.inputForm {
-  width: 30rem;
-  margin: auto;
-  text-align: center;
-}
-
-#input {
-  margin: auto;
-}
-
-#inputField {
-  margin-bottom: 1rem;
-}

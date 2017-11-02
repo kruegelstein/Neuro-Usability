@@ -4,8 +4,11 @@ import { combineReducers } from 'redux';
 
 import user from './reducers/userReducer';
 import form from './reducers/formReducer';
+import navigation from './reducers/navigationReducer';
+
 
 export default combineReducers({
   user,
-  form
+  form,
+  navigation
 });

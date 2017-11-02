@@ -10,7 +10,6 @@ export const changeFormValue = (field, value) => ({ type: ActionTypes.ChangeForm
 
 // call to server to access db
 export const addUserToDb = (id, name, callback = null) => ((dispatch) => {
-  console.log('*******')
   dispatch(addUser(id, name));
   return axios.post(`${ROOT_URL}/addUser`, {id, name})
     .then(
