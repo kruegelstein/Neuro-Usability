@@ -1,77 +1,58 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import { Button } from 'react-bootstrap';
+import { Button, Form, FormGroup, Col, FormControl } from 'react-bootstrap';
 
-import { testing, setTest } from '../actions/actions.js';
+import { } from '../actions/actions.js';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentStatus: this.props.testing,
-      count: this.props.count
+      activeUser: this.props.activeUser,
     }
-    this.onChangeStatus = this.onChangeStatus.bind(this)
-    this.onChangeCount = this.onChangeCount.bind(this)
-  }
-
-  onChangeStatus() {
-    const status = this.props.testing;
-    this.props.onSubmitChangeTestingStatus(!status)
-  }
-
-  onChangeCount() {
-    const id = 1;
-    this.props.onSubmitButtonClickToBackend(id, this.props.count)
+    // this.onChangeStatus = this.onChangeStatus.bind(this)
+    // this.onChangeCount = this.onChangeCount.bind(this)
   }
 
 // Main render method
   render() {
-    const testStatus = this.props.testing === true ? 'true' : 'false'
     return (
       <div className="app">
-        <h2>Hello World</h2>
-        <h2>This is a Test: {testStatus}</h2>
-        <Button
-          className="statusButton"
-          onClick={this.onChangeStatus}
-        >
-          Click me to change test status
-        </Button>
-        <Button
-          className="statusButton"
-          onClick={this.onChangeCount}
-        >
-          Click me to increase click-count in backend
-        </Button>
-        <div>current count: {this.props.count}</div>
+        <h2 className="header">Neuro-Usability Project</h2>
+        <h4 className="subHeader">To start a new session please register a new user or privide an existing user</h4>
+        <Form className="inputForm">
+          <FormGroup id="input">
+            <FormControl id="inputField" autoFocus type="id" placeholder="Id" />
+            <FormControl id="inputField" type="username" placeholder="Username" />
+          </FormGroup>
+          <Button id="submit" type="submit">
+            Submit
+          </Button>
+        </Form>
       </div>
     )
   }
 }
 
 App.propTypes = {
-  testing: PropTypes.bool,
-  count: PropTypes.number
+  activeUser: PropTypes.bool,
 }
 
 const mapStateToProps = (state, _ownProps) => {
-  const testing = state.test.testing;
-  const count = state.test.count;
+  const activeUser = state.user.id !== null ? true : false;
   return {
-    testing,
-    count,
+    activeUser,
   };
 };
 
 const mapDispatchToProps = (dispatch, _ownProps) => ({
-  onSubmitChangeTestingStatus: (bool) => {
-    dispatch(testing(bool))
-  },
-  onSubmitButtonClickToBackend: (id, count) => {
-    dispatch(setTest(id, count))
-  },
+  // onSubmitChangeTestingStatus: (bool) => {
+  //   dispatch(testing(bool))
+  // },
+  // onSubmitButtonClickToBackend: (id, count) => {
+  //   dispatch(setTest(id, count))
+  // },
 });
 
 App = connect(
