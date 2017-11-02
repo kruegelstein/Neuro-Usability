@@ -1,5 +1,5 @@
-const DataLoader = require('./controllers/dataLoader');
+const User = require('./controllers/user.js');
 
 module.exports = function(app){
-    app.post('/testRoute', DataLoader.func1);
+    app.post('/addUser', User.add);
 }

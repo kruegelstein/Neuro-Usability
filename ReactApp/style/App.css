@@ -1,174 +1,28 @@
 .app {
   font-family: sans-serif;
-  height: 865px;
-}
-
-h2 {
-  text-align: center;
-  margin: 25px 0 25px 0;
-}
-.editModal {
-  display: block;
-  background-color: #C4C4C4;
-  position: absolute;
-  width: 100%;
   height: 100%;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-}
-
-.modalHeader {
-  background-color: black;
-  display: inline-flex;
-  border-radius: 0 0 5px 5px;
-  width: 100%;
-  height: 4rem;
-  top: 0;
-  margin: 0 0 1rem 0;
-}
-
-.modalHeader h4 {
-  color: white;
-  text-align: left;
-  width: 100%;
-  position: relative;
-  left: 0;
-  padding-left: 3rem;
-}
-
-.modalHeader a {
-  text-align: center;
-  width: 10%;
-  position: relative;
-  right: 0;
-}
-
-.modalHeader a:hover {
-  text-decoration: none;
-}
-
-.modalHeader a p {
-  font-size: 16px;
-}
-
-.modalHeader a p:hover {
-  color: red;
-  font-size: 22px;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.modalHeader a p {
-  color: red;
-  font-size: 20px;
-  text-align: right;
-  padding: 0 10px 0 0;
-}
-
-.modalContent {
-  height: calc(100% - 15rem);
-  margin: 0 10% 0 10%;
-  width: 80%;
-  text-align: center;
-}
-
-.attributesList {
-  height: 30rem;
-  overflow: scroll;
-  display: block;
-  border: 1px solid white;
-  border-radius: 5px;
-}
-
-.attributesForm {
   width: 100%;
 }
 
-.attributes {
-  display: flex;
-  text-align: left;
-  margin: 0 5rem 0 5rem;
-  border-bottom: 1px dashed white
-}
-
-.checkbox {
-  margin-left: 3rem;
-  width: 70%;
-}
-
-.checkbox label span{
-  margin: 0 5rem 0 5rem;
-}
-
-.graph {
-  margin: 1.3rem 5rem 0 0;
-  background-color: #C4C4C4;
-}
-
-.graphDd {
-  width: 12rem;
-  text-align: left !important;
-  background-color: #C4C4C4 !important;
-}
-
-.graphDd span:nth-child(3) {
-  position: absolute !important;
-  right: 0 !important;
-  margin: 9px !important;
-}
-
-.color {
-  margin: 1.3rem 0 0 0;
-  background-color: #C4C4C4;
-}
-
-.colorDd {
-  width: 12rem;
-  text-align: left !important;
-  background-color: #C4C4C4 !important;
-}
-
-.colorDd span:nth-child(3) {
-  position: absolute !important;
-  right: 0 !important;
-  margin: 9px !important;
-}
-
-.color ul {
-  background-color: #C4C4C4;
-}
-
-.graph ul {
-  background-color: #C4C4C4;
-}
-
-.modalContent p {
+.header {
   text-align: center;
-  font-size: large;
 }
 
-.modalFooter {
-  position: absolute;
-  height: 6rem;
-  bottom: 0;
+.subHeader {
   text-align: center;
-  width: 100%;
+  margin: 5rem 0;
 }
 
-.btn-success {
-  margin-right: 1rem;
+.inputForm {
+  width: 30rem;
+  margin: auto;
+  text-align: center;
 }
 
-.btn-success:hover {
-  cursor: pointer;
+#input {
+  margin: auto;
 }
 
-.btn-danger {
-  margin-left: 1rem;
-}
-
-.btn-danger:hover {
-  cursor: pointer;
+#inputField {
+  margin-bottom: 1rem;
 }
