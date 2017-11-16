@@ -1,10 +1,14 @@
-import ActionTypes from '../constants';
+import ActionTypes from '../ActionTypes.js';
 import axios from 'axios';
 
 const ROOT_URL = 'http://localhost:3090';
 
 // actions in frontend
 export const changeFormValue = (field, value) => ({ type: ActionTypes.ChangeForm,  payload: { field, value } })
+export const selectGood = () => ({ type: ActionTypes.SelectGood,  payload: {} })
+export const selectBad1 = () => ({ type: ActionTypes.SelectBad1,  payload: {} })
+export const selectBad2 = () => ({ type: ActionTypes.SelectBad2,  payload: {} })
+export const addUserToForm = (id, name) => ({ type: ActionTypes.AddUserToForm,  payload: { id, name } })
 
 // Actions to backend
 

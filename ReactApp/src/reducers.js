@@ -2,10 +2,10 @@ import { combineReducers } from 'redux';
 
 // connecting all single reducers
 
-import user from './reducers/userReducer';
+import navigation from './reducers/navigationReducer';
 import form from './reducers/formReducer';
 
 export default combineReducers({
-  user,
+  navigation,
   form
 });

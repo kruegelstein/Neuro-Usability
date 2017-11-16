@@ -1,8 +1,11 @@
-import ActionTypes from '../constants';
+import ActionTypes from '../ActionTypes.js';
 
 const initialState = {
   id: '',
   name: '',
+  interactions: {
+    
+  }
 }
 
 const form = (state = initialState, action = {}) => {
@@ -20,9 +23,6 @@ const form = (state = initialState, action = {}) => {
         name: action.payload.value,
       }
     }
-  }
-  case ActionTypes.AddUser: {
-    return { ...initialState }
   }
   default:
       return { ...state }
