@@ -12,6 +12,7 @@ export const changeFormValue = (field, value) => ({ type: ActionTypes.ChangeForm
 
 // call to server to access db
 export const addUserToDb = (id, name, callback = null) => ((dispatch) => {
+  console.log('#####', id, name)
   dispatch(addUser(id, name));
   return axios.post(`${ROOT_URL}/addUser`, {id, name})
     .then(
@@ -26,9 +27,9 @@ export const addUserToDb = (id, name, callback = null) => ((dispatch) => {
     );
 });
 
-export const saveSelection = (color, callback = null) => ((dispatch) => {
-  dispatch(saveColor(color));
-  return axios.post(`${ROOT_URL}/addColor`, {color})
+export const saveSelection = (user, color, callback = null) => ((dispatch) => {
+  dispatch(saveColor(user, color));
+  return axios.post(`${ROOT_URL}/addColor`, {user, color})
     .then(
       (r) => {
         if (callback) { callback(true, r); }
@@ -51,10 +52,10 @@ function saveColorSuccess(r) {
   }
 }
 
-function saveColor(id, name) {
+function saveColor(user, color) {
   return {
     type: ActionTypes.SaveColor,
-    resource: {id, name}
+    resource: {user, color}
   };
 }
 

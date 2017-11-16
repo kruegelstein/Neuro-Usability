@@ -14,8 +14,9 @@ class Page extends Component {
   }
 
   handleClick(e) {
-    const color = e.target.name
-    this.props.onChooseColor(color);
+    const color = e.target.name;
+    const user = this.props.user;
+    this.props.onChooseColor(user, color);
   }
 
 // Main render method
@@ -43,7 +44,7 @@ class Page extends Component {
 }
 
 Page.propTypes = {
-
+  user: PropTypes.number,
 }
 
 const mapStateToProps = (state, _ownProps) => {
@@ -54,8 +55,8 @@ const mapStateToProps = (state, _ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, _ownProps) => ({
-  onChooseColor: (color) => {
-    dispatch(saveSelection(color))
+  onChooseColor: (user, color) => {
+    dispatch(saveSelection(user, color))
   },
 });
 
