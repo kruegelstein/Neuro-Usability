@@ -17,9 +17,6 @@ class Bad1 extends Component {
   constructor(props) {
     super(props);
     this.onSubmit = this.onSubmit.bind(this)
-    // this.selectGood = this.selectGood.bind(this)
-    // this.selectBad1 = this.selectBad1.bind(this)
-    // this.selectBad2 = this.selectBad2.bind(this)
   }
 
   onSubmit() {
@@ -31,6 +28,7 @@ class Bad1 extends Component {
   }
 
   handleClick(event, index) {
+    alert(`You selected ${alphabetX8[index]}`)
     const letter = alphabetX8[index]
     this.props.onSelectLetter(letter)
   }
@@ -49,15 +47,6 @@ class Bad1 extends Component {
                   {letter}
                 </p>
               </a>
-            )
-          }
-        </div>
-        <div className="result-box-bad1">
-          {this.props.selectedLetters
-            .map((l, index) =>
-              <div key={index} className="letter-box-bad1">
-                <p className="selected-letter-bad1">{l}</p>
-              </div>
             )
           }
         </div>
