@@ -1,0 +1,77 @@
+.bad1 {
+  background-color: #fff700;
+  width: 100%;
+  height: 100%;
+  font-family: Curlz MT;
+}
+
+.header-bad1 {
+  text-align: center;
+  color: #ff01ee;
+  font-size: 40px;
+  margin-bottom: 3rem
+}
+
+.alphabet-box-bad1 {
+  width: 70%;
+  margin: auto;
+}
+
+.letter-container-bad1 {
+  display: inline-table;
+  width: 1rem;
+  height: 1rem;
+  text-align: center;
+}
+
+.letter-container-bad1:hover {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.letter-bad1 {
+  color: #ff01ee;
+  font-size: 8px;
+}
+
+.result-box-bad1 {
+  width: 70%;
+  height: 12rem;
+  text-align: center;
+  margin: auto;
+}
+
+.letter-box-bad1 {
+  text-align: center;
+  display: inline-block;
+  border-radius: 50%;
+  border: .5px solid #ff01ee;
+  width: 10rem;
+  height: 10rem;
+  margin: 2rem;
+  animation-name: fadeIn;
+  animation-duration: 1s;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0}
+  to {opacity: 1}
+}
+
+.selected-letter-bad1 {
+  color: #3705ff;
+  vertical-align: middle;
+  font-size: 30px;
+  margin: 0;
+  padding-top: 2.5rem
+}
+
+.button-container-bad1 {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.submitButton-bad1 {
+  background-color: #ff01ee !important;
+  color: #fff700 !important
+}
