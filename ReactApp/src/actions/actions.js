@@ -1,47 +1,57 @@
-import ActionTypes from '../constants';
+import ActionTypes from '../ActionTypes.js';
 import axios from 'axios';
 
 const ROOT_URL = 'http://localhost:3090';
 
 // actions in frontend
-export const testing = (bool) => ({ type: ActionTypes.Test,  payload: bool })
+export const changeFormValue = (field, value) => ({ type: ActionTypes.ChangeForm,  payload: { field, value } })
+export const selectAdmin = () => ({ type: ActionTypes.SelectAdmin,  payload: {} })
+export const selectIntro = () => ({ type: ActionTypes.SelectIntro,  payload: {} })
+export const selectGood = () => ({ type: ActionTypes.SelectGood,  payload: {} })
+export const selectBad1 = () => ({ type: ActionTypes.SelectBad1,  payload: {} })
+export const selectBad2 = () => ({ type: ActionTypes.SelectBad2,  payload: {} })
+export const addUserToForm = (id, name) => ({ type: ActionTypes.AddUserToForm,  payload: { id, name } })
+export const selectLetter = (letter) => ({ type: ActionTypes.SelectLetter,  payload: { letter } })
+export const submitResultsGood = (id, name, letters) => ({ type: ActionTypes.SubmitGood,  payload: { id, name, letters } })
 
 // Actions to backend
 
 // call to server to access db
-export const setTest = (id, count, callback = null) => ((dispatch) => {
-  dispatch(setTest1(id, count));
-  return axios.post(`${ROOT_URL}/testRoute`, {id, count})
+export const addUserToDb = (id, name, callback = null) => ((dispatch) => {
+  console.log('*******')
+  dispatch(addUser(id, name));
+  return axios.post(`${ROOT_URL}/addUser`, {id, name})
     .then(
       (r) => {
         if (callback) { callback(true, r); }
-        dispatch(setTestSuccess(r));
+        dispatch(addUserSuccess(r));
       },
       (e) => {
         if (callback) { callback(false, e); }
-        dispatch(setTestError(e));
+        dispatch(addUserError(e));
       }
     );
 });
 
-// actions recieved by success
-function setTestSuccess(r) {
+
+// actions recieved by success or error
+function addUserSuccess(r) {
   return {
-    type: ActionTypes.SetTestSuccess,
+    type: ActionTypes.AddUserSuccess,
     payload: r
   }
 }
 
-function setTest1(id, count) {
+function addUser(id, name) {
   return {
-    type: ActionTypes.SetTest,
-    resource: {id, count}
+    type: ActionTypes.AddUser,
+    resource: {id, name}
   };
 }
 
-function setTestError(error) {
+function addUserError(error) {
   return {
-    type: ActionTypes.SetTestError,
+    type: ActionTypes.AddUserError,
     payload: error,
   }
 }

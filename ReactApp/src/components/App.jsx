@@ -1,82 +1,55 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import { Button } from 'react-bootstrap';
 
-import { testing, setTest } from '../actions/actions.js';
+import Intro from './Intro.jsx';
+import Good from './Good.jsx';
+import Bad1 from './Bad1.jsx';
+import Bad2 from './Bad2.jsx';
+import Admin from './Admin.jsx';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentStatus: this.props.testing,
-      count: this.props.count
-    }
-    this.onChangeStatus = this.onChangeStatus.bind(this)
-    this.onChangeCount = this.onChangeCount.bind(this)
-  }
-
-  onChangeStatus() {
-    const status = this.props.testing;
-    this.props.onSubmitChangeTestingStatus(!status)
-  }
-
-  onChangeCount() {
-    const id = 1;
-    this.props.onSubmitButtonClickToBackend(id, this.props.count)
-  }
 
 // Main render method
   render() {
-    const testStatus = this.props.testing === true ? 'true' : 'false'
+    const intro = this.props.intro
+    const good = this.props.good
+    const bad1 = this.props.bad1
+    const bad2 = this.props.bad2
+    const admin = this.props.admin
     return (
       <div className="app">
-        <h2>Hello World</h2>
-        <h2>This is a Test: {testStatus}</h2>
-        <Button
-          className="statusButton"
-          onClick={this.onChangeStatus}
-        >
-          Click me to change test status
-        </Button>
-        <Button
-          className="statusButton"
-          onClick={this.onChangeCount}
-        >
-          Click me to increase click-count in backend
-        </Button>
-        <div>current count: {this.props.count}</div>
+        { intro ? <Intro /> : null}
+        { good ? <Good /> : null}
+        { bad1 ? <Bad1 /> : null}
+        { bad2 ? <Bad2 /> : null}
+        { admin ? <Admin /> : null}
       </div>
     )
   }
 }
 
 App.propTypes = {
-  testing: PropTypes.bool,
-  count: PropTypes.number
+  intro: PropTypes.bool,
+  good: PropTypes.bool,
+  bad1: PropTypes.bool,
+  bad2: PropTypes.bool,
+  admin: PropTypes.bool,
 }
 
 const mapStateToProps = (state, _ownProps) => {
-  const testing = state.test.testing;
-  const count = state.test.count;
   return {
-    testing,
-    count,
+    intro: state.navigation.intro,
+    good: state.navigation.good,
+    bad1: state.navigation.bad1,
+    bad2: state.navigation.bad2,
+    admin: state.navigation.admin,
   };
 };
 
-const mapDispatchToProps = (dispatch, _ownProps) => ({
-  onSubmitChangeTestingStatus: (bool) => {
-    dispatch(testing(bool))
-  },
-  onSubmitButtonClickToBackend: (id, count) => {
-    dispatch(setTest(id, count))
-  },
-});
-
 App = connect(
   mapStateToProps,
-  mapDispatchToProps,
+  null,
 )(App);
 
 export default App;

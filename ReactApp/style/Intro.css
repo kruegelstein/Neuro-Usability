@@ -1,0 +1,67 @@
+.intro {
+  width: 100%;
+  height: 100%;
+  font-family: sans-serif;
+}
+
+.header-intro {
+  text-align: center;
+}
+
+.subHeader {
+  text-align: center;
+  margin: 5rem 0;
+}
+
+.inputForm {
+  width: 30rem;
+  margin: auto;
+  text-align: center;
+}
+
+#input {
+  margin: auto;
+}
+
+#inputField {
+  margin-bottom: 1rem;
+}
+
+.selectionLevel {
+  height: 8rem;
+  width: 40rem;
+  margin-top: 5rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  text-align: center;
+}
+
+.level {
+  padding: 3rem;
+  margin: auto;
+}
+
+#good {
+  font-size: 5rem;
+  color: green;
+  cursor: pointer;
+}
+
+#bad1 {
+  font-size: 5rem;
+  color: yellow;
+  cursor: pointer;
+}
+
+#bad2 {
+  font-size: 5rem;
+  color: red;
+  cursor: pointer;
+}
+
+.admin-button-container {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
