@@ -1,8 +1,9 @@
-import ActionTypes from '../constants';
+import ActionTypes from '../ActionTypes.js';
 
 const initialState = {
   id: '',
   name: '',
+  selectedLetters: [],
 }
 
 const form = (state = initialState, action = {}) => {
@@ -21,8 +22,16 @@ const form = (state = initialState, action = {}) => {
       }
     }
   }
-  case ActionTypes.AddUser: {
-    return { ...initialState }
+  case ActionTypes.SelectLetter: {
+    const letter = [action.payload.letter]
+    return {
+      ...state,
+      selectedLetters: state.selectedLetters.concat(letter)
+    }
+  }
+  case ActionTypes.SelectIntro: {
+    const letter = [action.payload.letter]
+    return initialState
   }
   default:
       return { ...state }
