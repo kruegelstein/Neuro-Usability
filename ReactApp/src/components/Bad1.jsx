@@ -9,7 +9,9 @@ import { selectLetter, submitResultsBad1, selectIntro } from '../actions/actions
 
 const doubleAlphabet = alphabet.concat(alphabet);
 
-const tripleAlphabet = doubleAlphabet.concat(alphabet);
+const alphabetX4 = doubleAlphabet.concat(doubleAlphabet);
+
+const alphabetX8 = alphabetX4.concat(alphabetX4);
 
 class Bad1 extends Component {
   constructor(props) {
@@ -29,7 +31,7 @@ class Bad1 extends Component {
   }
 
   handleClick(event, index) {
-    const letter = tripleAlphabet[index]
+    const letter = alphabetX8[index]
     this.props.onSelectLetter(letter)
   }
 
@@ -40,7 +42,7 @@ class Bad1 extends Component {
       <div className="bad1">
         <h4 className="header-bad1">Find all K</h4>
         <div className="alphabet-box-bad1">
-          {tripleAlphabet
+          {alphabetX8
             .map((letter, index) =>
               <a key={index} className="letter-container-bad1" onClick={event => this.handleClick(event, index)}>
                 <p className="letter-bad1">

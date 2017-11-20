@@ -1,13 +1,13 @@
 .bad1 {
-  background-color: #6534ff;
+  background-color: #fff700;
   width: 100%;
   height: 100%;
-  font-family: Raleway;
+  font-family: Curlz MT;
 }
 
 .header-bad1 {
   text-align: center;
-  color: #fccdd3;
+  color: #ff01ee;
   font-size: 40px;
   margin-bottom: 3rem
 }
@@ -19,14 +19,19 @@
 
 .letter-container-bad1 {
   display: inline-table;
-  width: 5rem;
-  height: 5rem;
+  width: 1rem;
+  height: 1rem;
   text-align: center;
 }
 
+.letter-container-bad1:hover {
+  cursor: pointer;
+  text-decoration: none;
+}
+
 .letter-bad1 {
-  color: #fccdd3;
-  font-size: 20px;
+  color: #ff01ee;
+  font-size: 8px;
 }
 
 .result-box-bad1 {
@@ -40,7 +45,7 @@
   text-align: center;
   display: inline-block;
   border-radius: 50%;
-  border: .5px solid #fccdd3;
+  border: .5px solid #ff01ee;
   width: 10rem;
   height: 10rem;
   margin: 2rem;
@@ -54,7 +59,7 @@
 }
 
 .selected-letter-bad1 {
-  color: #bbc4ef;
+  color: #3705ff;
   vertical-align: middle;
   font-size: 30px;
   margin: 0;
@@ -67,6 +72,6 @@
 }
 
 .submitButton-bad1 {
-  background-color: #fccdd3 !important;
-  color: #6534ff !important
+  background-color: #ff01ee !important;
+  color: #fff700 !important
 }
