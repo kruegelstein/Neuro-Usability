@@ -1,9 +1,9 @@
 import ActionTypes from '../ActionTypes';
 
 const initialState = {
-  intro: false,
+  intro: true,
   good: false,
-  bad1: true,
+  bad1: false,
   bad2: false,
   admin: false,
 }

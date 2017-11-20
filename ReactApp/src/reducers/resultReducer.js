@@ -5,6 +5,7 @@ const initialState = {}
 const result = (state = initialState, action = {}) => {
   switch (action.type) {
   case ActionTypes.SubmitBad1:
+  case ActionTypes.SubmitBad2:
   case ActionTypes.SubmitGood: {
     const id = action.payload.id
     const name = action.payload.name
