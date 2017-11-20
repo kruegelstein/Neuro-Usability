@@ -12,7 +12,9 @@ export const selectBad1 = () => ({ type: ActionTypes.SelectBad1,  payload: {} })
 export const selectBad2 = () => ({ type: ActionTypes.SelectBad2,  payload: {} })
 export const addUserToForm = (id, name) => ({ type: ActionTypes.AddUserToForm,  payload: { id, name } })
 export const selectLetter = (letter) => ({ type: ActionTypes.SelectLetter,  payload: { letter } })
-export const submitResultsGood = (id, name, letters) => ({ type: ActionTypes.SubmitGood,  payload: { id, name, letters } })
+export const submitResultsGood = (id, name, letters) => ({ type: ActionTypes.SubmitGood,  payload: { id, name, level: 'good', letters  } })
+export const submitResultsBad1 = (id, name, letters) => ({ type: ActionTypes.SubmitBad1,  payload: { id, name, level: 'bad1', letters } })
+export const submitResultsBad2 = (id, name, letters) => ({ type: ActionTypes.SubmitBad2,  payload: { id, name, level: 'bad2', letters } })
 
 // Actions to backend
 
