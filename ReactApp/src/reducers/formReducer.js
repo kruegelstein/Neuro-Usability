@@ -3,9 +3,7 @@ import ActionTypes from '../ActionTypes.js';
 const initialState = {
   id: '',
   name: '',
-  interactions: {
-    
-  }
+  selectedLetters: [],
 }
 
 const form = (state = initialState, action = {}) => {
@@ -23,6 +21,17 @@ const form = (state = initialState, action = {}) => {
         name: action.payload.value,
       }
     }
+  }
+  case ActionTypes.SelectLetter: {
+    const letter = [action.payload.letter]
+    return {
+      ...state,
+      selectedLetters: state.selectedLetters.concat(letter)
+    }
+  }
+  case ActionTypes.SelectIntro: {
+    const letter = [action.payload.letter]
+    return initialState
   }
   default:
       return { ...state }

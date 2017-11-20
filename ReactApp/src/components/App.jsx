@@ -6,6 +6,7 @@ import Intro from './Intro.jsx';
 import Good from './Good.jsx';
 import Bad1 from './Bad1.jsx';
 import Bad2 from './Bad2.jsx';
+import Admin from './Admin.jsx';
 
 class App extends Component {
 
@@ -15,12 +16,14 @@ class App extends Component {
     const good = this.props.good
     const bad1 = this.props.bad1
     const bad2 = this.props.bad2
+    const admin = this.props.admin
     return (
       <div className="app">
         { intro ? <Intro /> : null}
         { good ? <Good /> : null}
         { bad1 ? <Bad1 /> : null}
         { bad2 ? <Bad2 /> : null}
+        { admin ? <Admin /> : null}
       </div>
     )
   }
@@ -31,6 +34,7 @@ App.propTypes = {
   good: PropTypes.bool,
   bad1: PropTypes.bool,
   bad2: PropTypes.bool,
+  admin: PropTypes.bool,
 }
 
 const mapStateToProps = (state, _ownProps) => {
@@ -39,6 +43,7 @@ const mapStateToProps = (state, _ownProps) => {
     good: state.navigation.good,
     bad1: state.navigation.bad1,
     bad2: state.navigation.bad2,
+    admin: state.navigation.admin,
   };
 };
 

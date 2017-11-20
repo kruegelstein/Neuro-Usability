@@ -3,7 +3,7 @@ import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup, Col, FormControl } from 'react-bootstrap';
 
-import { addUserToForm, changeFormValue, selectGood, selectBad1, selectBad2 } from '../actions/actions.js';
+import { addUserToForm, changeFormValue, selectGood, selectBad1, selectBad2, selectAdmin } from '../actions/actions.js';
 
 class Intro extends Component {
   constructor(props) {
@@ -15,6 +15,11 @@ class Intro extends Component {
     this.selectGood = this.selectGood.bind(this)
     this.selectBad1 = this.selectBad1.bind(this)
     this.selectBad2 = this.selectBad2.bind(this)
+    this.changeToAdmin = this.changeToAdmin.bind(this)
+  }
+
+  changeToAdmin() {
+    this.props.onSelectAdmin()
   }
 
   onSubmitForm(e) {
@@ -39,15 +44,18 @@ class Intro extends Component {
   }
 
   selectBad2() {
-    this.props.onSelectBad1()
+    this.props.onSelectBad2()
   }
 
 // Main render method
   render() {
     return (
       <div className="intro">
-        <h2 className="header">Find the letters</h2>
+        <h2 className="header-intro">Find the letters</h2>
         <h4 className="subHeader">To start a new session please register a new user and select a level</h4>
+        <div className="admin-button-container">
+          <Button bsSize="large" className="adminButton" onClick={this.changeToAdmin}>Admin</Button>
+        </div>
         <Form
           className="inputForm"
           onSubmit={this.onSubmitForm}
@@ -118,6 +126,9 @@ const mapDispatchToProps = (dispatch, _ownProps) => ({
   onSelectBad2: () => {
     dispatch(selectBad2())
   },
+  onSelectAdmin: () => {
+    dispatch(selectAdmin())
+  }
 });
 
 Intro = connect(

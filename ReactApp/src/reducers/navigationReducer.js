@@ -5,10 +5,21 @@ const initialState = {
   good: false,
   bad1: false,
   bad2: false,
+  admin: false,
 }
 
 const navigation = (state = initialState, action = {}) => {
   switch (action.type) {
+  case ActionTypes.SelectIntro: {
+    return initialState
+  }
+  case ActionTypes.SelectAdmin: {
+    return {
+      ...state,
+      intro: false,
+      admin: true
+    }
+  }
   case ActionTypes.SelectGood: {
     return {
       ...state,
