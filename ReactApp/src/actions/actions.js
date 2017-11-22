@@ -14,6 +14,7 @@ export const addUserToForm = (id, name) => ({ type: ActionTypes.AddUserToForm,  
 export const selectLetter = (letter) => ({ type: ActionTypes.SelectLetter,  payload: { letter } })
 export const submitResults = (id, name, level, timeGood, letters) => ({ type: ActionTypes.Submit,  payload: { id, name, level, timeGood, letters  } })
 export const saveTime = (time) => ({ type: ActionTypes.SaveTime,  payload: { time } })
+export const submitUserId = (id) => ({ type: ActionTypes.SubmitUserId,  payload: { id } })
 
 // Actions to backend
 

@@ -14,6 +14,7 @@ const actionTypes = {
   SelectLetter: 'select_letter',
   Submit: 'submit',
   SaveTime: 'saving_time',
+  SubmitUserId: 'submit_user_id',
 };
 
 export default actionTypes;
