@@ -6,15 +6,14 @@ const actionTypes = {
   AddUser: 'add_user',
   ChangeForm: 'change_form_value',
   SelectIntro: 'selected_intro',
+  SelectRating: 'selected_rating',
   SelectAdmin: 'selected_admin',
   SelectGood: 'selected_good',
-  SelectBad1: 'selected_bad1',
-  SelectBad2: 'selected_bad2',
+  SelectBad: 'selected_bad',
   AddUserToForm: 'adding_user_to_form',
   SelectLetter: 'select_letter',
-  SubmitGood: 'submit_good',
-  SubmitBad1: 'submit_bad1',
-  SubmitBad2: 'submit_bad2',
+  Submit: 'submit',
+  SaveTime: 'saving_time',
 };
 
 export default actionTypes;

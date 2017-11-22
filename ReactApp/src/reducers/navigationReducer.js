@@ -3,9 +3,9 @@ import ActionTypes from '../ActionTypes';
 const initialState = {
   intro: true,
   good: false,
-  bad1: false,
-  bad2: false,
+  bad: false,
   admin: false,
+  rating: false,
 }
 
 const navigation = (state = initialState, action = {}) => {
@@ -20,6 +20,15 @@ const navigation = (state = initialState, action = {}) => {
       admin: true
     }
   }
+  case ActionTypes.SelectRating: {
+    return {
+      intro: false,
+      good: false,
+      bad: false,
+      admin: false,
+      rating: true,
+    }
+  }
   case ActionTypes.SelectGood: {
     return {
       ...state,
@@ -27,18 +36,11 @@ const navigation = (state = initialState, action = {}) => {
       good: true
     }
   }
-  case ActionTypes.SelectBad1: {
+  case ActionTypes.SelectBad: {
     return {
       ...state,
       intro: false,
-      bad1: true
-    }
-  }
-  case ActionTypes.SelectBad2: {
-    return {
-      ...state,
-      intro: false,
-      bad2: true
+      bad: true
     }
   }
   default:

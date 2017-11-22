@@ -6,15 +6,14 @@ const ROOT_URL = 'http://localhost:3090';
 // actions in frontend
 export const changeFormValue = (field, value) => ({ type: ActionTypes.ChangeForm,  payload: { field, value } })
 export const selectAdmin = () => ({ type: ActionTypes.SelectAdmin,  payload: {} })
+export const selectRating = () => ({ type: ActionTypes.SelectRating,  payload: {} })
 export const selectIntro = () => ({ type: ActionTypes.SelectIntro,  payload: {} })
 export const selectGood = () => ({ type: ActionTypes.SelectGood,  payload: {} })
-export const selectBad1 = () => ({ type: ActionTypes.SelectBad1,  payload: {} })
-export const selectBad2 = () => ({ type: ActionTypes.SelectBad2,  payload: {} })
+export const selectBad = () => ({ type: ActionTypes.SelectBad,  payload: {} })
 export const addUserToForm = (id, name) => ({ type: ActionTypes.AddUserToForm,  payload: { id, name } })
 export const selectLetter = (letter) => ({ type: ActionTypes.SelectLetter,  payload: { letter } })
-export const submitResultsGood = (id, name, letters) => ({ type: ActionTypes.SubmitGood,  payload: { id, name, level: 'good', letters  } })
-export const submitResultsBad1 = (id, name, letters) => ({ type: ActionTypes.SubmitBad1,  payload: { id, name, level: 'bad1', letters } })
-export const submitResultsBad2 = (id, name, letters) => ({ type: ActionTypes.SubmitBad2,  payload: { id, name, level: 'bad2', letters } })
+export const submitResults = (id, name, level, timeGood, letters) => ({ type: ActionTypes.Submit,  payload: { id, name, level, timeGood, letters  } })
+export const saveTime = (time) => ({ type: ActionTypes.SaveTime,  payload: { time } })
 
 // Actions to backend
 

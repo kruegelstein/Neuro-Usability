@@ -3,33 +3,32 @@ import { PropTypes } from 'prop-types';
 import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
-import { alphabet } from '../constants/alphabet.js';
+import { alphabetGood } from '../constants/alphabet.js';
 
-import { selectLetter, submitResultsGood, selectIntro } from '../actions/actions.js';
+import { selectLetter, selectRating, saveTime } from '../actions/actions.js';
 
-const doubleAlphabet = alphabet.concat(alphabet);
-
-const tripleAlphabet = doubleAlphabet.concat(alphabet);
+let timeStampGoodStart
+let timeStampGoodEnd
 
 class Good extends Component {
   constructor(props) {
     super(props);
     this.onSubmit = this.onSubmit.bind(this)
-    // this.selectGood = this.selectGood.bind(this)
-    // this.selectBad1 = this.selectBad1.bind(this)
-    // this.selectBad2 = this.selectBad2.bind(this)
+  }
+
+  componentDidMount() {
+    timeStampGoodStart = Date.now()
   }
 
   onSubmit() {
-    const id = this.props.id
-    const name = this.props.name
-    const letters = this.props.selectedLetters
-    this.props.onSubmitResults(id, name, letters)
-    this.props.goToIntro()
+    timeStampGoodEnd = Date.now()
+    const timeDiff = (timeStampGoodEnd - timeStampGoodStart) / 1000
+    this.props.onSaveTime(timeDiff)
+    this.props.goToRating()
   }
 
   handleClick(event, index) {
-    const letter = tripleAlphabet[index]
+    const letter = alphabetGood[index]
     this.props.onSelectLetter(letter)
   }
 
@@ -40,7 +39,7 @@ class Good extends Component {
       <div className="good">
         <h4 className="header-good">Find all K</h4>
         <div className="alphabet-box-good">
-          {tripleAlphabet
+          {alphabetGood
             .map((letter, index) =>
               <a key={index} className="letter-container" onClick={event => this.handleClick(event, index)}>
                 <p className="letter">
@@ -85,11 +84,11 @@ const mapDispatchToProps = (dispatch, _ownProps) => ({
   onSelectLetter: (letter) => {
     dispatch(selectLetter(letter))
   },
-  onSubmitResults: (id, name, letters) => {
-    dispatch(submitResultsGood(id, name, letters))
+  goToRating: () => {
+    dispatch(selectRating())
   },
-  goToIntro: () => {
-    dispatch(selectIntro())
+  onSaveTime: (time) => {
+    dispatch(saveTime(time))
   }
 });
 
