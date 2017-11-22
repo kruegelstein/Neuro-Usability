@@ -48,13 +48,7 @@
   cursor: pointer;
 }
 
-#bad1 {
-  font-size: 5rem;
-  color: yellow;
-  cursor: pointer;
-}
-
-#bad2 {
+#bad {
   font-size: 5rem;
   color: red;
   cursor: pointer;

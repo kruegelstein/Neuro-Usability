@@ -4,12 +4,11 @@ const initialState = {}
 
 const result = (state = initialState, action = {}) => {
   switch (action.type) {
-  case ActionTypes.SubmitBad1:
-  case ActionTypes.SubmitBad2:
-  case ActionTypes.SubmitGood: {
+  case ActionTypes.Submit: {
     const id = action.payload.id
     const name = action.payload.name
     const level = action.payload.level
+    const timeGood = action.payload.timeGood
     const letters = action.payload.letters
     return {
       ...state,
@@ -17,6 +16,7 @@ const result = (state = initialState, action = {}) => {
         id: id,
         name: name,
         level: level,
+        timeGood: timeGood,
         selectedLetters: letters
       }
     }

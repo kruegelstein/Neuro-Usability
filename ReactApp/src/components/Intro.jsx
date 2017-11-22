@@ -3,7 +3,7 @@ import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup, Col, FormControl } from 'react-bootstrap';
 
-import { addUserToForm, changeFormValue, selectGood, selectBad1, selectBad2, selectAdmin } from '../actions/actions.js';
+import { addUserToForm, changeFormValue, selectGood, selectBad, selectAdmin } from '../actions/actions.js';
 
 class Intro extends Component {
   constructor(props) {
@@ -13,8 +13,7 @@ class Intro extends Component {
     }
     this.onSubmitForm = this.onSubmitForm.bind(this)
     this.selectGood = this.selectGood.bind(this)
-    this.selectBad1 = this.selectBad1.bind(this)
-    this.selectBad2 = this.selectBad2.bind(this)
+    this.selectBad = this.selectBad.bind(this)
     this.changeToAdmin = this.changeToAdmin.bind(this)
   }
 
@@ -39,12 +38,8 @@ class Intro extends Component {
     this.props.onSelectGood()
   }
 
-  selectBad1() {
-    this.props.onSelectBad1()
-  }
-
-  selectBad2() {
-    this.props.onSelectBad2()
+  selectBad() {
+    this.props.onSelectBad()
   }
 
 // Main render method
@@ -83,11 +78,8 @@ class Intro extends Component {
           <a className="level" onClick={this.selectGood}>
             <i id="good" className="fa fa-smile-o fa-3" aria-hidden="true"></i>
           </a>
-          <a className="level" onClick={this.selectBad1}>
-            <i id="bad1" className="fa fa-meh-o fa-3" aria-hidden="true"></i>
-          </a>
-          <a className="level" onClick={this.selectBad2}>
-            <i id="bad2" className="fa fa-frown-o fa-3" aria-hidden="true"></i>
+          <a className="level" onClick={this.selectBad}>
+            <i id="bad" className="fa fa-frown-o" aria-hidden="true"></i>
           </a>
         </div>
       </div>
@@ -120,11 +112,8 @@ const mapDispatchToProps = (dispatch, _ownProps) => ({
   onSelectGood: () => {
     dispatch(selectGood())
   },
-  onSelectBad1: () => {
-    dispatch(selectBad1())
-  },
-  onSelectBad2: () => {
-    dispatch(selectBad2())
+  onSelectBad: () => {
+    dispatch(selectBad())
   },
   onSelectAdmin: () => {
     dispatch(selectAdmin())

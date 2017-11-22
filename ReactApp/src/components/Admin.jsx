@@ -48,6 +48,7 @@ class Admin extends Component {
             <th>User ID</th>
             <th>User name</th>
             <th>Level</th>
+            <th>TimeGood</th>
             <th>Selected letters</th>
           </tr>
             {Object.keys(result)
@@ -56,6 +57,7 @@ class Admin extends Component {
                   <td>{result[k].id}</td>
                   <td>{result[k].name}</td>
                   <td>{result[k].level}</td>
+                  <td>{result[k].timeGood}</td>
                   <td>{result[k].selectedLetters}</td>
                 </tr>
               )

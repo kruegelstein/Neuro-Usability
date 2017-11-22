@@ -1,52 +1,53 @@
-.bad1 {
+.bad {
   background-color: #fff700;
   width: 100%;
   height: 100%;
-  font-style: thin;
-  font-family: Curlz MT;
+  font-style: Bold Italic;
+  font-family: Tangerine;
 }
 
-.header-bad1 {
+.header-bad {
   text-align: center;
-  color: #ff01ee;
+  color: #25ff03;
   font-size: 40px;
   margin-bottom: 3rem
 }
 
-.alphabet-box-bad1 {
+.alphabet-box-bad {
   width: 70%;
   margin: auto;
 }
 
-.letter-container-bad1 {
+.letter-container-bad {
   display: inline-table;
   width: 1rem;
   height: 1rem;
   text-align: center;
 }
 
-.letter-container-bad1:hover {
+.letter-container-bad:hover {
   cursor: pointer;
   text-decoration: none;
 }
 
-.letter-bad1 {
-  color: #ff01ee;
-  font-size: 8px;
+.letter-bad {
+  color: #25ff03;
+  font-size: 20 px;
+  margin: 0;
 }
 
-.result-box-bad1 {
+.result-box-bad {
   width: 70%;
   height: 12rem;
   text-align: center;
   margin: auto;
 }
 
-.letter-box-bad1 {
+.letter-box-bad {
   text-align: center;
   display: inline-block;
   border-radius: 50%;
-  border: .5px solid #ff01ee;
+  border: .5px solid #25ff03;
   width: 10rem;
   height: 10rem;
   margin: 2rem;
@@ -59,20 +60,20 @@
   to {opacity: 1}
 }
 
-.selected-letter-bad1 {
-  color: #3705ff;
+.selected-letter-bad {
+  color: #ff7b00;
   vertical-align: middle;
   font-size: 30px;
   margin: 0;
   padding-top: 2.5rem
 }
 
-.button-container-bad1 {
+.button-container-bad {
   margin-top: 3rem;
   text-align: center;
 }
 
-.submitButton-bad1 {
-  background-color: #ff01ee !important;
-  color: #fff700 !important
+.submitButton-bad {
+  background-color: #ff2600 !important;
+  color: #ff7b00 !important
 }
