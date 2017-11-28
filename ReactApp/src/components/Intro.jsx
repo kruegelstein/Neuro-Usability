@@ -2,8 +2,16 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup, Col, FormControl } from 'react-bootstrap';
-
-import { addUserToForm, changeFormValue, selectGood, selectBad, selectAdmin, submitUserId } from '../actions/actions.js';
+import { alphabetBasic } from '../constants/alphabet.js';
+import {
+  addUserToForm,
+  changeFormValue,
+  selectGood,
+  selectBad,
+  selectAdmin,
+  submitUserId,
+  setLettersToFind
+ } from '../actions/actions.js';
 
 class Intro extends Component {
   constructor(props) {
@@ -12,6 +20,7 @@ class Intro extends Component {
     this.selectBad = this.selectBad.bind(this)
     this.changeToAdmin = this.changeToAdmin.bind(this)
     this.generateUserId = this.generateUserId.bind(this)
+    this.createRandomLetters = this.createRandomLetters.bind(this)
   }
 
   changeToAdmin() {
@@ -25,11 +34,21 @@ class Intro extends Component {
   }
 
   selectGood() {
+    this.createRandomLetters()
     this.props.onSelectGood()
   }
 
   selectBad() {
+    this.createRandomLetters()
     this.props.onSelectBad()
+  }
+
+  createRandomLetters() {
+    const index1 = Math.floor(Math.random() * (25 - 0 + 1) + 0)
+    const index2 = Math.floor(Math.random() * (25 - 0 + 1) + 0)
+    const index3 = Math.floor(Math.random() * (25 - 0 + 1) + 0)
+
+    this.props.onSetLettersToFind(index1, index2, index3)
   }
 
   generateUserId(){
@@ -109,6 +128,9 @@ const mapDispatchToProps = (dispatch, _ownProps) => ({
   },
   onSubmitUserId: (id) => {
     dispatch(submitUserId(id))
+  },
+  onSetLettersToFind: (index1, index2, index3) => {
+    dispatch(setLettersToFind(index1, index2, index3))
   }
 });
 
