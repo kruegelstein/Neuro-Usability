@@ -8,12 +8,16 @@ export const changeFormValue = (field, value) => ({ type: ActionTypes.ChangeForm
 export const selectAdmin = () => ({ type: ActionTypes.SelectAdmin,  payload: {} })
 export const selectRating = () => ({ type: ActionTypes.SelectRating,  payload: {} })
 export const selectIntro = () => ({ type: ActionTypes.SelectIntro,  payload: {} })
-export const selectGood = () => ({ type: ActionTypes.SelectGood,  payload: {} })
-export const selectBad = () => ({ type: ActionTypes.SelectBad,  payload: {} })
+export const selectRound2 = () => ({ type: ActionTypes.SelectRound2,  payload: {} })
+export const selectRound3 = () => ({ type: ActionTypes.SelectRound3,  payload: {} })
+export const selectGood = (round) => ({ type: ActionTypes.SelectGood,  payload: { round } })
+export const selectBad = (round) => ({ type: ActionTypes.SelectBad,  payload: { round } })
 export const addUserToForm = (id, name) => ({ type: ActionTypes.AddUserToForm,  payload: { id, name } })
-export const selectLetter = (letter) => ({ type: ActionTypes.SelectLetter,  payload: { letter } })
+export const selectLetter = (round, letter) => ({ type: ActionTypes.SelectLetter,  payload: { round, letter } })
 export const submitResults = (id, name, level, timeGood, letters) => ({ type: ActionTypes.Submit,  payload: { id, name, level, timeGood, letters  } })
-export const saveTime = (time) => ({ type: ActionTypes.SaveTime,  payload: { time } })
+export const saveTime = (round, time) => ({ type: ActionTypes.SaveTime,  payload: { round, time } })
+export const submitUserId = (id) => ({ type: ActionTypes.SubmitUserId,  payload: { id } })
+export const setLettersToFind = (index1, index2, index3) => ({ type: ActionTypes.SetLettersToFind,  payload: { index1, index2, index3 } })
 
 // Actions to backend
 
