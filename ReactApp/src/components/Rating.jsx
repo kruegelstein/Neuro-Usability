@@ -4,6 +4,7 @@ import { Button, Form, FormGroup, Checkbox } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { attributes } from '../constants/attrakDiff.js';
 import { submitResults, selectIntro } from '../actions/actions.js';
+import { alphabetGood } from '../constants/alphabet.js';
 
 class RatingComponent extends Component {
   constructor(props) {
@@ -87,9 +88,20 @@ class RatingComponent extends Component {
     const id = this.props.id
     const name = this.props.name
     const level = this.props.level
-    const timeGood = this.props.timeGood
-    const letters = this.props.selectedLetters
-    this.props.onSubmitResults(id, name, level, timeGood, letters)
+    const time1 = this.props.time1
+    const time2 = this.props.time2
+    const time3 = this.props.time3
+
+    const selectedIndizes1 = this.props.selectedIndizes1
+    const selectedLetters1 = selectedIndizes1.map(i => alphabetGood[i])
+
+    const selectedIndizes2 = this.props.selectedIndizes2
+    const selectedLetters2 = selectedIndizes2.map(i => alphabetGood[i])
+
+    const selectedIndizes3 = this.props.selectedIndizes3
+    const selectedLetters3 = selectedIndizes3.map(i => alphabetGood[i])
+    console.log(id, name, level, time1, time2, time3, selectedLetters1, selectedLetters2, selectedLetters3)
+    this.props.onSubmitResults(id, name, level, time1, time2, time3, selectedLetters1, selectedLetters2, selectedLetters3)
     this.props.goToIntro()
   }
 
@@ -141,20 +153,28 @@ const mapStateToProps = (state, _ownProps) => {
   const id = state.form.id
   const name = state.form.name
   const level = state.form.level
-  const timeGood = state.form.timeGood
-  const selectedLetters = state.form.selectedLetters
+  const time1 = state.form.round1.timeForRound
+  const time2 = state.form.round2.timeForRound
+  const time3 = state.form.round3.timeForRound
+  const selectedIndizes1 = state.form.round1.selectedIndizes
+  const selectedIndizes2 = state.form.round2.selectedIndizes
+  const selectedIndizes3 = state.form.round3.selectedIndizes
   return {
-    selectedLetters,
+    selectedIndizes1,
+    selectedIndizes2,
+    selectedIndizes3,
+    time1,
+    time2,
+    time3,
     id,
     level,
-    timeGood,
     name,
   };
 };
 
 const mapDispatchToProps = (dispatch, _ownProps) => ({
-  onSubmitResults: (id, name, level, timeGood, letters) => {
-    dispatch(submitResults(id, name, level, timeGood, letters))
+  onSubmitResults: (id, name, level, time1, time2, time3, selectedLetters1, selectedLetters2, selectedLetters3) => {
+    dispatch(submitResults(id, name, level, time1, time2, time3, selectedLetters1, selectedLetters2, selectedLetters3))
   },
   goToIntro: () => {
     dispatch(selectIntro())

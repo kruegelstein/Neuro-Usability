@@ -12,6 +12,7 @@ const actionTypes = {
   SelectBad: 'selected_bad',
   AddUserToForm: 'adding_user_to_form',
   SelectLetter: 'select_letter',
+  DeselectLetter: 'deselect_letter',
   Submit: 'submit',
   SaveTime: 'saving_time',
   SubmitUserId: 'submit_user_id',
