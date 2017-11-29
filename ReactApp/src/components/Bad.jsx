@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import Spinner from './Spinner.jsx';
 
 import { alphabetBad, alphabetBasic } from '../constants/alphabet.js';
 
@@ -13,7 +14,11 @@ let timeStampBadEnd
 class Bad extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      spinner: false
+    }
     this.onSubmit = this.onSubmit.bind(this)
+    this.disableSpinner = this.disableSpinner.bind(this)
   }
 
   componentDidMount() {
@@ -36,9 +41,19 @@ class Bad extends Component {
     }
   }
 
+  mockDelay() {
+    setTimeout(this.disableSpinner, 2000)
+  }
+
+  disableSpinner() {
+    this.setState({ spinner: false })
+  }
+
   handleClick(event, index) {
     const round = this.props.round
     this.props.onSelectLetter(round, index)
+    this.setState({ spinner: true })
+    this.mockDelay()
   }
 
 // Main render method
@@ -59,6 +74,7 @@ class Bad extends Component {
       <div className="bad">
         <h4 className="header-bad">Find all {letterToFind}</h4>
         <div className="alphabet-box-bad">
+          <Spinner enabled={this.state.spinner}/>
           {alphabetBad
             .map((letter, index) =>
               <a key={index} className="letter-container-bad" onClick={event => this.handleClick(event, index)}>
