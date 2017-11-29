@@ -20,8 +20,8 @@
 
 .letter-container-bad {
   display: inline-table;
-  width: 1rem;
-  height: 1rem;
+  width: 2.5rem;
+  height: 2.5rem;
   text-align: center;
 }
 
@@ -32,7 +32,7 @@
 
 .letter-bad {
   color: #25ff03;
-  font-size: 20 px;
+  font-size: 20px;
   margin: 0;
 }
 

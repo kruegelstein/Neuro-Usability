@@ -37,14 +37,13 @@ class Bad extends Component {
   }
 
   handleClick(event, index) {
-    const letter = alphabetBad[index]
     const round = this.props.round
-    this.props.onSelectLetter(round, letter)
+    this.props.onSelectLetter(round, index)
   }
 
 // Main render method
   render() {
-    const selectedLetters = this.props.selectedLetters
+    const selectedIndizes = this.props.selectedIndizes
     const round = this.props.round
     let letterToFind = ''
     if(round === 1) {
@@ -85,13 +84,13 @@ const mapStateToProps = (state, _ownProps) => {
   const id = state.form.id
   const name = state.form.name
   const round = state.form.round
-  let selectedLetters = []
+  let selectedIndizes = []
   if(round === 1) {
-    selectedLetters = state.form.round1.selectedLetters
+    selectedIndizes = state.form.round1.selectedIndizes
   }else if(round === 2){
-    selectedLetters = state.form.round2.selectedLetters
+    selectedIndizes = state.form.round2.selectedIndizes
   }else if(round === 3) {
-    selectedLetters = state.form.round3.selectedLetters
+    selectedIndizes = state.form.round3.selectedIndizes
   }else {
     console.log('rounds are fucked up!')
   }
@@ -99,7 +98,7 @@ const mapStateToProps = (state, _ownProps) => {
   const letter2 = state.form.round2.letterToFind
   const letter3 = state.form.round3.letterToFind
   return {
-    selectedLetters,
+    selectedIndizes,
     id,
     name,
     round,
