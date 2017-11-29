@@ -3,6 +3,7 @@ import { PropTypes } from 'prop-types';
 import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import Spinner from './Spinner.jsx';
+import Distraction from './Distraction.jsx';
 
 import { alphabetBad, alphabetBasic } from '../constants/alphabet.js';
 
@@ -15,14 +16,35 @@ class Bad extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      spinner: false
+      spinner: false,
+      distraction: false
     }
     this.onSubmit = this.onSubmit.bind(this)
     this.disableSpinner = this.disableSpinner.bind(this)
+    this.enableDistraction = this.enableDistraction.bind(this)
+    this.disableDistraction = this.disableDistraction.bind(this)
+
   }
 
   componentDidMount() {
     timeStampBadStart = Date.now()
+    this.enableDistraction()
+  }
+
+  enableDistraction() {
+    console.log('enabling..')
+    this.setState({ distraction: true }, () => {
+      console.log('enabled', this.state.distraction)
+      setTimeout(this.disableDistraction, 5000)
+    })
+  }
+
+  disableDistraction() {
+    console.log('disabling..')
+    this.setState({ distraction: false }, () => {
+      console.log('enabled', this.state.distraction)
+      setTimeout(this.enableDistraction, 5000)
+    })
   }
 
   onSubmit() {
@@ -72,17 +94,22 @@ class Bad extends Component {
     }
     return (
       <div className="bad">
+        <Distraction enabled={this.state.distraction}/>
         <h4 className="header-bad">Find all {letterToFind}</h4>
         <div className="alphabet-box-bad">
           <Spinner enabled={this.state.spinner}/>
           {alphabetBad
-            .map((letter, index) =>
-              <a key={index} className="letter-container-bad" onClick={event => this.handleClick(event, index)}>
-                <p className="letter-bad">
-                  {letter}
-                </p>
-              </a>
-            )
+            .map((letter, index) => {
+              const randomNumber = Math.floor(Math.random() * (3 - 0 + 1) + 0)
+              const wiggle = randomNumber === 2 ? true : false
+              return(
+                <a key={index} className={`${wiggle ? 'letter-container-bad-animated' : 'letter-container-bad'}`} onClick={event => this.handleClick(event, index)}>
+                  <p className="letter-bad">
+                    {letter}
+                  </p>
+                </a>
+              )
+            })
           }
         </div>
         <div className="button-container-bad">
