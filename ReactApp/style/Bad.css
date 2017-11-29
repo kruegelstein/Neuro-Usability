@@ -20,8 +20,8 @@
 
 .letter-container-bad {
   display: inline-table;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 5rem;
+  height: 5rem;
   text-align: center;
 }
 
@@ -34,11 +34,11 @@
 }
 
 .letter-container-bad-animated {
-  display: inline-table;
-  width: 2.5rem;
-  height: 2.5rem;
-  text-align: center;
   animation: wiggle 2s infinite;
+  display: inline-table;
+  width: 5rem;
+  height: 5rem;
+  text-align: center;
 }
 
 .letter-container-bad-animated:hover {
