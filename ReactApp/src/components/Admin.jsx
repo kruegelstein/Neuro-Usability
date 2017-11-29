@@ -54,6 +54,9 @@ class Admin extends Component {
             <th>Selected letters round 1</th>
             <th>Selected letters round 2</th>
             <th>Selected letters round 3</th>
+            <th>Letter for round 1</th>
+            <th>Letter for round 2</th>
+            <th>Letter for round 3</th>
           </tr>
             {Object.keys(result)
               .map(k =>
@@ -67,6 +70,9 @@ class Admin extends Component {
                   <td>{result[k].selectedLettersRound1}</td>
                   <td>{result[k].selectedLettersRound2}</td>
                   <td>{result[k].selectedLettersRound3}</td>
+                  <td>{result[k].letterForRound1}</td>
+                  <td>{result[k].letterForRound2}</td>
+                  <td>{result[k].letterForRound3}</td>
                 </tr>
               )
             }

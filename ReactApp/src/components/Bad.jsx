@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import Spinner from './Spinner.jsx';
+import Distraction from './Distraction.jsx';
 
 import { alphabetBad, alphabetBasic } from '../constants/alphabet.js';
 
@@ -13,11 +15,36 @@ let timeStampBadEnd
 class Bad extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      spinner: false,
+      distraction: false
+    }
     this.onSubmit = this.onSubmit.bind(this)
+    this.disableSpinner = this.disableSpinner.bind(this)
+    this.enableDistraction = this.enableDistraction.bind(this)
+    this.disableDistraction = this.disableDistraction.bind(this)
+
   }
 
   componentDidMount() {
     timeStampBadStart = Date.now()
+    this.enableDistraction()
+  }
+
+  enableDistraction() {
+    console.log('enabling..')
+    this.setState({ distraction: true }, () => {
+      console.log('enabled', this.state.distraction)
+      setTimeout(this.disableDistraction, 5000)
+    })
+  }
+
+  disableDistraction() {
+    console.log('disabling..')
+    this.setState({ distraction: false }, () => {
+      console.log('enabled', this.state.distraction)
+      setTimeout(this.enableDistraction, 5000)
+    })
   }
 
   onSubmit() {
@@ -36,15 +63,25 @@ class Bad extends Component {
     }
   }
 
+  mockDelay() {
+    setTimeout(this.disableSpinner, 2000)
+  }
+
+  disableSpinner() {
+    this.setState({ spinner: false })
+  }
+
   handleClick(event, index) {
-    const letter = alphabetBad[index]
     const round = this.props.round
-    this.props.onSelectLetter(round, letter)
+    this.props.onSelectLetter(round, index)
+    this.setState({ spinner: true })
+    this.mockDelay()
   }
 
 // Main render method
   render() {
-    const selectedLetters = this.props.selectedLetters
+    const selectedIndizes = this.props.selectedIndizes
+    const submitEnabled = selectedIndizes.length > 0 ? true : false
     const round = this.props.round
     let letterToFind = ''
     if(round === 1) {
@@ -58,20 +95,31 @@ class Bad extends Component {
     }
     return (
       <div className="bad">
+        <Distraction enabled={this.state.distraction}/>
         <h4 className="header-bad">Find all {letterToFind}</h4>
         <div className="alphabet-box-bad">
+          <Spinner enabled={this.state.spinner}/>
           {alphabetBad
-            .map((letter, index) =>
-              <a key={index} className="letter-container-bad" onClick={event => this.handleClick(event, index)}>
-                <p className="letter-bad">
-                  {letter}
-                </p>
-              </a>
-            )
+            .map((letter, index) => {
+              const randomNumber = Math.floor(Math.random() * (3 - 0 + 1) + 0)
+              const wiggle = randomNumber === 2 ? true : false
+              return(
+                <a key={index} className={`${wiggle ? 'letter-container-bad-animated' : 'letter-container-bad'}`} onClick={event => this.handleClick(event, index)}>
+                  <p className="letter-bad">
+                    {letter}
+                  </p>
+                </a>
+              )
+            })
           }
         </div>
-        <div className="button-container-bad">
-          <Button bsSize="large" className="submitButton-bad" onClick={this.onSubmit}>Submit</Button>
+        <div className= {`${submitEnabled ? 'button-containerBad' : 'button-containerBadDisabled'}`} onClick={submitEnabled ? this.onSubmit : this.onAlert}>
+          {submitEnabled
+            ?
+            <i id="arrowBad" className="fa fa-arrow-right fa-6" aria-hidden="true"></i>
+            :
+            <i id="crossBad" className="fa fa-times fa-6" aria-hidden="true"></i>
+          }
         </div>
       </div>
     )
@@ -85,13 +133,13 @@ const mapStateToProps = (state, _ownProps) => {
   const id = state.form.id
   const name = state.form.name
   const round = state.form.round
-  let selectedLetters = []
+  let selectedIndizes = []
   if(round === 1) {
-    selectedLetters = state.form.round1.selectedLetters
+    selectedIndizes = state.form.round1.selectedIndizes
   }else if(round === 2){
-    selectedLetters = state.form.round2.selectedLetters
+    selectedIndizes = state.form.round2.selectedIndizes
   }else if(round === 3) {
-    selectedLetters = state.form.round3.selectedLetters
+    selectedIndizes = state.form.round3.selectedIndizes
   }else {
     console.log('rounds are fucked up!')
   }
@@ -99,7 +147,7 @@ const mapStateToProps = (state, _ownProps) => {
   const letter2 = state.form.round2.letterToFind
   const letter3 = state.form.round3.letterToFind
   return {
-    selectedLetters,
+    selectedIndizes,
     id,
     name,
     round,

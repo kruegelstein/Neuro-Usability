@@ -20,9 +20,30 @@
 
 .letter-container-bad {
   display: inline-table;
-  width: 1rem;
-  height: 1rem;
+  width: 5rem;
+  height: 5rem;
   text-align: center;
+}
+
+@keyframes wiggle {
+  0% { transform: rotate(0deg); }
+  80% { transform: rotate(0deg); }
+  85% { transform: rotate(50deg); }
+  95% { transform: rotate(-50deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.letter-container-bad-animated {
+  animation: wiggle 2s infinite;
+  display: inline-table;
+  width: 5rem;
+  height: 5rem;
+  text-align: center;
+}
+
+.letter-container-bad-animated:hover {
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .letter-container-bad:hover {
@@ -32,7 +53,7 @@
 
 .letter-bad {
   color: #25ff03;
-  font-size: 20 px;
+  font-size: 20px;
   margin: 0;
 }
 
@@ -68,12 +89,71 @@
   padding-top: 2.5rem
 }
 
-.button-container-bad {
-  margin-top: 3rem;
+.button-containerBad {
+  display: inline-block;
+  float: right;
+  position: absolute;
   text-align: center;
+  top: 3rem;
+  right: 4rem;
+  height: 6rem;
+  width: 6rem;
+  border-radius: 50% !important;
+  background-color: #ff7b00 !important;
+  color: #25ff03 !important
 }
 
-.submitButton-bad {
-  background-color: #ff2600 !important;
-  color: #ff7b00 !important
+.button-containerBad:hover {
+  cursor: pointer;
+}
+
+.button-containerBadDisabled:hover {
+  cursor: pointer;
+}
+
+.button-containerBadDisabled {
+  display: inline-block;
+  float: right;
+  position: absolute;
+  text-align: center;
+  top: 3rem;
+  right: 4rem;
+  height: 6rem;
+  width: 6rem;
+  border-radius: 50% !important;
+  background-color: red !important;
+  color: black !important
+}
+
+#arrowBad {
+  font-size: 40px !important;
+  padding-top: 7px !important;
+}
+
+#crossBad {
+  font-size: 40px !important;
+  padding-top: 7px !important;
+}
+
+.distraction-container {
+  width: 30rem;
+  height: 20rem;
+  position: absolute;
+  z-index: 99;
+  top: 7rem;
+  left: 0
+  -webkit-transform: translateX(-115%);
+  transform: translateX(-115%);
+  animation: slide-in 8s forwards;
+}
+
+.santa {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes slide-in {
+  20% {transform: translateX(+0%);}
+  40% {transform: translateX(-115%);}
+  100% {transform: translateX(+1000%);}
 }

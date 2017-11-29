@@ -42,6 +42,10 @@ class Good extends Component {
     }
   }
 
+  onAlert() {
+    alert('Please select at least one letter!')
+  }
+
   handleClick(event, index) {
     const round = this.props.round
     const i = this.state.selectedLetters.indexOf(index)
@@ -57,6 +61,7 @@ class Good extends Component {
 // Main render method
   render() {
     const selectedIndizes = this.props.selectedIndizes
+    const submitEnabled = selectedIndizes.length > 0 ? true : false
     const round = this.props.round
     let letterToFind = ''
     if(round === 1) {
@@ -92,8 +97,13 @@ class Good extends Component {
             )
           }
         </div>
-        <div className="button-container">
-          <Button bsSize="large" className="submitButton" onClick={this.onSubmit}>Submit</Button>
+        <div className= {`${submitEnabled ? 'button-container' : 'button-containerDisabled'}`} onClick={submitEnabled ? this.onSubmit : this.onAlert}>
+          {submitEnabled
+            ?
+            <i id="arrow" className="fa fa-arrow-right fa-6" aria-hidden="true"></i>
+            :
+            <i id="cross" className="fa fa-times fa-6" aria-hidden="true"></i>
+          }
         </div>
       </div>
     )

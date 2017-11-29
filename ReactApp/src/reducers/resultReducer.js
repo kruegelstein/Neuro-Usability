@@ -15,6 +15,9 @@ const result = (state = initialState, action = {}) => {
     const selectedLetters1 = action.payload.selectedLetters1
     const selectedLetters2 = action.payload.selectedLetters2
     const selectedLetters3 = action.payload.selectedLetters3
+    const letter1 = action.payload.letter1
+    const letter2 = action.payload.letter2
+    const letter3 = action.payload.letter3
     return {
       ...state,
       [id]: {
@@ -27,6 +30,9 @@ const result = (state = initialState, action = {}) => {
         selectedLettersRound1: selectedLetters1,
         selectedLettersRound2: selectedLetters2,
         selectedLettersRound3: selectedLetters3,
+        letterRound1: letter1,
+        letterRound2: letter2,
+        letterRound3: letter3,
       }
     }
   }

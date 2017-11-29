@@ -91,6 +91,9 @@ class RatingComponent extends Component {
     const time1 = this.props.time1
     const time2 = this.props.time2
     const time3 = this.props.time3
+    const letter1 = this.props.letter1
+    const letter2 = this.props.letter2
+    const letter3 = this.props.letter3
 
     const selectedIndizes1 = this.props.selectedIndizes1
     const selectedLetters1 = selectedIndizes1.map(i => alphabetGood[i])
@@ -100,8 +103,20 @@ class RatingComponent extends Component {
 
     const selectedIndizes3 = this.props.selectedIndizes3
     const selectedLetters3 = selectedIndizes3.map(i => alphabetGood[i])
-    console.log(id, name, level, time1, time2, time3, selectedLetters1, selectedLetters2, selectedLetters3)
-    this.props.onSubmitResults(id, name, level, time1, time2, time3, selectedLetters1, selectedLetters2, selectedLetters3)
+    this.props.onSubmitResults(
+      id,
+      name,
+      level,
+      time1,
+      time2,
+      time3,
+      selectedLetters1,
+      selectedLetters2,
+      selectedLetters3,
+      letter1,
+      letter2,
+      letter3
+    )
     this.props.goToIntro()
   }
 
@@ -138,9 +153,9 @@ class RatingComponent extends Component {
             })
           }
           </div>
-        <div className="button-container">
-          <Button bsSize="large" className="ratingButton" onClick={this.onSubmit}>Submit</Button>
-        </div>
+          <div className="button-containerRating">
+            <i id="arrowRating" className="fa fa-arrow-right fa-6" aria-hidden="true" onClick={this.onSubmit}></i>
+          </div>
       </div>
     )
   }
@@ -156,6 +171,9 @@ const mapStateToProps = (state, _ownProps) => {
   const time1 = state.form.round1.timeForRound
   const time2 = state.form.round2.timeForRound
   const time3 = state.form.round3.timeForRound
+  const letter1 = state.form.round1.letterToFind
+  const letter2 = state.form.round2.letterToFind
+  const letter3 = state.form.round3.letterToFind
   const selectedIndizes1 = state.form.round1.selectedIndizes
   const selectedIndizes2 = state.form.round2.selectedIndizes
   const selectedIndizes3 = state.form.round3.selectedIndizes
@@ -166,6 +184,9 @@ const mapStateToProps = (state, _ownProps) => {
     time1,
     time2,
     time3,
+    letter1,
+    letter2,
+    letter3,
     id,
     level,
     name,
@@ -173,8 +194,23 @@ const mapStateToProps = (state, _ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, _ownProps) => ({
-  onSubmitResults: (id, name, level, time1, time2, time3, selectedLetters1, selectedLetters2, selectedLetters3) => {
-    dispatch(submitResults(id, name, level, time1, time2, time3, selectedLetters1, selectedLetters2, selectedLetters3))
+  onSubmitResults: (id, name, level, time1, time2, time3, selectedLetters1, selectedLetters2, selectedLetters3, letter1, letter2, letter3) => {
+    dispatch(
+      submitResults(
+        id,
+        name,
+        level,
+        time1,
+        time2,
+        time3,
+        selectedLetters1,
+        selectedLetters2,
+        selectedLetters3,
+        letter1,
+        letter2,
+        letter3,
+      )
+    )
   },
   goToIntro: () => {
     dispatch(selectIntro())
