@@ -61,12 +61,21 @@
   display: inline-block;
 }
 
-.button-container {
-  height: 15%;
+.button-containerRating {
+  display: inline-block;
+  float: right;
+  position: absolute;
   text-align: center;
-}
-
-.ratingButton {
+  top: 3rem;
+  right: 4rem;
+  height: 6rem;
+  width: 6rem;
+  border-radius: 50% !important;
   background-color: #d9d6d0 !important;
   color: #39454f !important
+}
+
+#arrowRating {
+  font-size: 40px !important;
+  padding-top: 7px !important;
 }

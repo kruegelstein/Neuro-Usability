@@ -89,14 +89,50 @@
   padding-top: 2.5rem
 }
 
-.button-container-bad {
-  margin-top: 3rem;
+.button-containerBad {
+  display: inline-block;
+  float: right;
+  position: absolute;
   text-align: center;
+  top: 3rem;
+  right: 4rem;
+  height: 6rem;
+  width: 6rem;
+  border-radius: 50% !important;
+  background-color: #ff7b00 !important;
+  color: #25ff03 !important
 }
 
-.submitButton-bad {
-  background-color: #ff2600 !important;
-  color: #ff7b00 !important
+.button-containerBad:hover {
+  cursor: pointer;
+}
+
+.button-containerBadDisabled:hover {
+  cursor: pointer;
+}
+
+.button-containerBadDisabled {
+  display: inline-block;
+  float: right;
+  position: absolute;
+  text-align: center;
+  top: 3rem;
+  right: 4rem;
+  height: 6rem;
+  width: 6rem;
+  border-radius: 50% !important;
+  background-color: red !important;
+  color: black !important
+}
+
+#arrowBad {
+  font-size: 40px !important;
+  padding-top: 7px !important;
+}
+
+#crossBad {
+  font-size: 40px !important;
+  padding-top: 7px !important;
 }
 
 .distraction-container {

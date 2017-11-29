@@ -81,6 +81,7 @@ class Bad extends Component {
 // Main render method
   render() {
     const selectedIndizes = this.props.selectedIndizes
+    const submitEnabled = selectedIndizes.length > 0 ? true : false
     const round = this.props.round
     let letterToFind = ''
     if(round === 1) {
@@ -112,8 +113,13 @@ class Bad extends Component {
             })
           }
         </div>
-        <div className="button-container-bad">
-          <Button bsSize="large" className="submitButton-bad" onClick={this.onSubmit}>Submit</Button>
+        <div className= {`${submitEnabled ? 'button-containerBad' : 'button-containerBadDisabled'}`} onClick={submitEnabled ? this.onSubmit : this.onAlert}>
+          {submitEnabled
+            ?
+            <i id="arrowBad" className="fa fa-arrow-right fa-6" aria-hidden="true"></i>
+            :
+            <i id="crossBad" className="fa fa-times fa-6" aria-hidden="true"></i>
+          }
         </div>
       </div>
     )

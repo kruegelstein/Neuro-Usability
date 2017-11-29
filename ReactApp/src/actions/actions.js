@@ -15,7 +15,7 @@ export const selectBad = (round) => ({ type: ActionTypes.SelectBad,  payload: { 
 export const addUserToForm = (id, name) => ({ type: ActionTypes.AddUserToForm,  payload: { id, name } })
 export const selectLetter = (round, index) => ({ type: ActionTypes.SelectLetter,  payload: { round, index } })
 export const deselectLetter = (round, index) => ({ type: ActionTypes.DeselectLetter,  payload: { round, index } })
-export const submitResults = (id, name, level, time1, time2, time3, selectedLetters1, selectedLetters2, selectedLetters3) => ({ type: ActionTypes.Submit,  payload: { id, name, level, time1, time2, time3, selectedLetters1, selectedLetters2, selectedLetters3  } })
+export const submitResults = (id, name, level, time1, time2, time3, selectedLetters1, selectedLetters2, selectedLetters3, letter1, letter2, letter3) => ({ type: ActionTypes.Submit,  payload: { id, name, level, time1, time2, time3, selectedLetters1, selectedLetters2, selectedLetters3, letter1, letter2, letter3 } })
 export const saveTime = (round, time) => ({ type: ActionTypes.SaveTime,  payload: { round, time } })
 export const submitUserId = (id) => ({ type: ActionTypes.SubmitUserId,  payload: { id } })
 export const setLettersToFind = (index1, index2, index3) => ({ type: ActionTypes.SetLettersToFind,  payload: { index1, index2, index3 } })
