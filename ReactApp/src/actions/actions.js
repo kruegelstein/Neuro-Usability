@@ -7,6 +7,7 @@ const ROOT_URL = 'http://localhost:3090';
 export const changeFormValue = (field, value) => ({ type: ActionTypes.ChangeForm,  payload: { field, value } })
 export const selectAdmin = () => ({ type: ActionTypes.SelectAdmin,  payload: {} })
 export const selectRating = () => ({ type: ActionTypes.SelectRating,  payload: {} })
+export const selectDemographics = () => ({ type: ActionTypes.SelectDemographics,  payload: {} })
 export const selectIntro = () => ({ type: ActionTypes.SelectIntro,  payload: {} })
 export const selectRound2 = () => ({ type: ActionTypes.SelectRound2,  payload: {} })
 export const selectRound3 = () => ({ type: ActionTypes.SelectRound3,  payload: {} })
@@ -17,6 +18,7 @@ export const selectBad = (round) => ({ type: ActionTypes.SelectBad,  payload: { 
 export const addUserToForm = (id, name) => ({ type: ActionTypes.AddUserToForm,  payload: { id, name } })
 export const selectLetter = (round, index) => ({ type: ActionTypes.SelectLetter,  payload: { round, index } })
 export const deselectLetter = (round, index) => ({ type: ActionTypes.DeselectLetter,  payload: { round, index } })
+export const submitDemographics = (id, gender, age, edu, course) => ({ type: ActionTypes.SubmitDemographics, payload: {id, gender, age, edu, course}})
 export const submitResults = (id, name, level, time1, time2, time3, selectedLetters1, selectedLetters2, selectedLetters3, letter1, letter2, letter3, einfach, hässlich, praktisch, stilvoll, voraussagbar, minderwertig, phantasielos, gut, verwirrend, lahm) => ({
   type: ActionTypes.Submit,  payload: { id, name, level, time1, time2, time3, selectedLetters1, selectedLetters2, selectedLetters3, letter1, letter2, letter3, einfach, hässlich, praktisch, stilvoll, voraussagbar, minderwertig, phantasielos, gut, verwirrend, lahm } })
 export const saveTime = (round, time) => ({ type: ActionTypes.SaveTime,  payload: { round, time } })

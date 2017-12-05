@@ -6,6 +6,7 @@ const initialState = {
   bad: false,
   admin: false,
   rating: false,
+  demographics: false
 }
 
 const navigation = (state = initialState, action = {}) => {
@@ -20,12 +21,20 @@ const navigation = (state = initialState, action = {}) => {
       admin: true
     }
   }
+  case ActionTypes.SelectDemographics: {
+    return {
+      ...state,
+      rating: false,
+      demographics: true
+    }
+  }
   case ActionTypes.SelectRating: {
     return {
       intro: false,
       good: false,
       bad: false,
       admin: false,
+      demographics: false,
       rating: true,
     }
   }
