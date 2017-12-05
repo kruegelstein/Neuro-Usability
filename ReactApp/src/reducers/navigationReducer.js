@@ -1,12 +1,12 @@
 import ActionTypes from '../ActionTypes';
 
 const initialState = {
-  intro: false,
+  intro: true,
   good: false,
   bad: false,
   admin: false,
   rating: false,
-  demographics: true
+  demographics: false
 }
 
 const navigation = (state = initialState, action = {}) => {

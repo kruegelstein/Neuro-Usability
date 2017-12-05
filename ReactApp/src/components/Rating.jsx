@@ -87,7 +87,6 @@ class RatingComponent extends Component {
   }
 
   onSubmit() {
-    // console.log('state: ', this.state)
     let einfach
     let hässlich
     let praktisch

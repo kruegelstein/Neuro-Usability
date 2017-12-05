@@ -55,6 +55,23 @@ const result = (state = initialState, action = {}) => {
       }
     }
   }
+  case ActionTypes.SubmitDemographics: {
+    const id = action.payload.id
+    const gender = action.payload.gender
+    const age = action.payload.age
+    const edu = action.payload.edu
+    const course = action.payload.course
+    return {
+      ...state,
+      [id]: {
+        ...state[id],
+        gender: gender,
+        age: age,
+        edu: edu,
+        course: course
+      }
+    }
+  }
   default:
       return { ...state }
   }

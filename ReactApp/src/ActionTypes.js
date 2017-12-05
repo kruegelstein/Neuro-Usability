@@ -17,6 +17,7 @@ const actionTypes = {
   Submit: 'submit',
   SaveTime: 'saving_time',
   SubmitUserId: 'submit_user_id',
+  SubmitDemographics: 'submit_demographics',
   SetLettersToFind: 'set_letters_to_find',
   SelectRound2: 'select_round2',
   SelectRound3: 'select_round3',
