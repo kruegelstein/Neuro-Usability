@@ -82,9 +82,51 @@ class RatingComponent extends Component {
       lahm7: false,
     }
     this.onSubmit = this.onSubmit.bind(this)
+    this.handler = this.handler.bind(this)
+
   }
 
   onSubmit() {
+    // console.log('state: ', this.state)
+    let einfach
+    let hässlich
+    let praktisch
+    let stilvoll
+    let voraussagbar
+    let minderwertig
+    let phantasielos
+    let gut
+    let verwirrend
+    let lahm
+    Object.keys(this.state)
+      .map(k => {
+        if(this.state[k]) {
+          const attribute = k.slice(0, k.length -1)
+          const rating = k.slice(k.length -1, k.length)
+          switch(attribute) {
+            case 'einfach':
+              einfach = rating
+            case 'hässlich':
+              hässlich = rating
+            case 'praktisch':
+              praktisch = rating
+            case 'stilvoll':
+              stilvoll = rating
+            case 'voraussagbar':
+              voraussagbar = rating
+            case 'minderwertig':
+              minderwertig = rating
+            case 'phantasielos':
+              phantasielos = rating
+            case 'gut':
+              gut = rating
+            case 'verwirrend':
+              verwirrend = rating
+            case 'lahm':
+              lahm = rating
+          }
+        }
+      })
     const id = this.props.id
     const name = this.props.name
     const level = this.props.level
@@ -115,14 +157,43 @@ class RatingComponent extends Component {
       selectedLetters3,
       letter1,
       letter2,
-      letter3
+      letter3,
+      einfach,
+      hässlich,
+      praktisch,
+      stilvoll,
+      voraussagbar,
+      minderwertig,
+      phantasielos,
+      gut,
+      verwirrend,
+      lahm,
     )
     this.props.goToIntro()
   }
 
   handler(e) {
-    console.log(e.target.id)
-    console.log(e.target.checked)
+    const clickedAttribute = e.target.id
+    const attributeName = clickedAttribute.slice(0, -1)
+    const attributeNumber = clickedAttribute.slice(clickedAttribute.length -1, clickedAttribute.length)
+    // Setting the clicked attribute to true if it was false before
+    if(!this.state[clickedAttribute]) {
+      // this.state[clickedAttribute] = true
+      this.setState({ [clickedAttribute]: true })
+      Object.keys(this.state)
+        .map( k => {
+          // Setting all other checkboxes of this attribute to false (only one selectable)
+          if(k.indexOf(attributeName) > -1 && k !== clickedAttribute) {
+            this.setState({ [k]: false })
+          } else {
+            return
+          }
+        })
+    }
+    // Setting the clicked attribute to false if it was true before
+    else {
+      this.setState({ [clickedAttribute]: false })
+    }
   }
 
 // Main render method
@@ -138,13 +209,13 @@ class RatingComponent extends Component {
                   <p className="leftAttribute">{attributes[a].left}</p>
                   <Form className="form-container">
                     <FormGroup className="checkbox-container">
-                      <Checkbox className="checkbox" id={`${attributes[a].left}-1`} onClick={e => this.handler(e)} inline/>
-                      <Checkbox className="checkbox" id={`${attributes[a].left}-2`} onClick={e => this.handler(e)} inline/>
-                      <Checkbox className="checkbox" id={`${attributes[a].left}-3`} onClick={e => this.handler(e)} inline/>
-                      <Checkbox className="checkbox" id={`${attributes[a].left}-4`} onClick={e => this.handler(e)} inline/>
-                      <Checkbox className="checkbox" id={`${attributes[a].left}-5`} onClick={e => this.handler(e)} inline/>
-                      <Checkbox className="checkbox" id={`${attributes[a].left}-6`} onClick={e => this.handler(e)} inline/>
-                      <Checkbox className="checkbox" id={`${attributes[a].left}-7`} onClick={e => this.handler(e)} inline/>
+                      <Checkbox className="checkbox" id={`${attributes[a].left}1`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}1`]}/>
+                      <Checkbox className="checkbox" id={`${attributes[a].left}2`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}2`]}/>
+                      <Checkbox className="checkbox" id={`${attributes[a].left}3`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}3`]}/>
+                      <Checkbox className="checkbox" id={`${attributes[a].left}4`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}4`]}/>
+                      <Checkbox className="checkbox" id={`${attributes[a].left}5`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}5`]}/>
+                      <Checkbox className="checkbox" id={`${attributes[a].left}6`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}6`]}/>
+                      <Checkbox className="checkbox" id={`${attributes[a].left}7`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}7`]}/>
                     </FormGroup>
                   </Form>
                   <p className="rightAttribute">{attributes[a].right}</p>
@@ -194,7 +265,7 @@ const mapStateToProps = (state, _ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, _ownProps) => ({
-  onSubmitResults: (id, name, level, time1, time2, time3, selectedLetters1, selectedLetters2, selectedLetters3, letter1, letter2, letter3) => {
+  onSubmitResults: (id, name, level, time1, time2, time3, selectedLetters1, selectedLetters2, selectedLetters3, letter1, letter2, letter3, einfach, hässlich, praktisch, stilvoll, voraussagbar, minderwertig, phantasielos, gut, verwirrend, lahm) => {
     dispatch(
       submitResults(
         id,
@@ -209,6 +280,16 @@ const mapDispatchToProps = (dispatch, _ownProps) => ({
         letter1,
         letter2,
         letter3,
+        einfach,
+        hässlich,
+        praktisch,
+        stilvoll,
+        voraussagbar,
+        minderwertig,
+        phantasielos,
+        gut,
+        verwirrend,
+        lahm,
       )
     )
   },

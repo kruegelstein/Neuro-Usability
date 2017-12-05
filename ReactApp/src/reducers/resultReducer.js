@@ -5,7 +5,6 @@ const initialState = {}
 const result = (state = initialState, action = {}) => {
   switch (action.type) {
   case ActionTypes.Submit: {
-    console.log('###', action.payload)
     const id = action.payload.id
     const name = action.payload.name
     const level = action.payload.level
@@ -18,6 +17,16 @@ const result = (state = initialState, action = {}) => {
     const letter1 = action.payload.letter1
     const letter2 = action.payload.letter2
     const letter3 = action.payload.letter3
+    const einfach = action.payload.einfach
+    const hässlich = action.payload.hässlich
+    const praktisch = action.payload.praktisch
+    const stilvoll = action.payload.stilvoll
+    const voraussagbar = action.payload.voraussagbar
+    const minderwertig = action.payload.minderwertig
+    const phantasielos = action.payload.phantasielos
+    const gut = action.payload.gut
+    const verwirrend = action.payload.verwirrend
+    const lahm = action.payload.lahm
     return {
       ...state,
       [id]: {
@@ -33,6 +42,16 @@ const result = (state = initialState, action = {}) => {
         letterRound1: letter1,
         letterRound2: letter2,
         letterRound3: letter3,
+        einfach: einfach,
+        hässlich: hässlich,
+        praktisch: praktisch,
+        stilvoll: stilvoll,
+        voraussagbar: voraussagbar,
+        minderwertig: minderwertig,
+        phantasielos: phantasielos,
+        gut: gut,
+        verwirrend: verwirrend,
+        lahm: lahm,
       }
     }
   }
