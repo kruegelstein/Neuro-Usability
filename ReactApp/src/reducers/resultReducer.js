@@ -11,12 +11,18 @@ const result = (state = initialState, action = {}) => {
     const time1 = action.payload.time1
     const time2 = action.payload.time2
     const time3 = action.payload.time3
+    const time4 = action.payload.time4
+    const time5 = action.payload.time5
     const selectedLetters1 = action.payload.selectedLetters1
     const selectedLetters2 = action.payload.selectedLetters2
     const selectedLetters3 = action.payload.selectedLetters3
+    const selectedLetters4 = action.payload.selectedLetters4
+    const selectedLetters5 = action.payload.selectedLetters5
     const letter1 = action.payload.letter1
     const letter2 = action.payload.letter2
     const letter3 = action.payload.letter3
+    const letter4 = action.payload.letter4
+    const letter5 = action.payload.letter5
     const einfach = action.payload.einfach
     const hässlich = action.payload.hässlich
     const praktisch = action.payload.praktisch
@@ -36,12 +42,18 @@ const result = (state = initialState, action = {}) => {
         timeForRound1: time1,
         timeForRound2: time2,
         timeForRound3: time3,
+        timeForRound4: time4,
+        timeForRound5: time5,
         selectedLettersRound1: selectedLetters1,
         selectedLettersRound2: selectedLetters2,
         selectedLettersRound3: selectedLetters3,
+        selectedLettersRound4: selectedLetters4,
+        selectedLettersRound5: selectedLetters5,
         letterRound1: letter1,
         letterRound2: letter2,
         letterRound3: letter3,
+        letterRound4: letter4,
+        letterRound5: letter5,
         einfach: einfach,
         hässlich: hässlich,
         praktisch: praktisch,
