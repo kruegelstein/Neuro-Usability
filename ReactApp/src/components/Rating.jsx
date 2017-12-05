@@ -82,6 +82,8 @@ class RatingComponent extends Component {
       lahm7: false,
     }
     this.onSubmit = this.onSubmit.bind(this)
+    this.handler = this.handler.bind(this)
+
   }
 
   onSubmit() {
@@ -121,8 +123,27 @@ class RatingComponent extends Component {
   }
 
   handler(e) {
-    console.log(e.target.id)
-    console.log(e.target.checked)
+    const clickedAttribute = e.target.id
+    const attributeName = clickedAttribute.slice(0, -1)
+    const attributeNumber = clickedAttribute.slice(clickedAttribute.length -1, clickedAttribute.length)
+    // Setting the clicked attribute to true if it was false before
+    if(!this.state[clickedAttribute]) {
+      // this.state[clickedAttribute] = true
+      this.setState({ [clickedAttribute]: true })
+      Object.keys(this.state)
+        .map( k => {
+          // Setting all other checkboxes of this attribute to false (only one selectable)
+          if(k.indexOf(attributeName) > -1 && k !== clickedAttribute) {
+            this.setState({ [k]: false })
+          } else {
+            return
+          }
+        })
+    }
+    // Setting the clicked attribute to false if it was true before
+    else {
+      this.setState({ [clickedAttribute]: false })
+    }
   }
 
 // Main render method
@@ -138,13 +159,13 @@ class RatingComponent extends Component {
                   <p className="leftAttribute">{attributes[a].left}</p>
                   <Form className="form-container">
                     <FormGroup className="checkbox-container">
-                      <Checkbox className="checkbox" id={`${attributes[a].left}-1`} onClick={e => this.handler(e)} inline/>
-                      <Checkbox className="checkbox" id={`${attributes[a].left}-2`} onClick={e => this.handler(e)} inline/>
-                      <Checkbox className="checkbox" id={`${attributes[a].left}-3`} onClick={e => this.handler(e)} inline/>
-                      <Checkbox className="checkbox" id={`${attributes[a].left}-4`} onClick={e => this.handler(e)} inline/>
-                      <Checkbox className="checkbox" id={`${attributes[a].left}-5`} onClick={e => this.handler(e)} inline/>
-                      <Checkbox className="checkbox" id={`${attributes[a].left}-6`} onClick={e => this.handler(e)} inline/>
-                      <Checkbox className="checkbox" id={`${attributes[a].left}-7`} onClick={e => this.handler(e)} inline/>
+                      <Checkbox className="checkbox" id={`${attributes[a].left}1`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}1`]}/>
+                      <Checkbox className="checkbox" id={`${attributes[a].left}2`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}2`]}/>
+                      <Checkbox className="checkbox" id={`${attributes[a].left}3`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}3`]}/>
+                      <Checkbox className="checkbox" id={`${attributes[a].left}4`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}4`]}/>
+                      <Checkbox className="checkbox" id={`${attributes[a].left}5`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}5`]}/>
+                      <Checkbox className="checkbox" id={`${attributes[a].left}6`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}6`]}/>
+                      <Checkbox className="checkbox" id={`${attributes[a].left}7`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}7`]}/>
                     </FormGroup>
                   </Form>
                   <p className="rightAttribute">{attributes[a].right}</p>
