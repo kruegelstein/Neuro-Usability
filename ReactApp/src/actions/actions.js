@@ -7,6 +7,7 @@ const ROOT_URL = 'http://localhost:3090';
 export const changeFormValue = (field, value) => ({ type: ActionTypes.ChangeForm,  payload: { field, value } })
 export const selectAdmin = () => ({ type: ActionTypes.SelectAdmin,  payload: {} })
 export const selectRating = () => ({ type: ActionTypes.SelectRating,  payload: {} })
+export const selectDemographics = () => ({ type: ActionTypes.SelectDemographics,  payload: {} })
 export const selectIntro = () => ({ type: ActionTypes.SelectIntro,  payload: {} })
 export const selectRound2 = () => ({ type: ActionTypes.SelectRound2,  payload: {} })
 export const selectRound3 = () => ({ type: ActionTypes.SelectRound3,  payload: {} })

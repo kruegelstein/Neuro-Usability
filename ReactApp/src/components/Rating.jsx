@@ -3,7 +3,7 @@ import { PropTypes } from 'prop-types';
 import { Button, Form, FormGroup, Checkbox } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { attributes } from '../constants/attrakDiff.js';
-import { submitResults, selectIntro } from '../actions/actions.js';
+import { submitResults, selectDemographics } from '../actions/actions.js';
 import { alphabetGood } from '../constants/alphabet.js';
 
 class RatingComponent extends Component {
@@ -169,7 +169,7 @@ class RatingComponent extends Component {
       verwirrend,
       lahm,
     )
-    this.props.goToIntro()
+    this.props.goToDemographics()
   }
 
   handler(e) {
@@ -293,8 +293,8 @@ const mapDispatchToProps = (dispatch, _ownProps) => ({
       )
     )
   },
-  goToIntro: () => {
-    dispatch(selectIntro())
+  goToDemographics: () => {
+    dispatch(selectDemographics())
   }
 });
 

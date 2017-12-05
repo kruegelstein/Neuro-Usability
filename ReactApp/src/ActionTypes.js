@@ -9,6 +9,7 @@ const actionTypes = {
   SelectRating: 'selected_rating',
   SelectAdmin: 'selected_admin',
   SelectGood: 'selected_good',
+  SelectDemographics: 'selected_demographics',
   SelectBad: 'selected_bad',
   AddUserToForm: 'adding_user_to_form',
   SelectLetter: 'select_letter',
