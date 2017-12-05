@@ -87,6 +87,46 @@ class RatingComponent extends Component {
   }
 
   onSubmit() {
+    // console.log('state: ', this.state)
+    let einfach
+    let hässlich
+    let praktisch
+    let stilvoll
+    let voraussagbar
+    let minderwertig
+    let phantasielos
+    let gut
+    let verwirrend
+    let lahm
+    Object.keys(this.state)
+      .map(k => {
+        if(this.state[k]) {
+          const attribute = k.slice(0, k.length -1)
+          const rating = k.slice(k.length -1, k.length)
+          switch(attribute) {
+            case 'einfach':
+              einfach = rating
+            case 'hässlich':
+              hässlich = rating
+            case 'praktisch':
+              praktisch = rating
+            case 'stilvoll':
+              stilvoll = rating
+            case 'voraussagbar':
+              voraussagbar = rating
+            case 'minderwertig':
+              minderwertig = rating
+            case 'phantasielos':
+              phantasielos = rating
+            case 'gut':
+              gut = rating
+            case 'verwirrend':
+              verwirrend = rating
+            case 'lahm':
+              lahm = rating
+          }
+        }
+      })
     const id = this.props.id
     const name = this.props.name
     const level = this.props.level
@@ -117,7 +157,17 @@ class RatingComponent extends Component {
       selectedLetters3,
       letter1,
       letter2,
-      letter3
+      letter3,
+      einfach,
+      hässlich,
+      praktisch,
+      stilvoll,
+      voraussagbar,
+      minderwertig,
+      phantasielos,
+      gut,
+      verwirrend,
+      lahm,
     )
     this.props.goToIntro()
   }
@@ -215,7 +265,7 @@ const mapStateToProps = (state, _ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, _ownProps) => ({
-  onSubmitResults: (id, name, level, time1, time2, time3, selectedLetters1, selectedLetters2, selectedLetters3, letter1, letter2, letter3) => {
+  onSubmitResults: (id, name, level, time1, time2, time3, selectedLetters1, selectedLetters2, selectedLetters3, letter1, letter2, letter3, einfach, hässlich, praktisch, stilvoll, voraussagbar, minderwertig, phantasielos, gut, verwirrend, lahm) => {
     dispatch(
       submitResults(
         id,
@@ -230,6 +280,16 @@ const mapDispatchToProps = (dispatch, _ownProps) => ({
         letter1,
         letter2,
         letter3,
+        einfach,
+        hässlich,
+        praktisch,
+        stilvoll,
+        voraussagbar,
+        minderwertig,
+        phantasielos,
+        gut,
+        verwirrend,
+        lahm,
       )
     )
   },
