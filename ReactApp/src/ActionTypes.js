@@ -19,6 +19,8 @@ const actionTypes = {
   SetLettersToFind: 'set_letters_to_find',
   SelectRound2: 'select_round2',
   SelectRound3: 'select_round3',
+  SelectRound4: 'select_round4',
+  SelectRound5: 'select_round5',
 };
 
 export default actionTypes;

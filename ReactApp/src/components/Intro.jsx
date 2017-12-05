@@ -47,8 +47,10 @@ class Intro extends Component {
     const index1 = Math.floor(Math.random() * (25 - 0 + 1) + 0)
     const index2 = Math.floor(Math.random() * (25 - 0 + 1) + 0)
     const index3 = Math.floor(Math.random() * (25 - 0 + 1) + 0)
+    const index4 = Math.floor(Math.random() * (25 - 0 + 1) + 0)
+    const index5 = Math.floor(Math.random() * (25 - 0 + 1) + 0)
 
-    this.props.onSetLettersToFind(index1, index2, index3)
+    this.props.onSetLettersToFind(index1, index2, index3, index4, index5)
   }
 
   generateUserId(){
@@ -129,8 +131,8 @@ const mapDispatchToProps = (dispatch, _ownProps) => ({
   onSubmitUserId: (id) => {
     dispatch(submitUserId(id))
   },
-  onSetLettersToFind: (index1, index2, index3) => {
-    dispatch(setLettersToFind(index1, index2, index3))
+  onSetLettersToFind: (index1, index2, index3, index4, index5) => {
+    dispatch(setLettersToFind(index1, index2, index3, index4, index5))
   }
 });
 

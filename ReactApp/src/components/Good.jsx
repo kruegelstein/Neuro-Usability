@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Letter from './Letter.jsx';
 import { alphabetGood, alphabetBasic } from '../constants/alphabet.js';
 
-import { selectLetter, deselectLetter, selectRating, saveTime, selectRound2, selectRound3 } from '../actions/actions.js';
+import { selectLetter, deselectLetter, selectRating, saveTime, selectRound2, selectRound3, selectRound4, selectRound5 } from '../actions/actions.js';
 
 let timeStampGoodStart
 let timeStampGoodEnd
@@ -35,6 +35,12 @@ class Good extends Component {
       this.state.selectedLetters = []
       this.props.goToRound3()
     } else if(round === 3) {
+      this.state.selectedLetters = []
+      this.props.goToRound4()
+    } else if(round === 4) {
+      this.state.selectedLetters = []
+      this.props.goToRound5()
+    } else if(round === 5) {
       this.state.selectedLetters = []
       this.props.goToRating()
     }else {
@@ -70,6 +76,10 @@ class Good extends Component {
       letterToFind = this.props.letter2
     } else if(round === 3){
       letterToFind = this.props.letter3
+    } else if(round === 4){
+      letterToFind = this.props.letter4
+    } else if(round === 5){
+      letterToFind = this.props.letter5
     } else {
       letterToFind = undefined
     }
@@ -104,6 +114,7 @@ class Good extends Component {
             :
             <i id="cross" className="fa fa-times fa-6" aria-hidden="true"></i>
           }
+          <p className="round-indicator">{round}/5</p>
         </div>
       </div>
     )
@@ -124,12 +135,18 @@ const mapStateToProps = (state, _ownProps) => {
     selectedIndizes = state.form.round2.selectedIndizes
   }else if(round === 3) {
     selectedIndizes = state.form.round3.selectedIndizes
+  }else if(round === 4) {
+    selectedIndizes = state.form.round4.selectedIndizes
+  }else if(round === 5) {
+    selectedIndizes = state.form.round5.selectedIndizes
   }else {
     console.log('rounds are fucked up!')
   }
   const letter1 = state.form.round1.letterToFind
   const letter2 = state.form.round2.letterToFind
   const letter3 = state.form.round3.letterToFind
+  const letter4 = state.form.round4.letterToFind
+  const letter5 = state.form.round5.letterToFind
   return {
     selectedIndizes,
     id,
@@ -138,6 +155,8 @@ const mapStateToProps = (state, _ownProps) => {
     letter1,
     letter2,
     letter3,
+    letter4,
+    letter5,
   };
 };
 
@@ -156,6 +175,12 @@ const mapDispatchToProps = (dispatch, _ownProps) => ({
   },
   goToRound3: () => {
     dispatch(selectRound3())
+  },
+  goToRound4: () => {
+    dispatch(selectRound4())
+  },
+  goToRound5: () => {
+    dispatch(selectRound5())
   },
   onSaveTime: (round, time) => {
     dispatch(saveTime(round, time))

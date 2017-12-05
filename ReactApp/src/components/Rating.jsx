@@ -147,7 +147,7 @@ class RatingComponent extends Component {
                       <Checkbox className="checkbox" id={`${attributes[a].left}-7`} onClick={e => this.handler(e)} inline/>
                     </FormGroup>
                   </Form>
-                  <p className="rightAttribute">{attributes[a].left}</p>
+                  <p className="rightAttribute">{attributes[a].right}</p>
                 </div>
               )
             })

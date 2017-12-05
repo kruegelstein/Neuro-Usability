@@ -116,3 +116,9 @@
   font-size: 40px !important;
   padding-top: 7px !important;
 }
+
+.round-indicator {
+  margin-top: 1rem;
+  color: #c79316;
+  font-size: 30px;
+}

@@ -21,6 +21,16 @@ const initialState = {
     timeForRound: null,
     selectedIndizes: []
   },
+  round4: {
+    letterToFind: '',
+    timeForRound: null,
+    selectedIndizes: []
+  },
+  round5: {
+    letterToFind: '',
+    timeForRound: null,
+    selectedIndizes: []
+  },
   rating: {
     einfach: null,
     hässlich: null,
@@ -66,6 +76,14 @@ const form = (state = initialState, action = {}) => {
         ...state.round3,
         letterToFind: alphabetBasic[action.payload.index3]
       },
+      round4: {
+        ...state.round4,
+        letterToFind: alphabetBasic[action.payload.index4]
+      },
+      round5: {
+        ...state.round5,
+        letterToFind: alphabetBasic[action.payload.index5]
+      },
     }
   }
   case ActionTypes.SelectRound2: {
@@ -78,6 +96,18 @@ const form = (state = initialState, action = {}) => {
     return {
       ...state,
       round: 3
+    }
+  }
+  case ActionTypes.SelectRound4: {
+    return {
+      ...state,
+      round: 4
+    }
+  }
+  case ActionTypes.SelectRound5: {
+    return {
+      ...state,
+      round: 5
     }
   }
   case ActionTypes.DeselectLetter: {
@@ -105,6 +135,22 @@ const form = (state = initialState, action = {}) => {
         round3: {
           ...state.round3,
           selectedIndizes: state.round3.selectedIndizes.filter(n => n !== index)
+        }
+      }
+    } else if(round === 4){
+      return {
+        ...state,
+        round4: {
+          ...state.round4,
+          selectedIndizes: state.round4.selectedIndizes.filter(n => n !== index)
+        }
+      }
+    } else if(round === 5){
+      return {
+        ...state,
+        round5: {
+          ...state.round5,
+          selectedIndizes: state.round5.selectedIndizes.filter(n => n !== index)
         }
       }
     } else {
@@ -140,6 +186,22 @@ const form = (state = initialState, action = {}) => {
           selectedIndizes: state.round3.selectedIndizes.concat(index)
         }
       }
+    } else if(round === 4){
+      return {
+        ...state,
+        round4: {
+          ...state.round4,
+          selectedIndizes: state.round4.selectedIndizes.concat(index)
+        }
+      }
+    } else if(round === 5){
+      return {
+        ...state,
+        round5: {
+          ...state.round5,
+          selectedIndizes: state.round5.selectedIndizes.concat(index)
+        }
+      }
     } else {
       return {
         ...state
@@ -171,6 +233,22 @@ const form = (state = initialState, action = {}) => {
         round3: {
           ...state.round3,
           timeForRound: time - state.round2.timeForRound - state.round1.timeForRound
+        }
+      }
+    } else if(round === 4){
+      return {
+        ...state,
+        round4: {
+          ...state.round4,
+          timeForRound: time - state.round3.timeForRound - state.round2.timeForRound - state.round1.timeForRound
+        }
+      }
+    } else if(round === 5){
+      return {
+        ...state,
+        round5: {
+          ...state.round5,
+          timeForRound: time - state.round4.timeForRound - state.round3.timeForRound - state.round2.timeForRound - state.round1.timeForRound
         }
       }
     } else {
