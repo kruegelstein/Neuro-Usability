@@ -73,7 +73,6 @@ class Demographics extends Component {
 
   handleGender(e) {
     const clicked = e.target.id
-    console.log('clicked', clicked)
     switch(clicked) {
       case 'genderMale':
         if (!this.state.gender.male) {
@@ -97,7 +96,6 @@ class Demographics extends Component {
   }
   handleAge(e) {
     const clicked = e.target.id
-    console.log('clicked', clicked)
     switch(clicked) {
       case 'ageUnder18':
         if (!this.state.age.ageUnder18) {
@@ -145,7 +143,6 @@ class Demographics extends Component {
   }
   handleEdu(e) {
     const clicked = e.target.id
-    console.log('clicked', clicked)
     switch(clicked) {
       case 'abi':
         if (!this.state.edu.abi) {
@@ -185,7 +182,6 @@ class Demographics extends Component {
   }
   handleCourse(e) {
     const clicked = e.target.id
-    console.log('clicked', clicked)
     switch(clicked) {
       case 'cs':
         if (!this.state.course.cs) {
@@ -230,10 +226,13 @@ class Demographics extends Component {
 
   checkSubmit() {
     const gender = this.state.gender.male || this.state.gender.female
-    const age = this.state.age.under18 || this.state.age.age182218 || this.state.age.age2225 || this.state.age.age2530 || this.state.age.ageOver30
+    const age = this.state.age.ageUnder18 || this.state.age.age182218 || this.state.age.age2225 || this.state.age.age2530 || this.state.age.ageOver30
     const edu = this.state.edu.abi || this.state.edu.ba || this.state.edu.ma || this.state.edu.dr
     const course = this.state.course.cs || this.state.course.ce || this.state.course.hf || this.state.course.other
-
+    console.log(gender)
+    console.log(age)
+    console.log(edu)
+    console.log(course)
     const result = gender && age && edu && course
     return result
   }
