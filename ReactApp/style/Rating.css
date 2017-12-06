@@ -41,6 +41,26 @@
   height: 4rem;
 }
 
+.outer-form-container {
+  width: 30rem;
+  display: inline-block;
+  height: 4rem;
+}
+
+.left-container {
+  width: 10rem;
+  float:left;
+  display: inline-block;
+  height: 4rem;
+}
+
+.right-container {
+  width: 10rem;
+  float: right;
+  display: inline-block;
+  height: 4rem;
+}
+
 .checkbox-container {
   height: 4rem;
 }
