@@ -12,7 +12,7 @@ export class Distraction extends Component {
   render() {
     if (this.props.enabled) {
       return (
-        <div className="distraction-container">
+        <div className="distraction-container" onClick={this.props.countClick}>
           <img src="src/assets/santa.jpg" id="santa" className="santa"/>
         </div>
       );

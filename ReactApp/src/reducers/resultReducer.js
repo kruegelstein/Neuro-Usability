@@ -25,6 +25,11 @@ const result = (state = initialState, action = {}) => {
     const letter3 = action.payload.letter3
     const letter4 = action.payload.letter4
     const letter5 = action.payload.letter5
+    const clicks1 = action.payload.clicks1
+    const clicks2 = action.payload.clicks2
+    const clicks3 = action.payload.clicks3
+    const clicks4 = action.payload.clicks4
+    const clicks5 = action.payload.clicks5
     const einfach = action.payload.einfach
     const hässlich = action.payload.hässlich
     const praktisch = action.payload.praktisch
@@ -46,6 +51,11 @@ const result = (state = initialState, action = {}) => {
         timeForRound3: time3,
         timeForRound4: time4,
         timeForRound5: time5,
+        clicksForRound1: clicks1,
+        clicksForRound2: clicks2,
+        clicksForRound3: clicks3,
+        clicksForRound4: clicks4,
+        clicksForRound5: clicks5,
         timeTotal: timeTotal,
         selectedLettersRound1: selectedLetters1,
         selectedLettersRound2: selectedLetters2,
