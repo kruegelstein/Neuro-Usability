@@ -4,6 +4,7 @@ import axios from 'axios';
 const ROOT_URL = 'http://localhost:3090';
 
 // actions in frontend
+export const recognizeClick = (round) => ({ type: ActionTypes.RecognizeClick,  payload: { round } })
 export const changeFormValue = (field, value) => ({ type: ActionTypes.ChangeForm,  payload: { field, value } })
 export const selectAdmin = () => ({ type: ActionTypes.SelectAdmin,  payload: {} })
 export const selectRating = () => ({ type: ActionTypes.SelectRating,  payload: {} })
