@@ -224,8 +224,23 @@ class Demographics extends Component {
     }
   }
 
+  onAlert() {
+    alert('Please check every question!')
+  }
+
+  checkSubmit() {
+    const gender = this.state.gender.male || this.state.gender.female
+    const age = this.state.age.under18 || this.state.age.age182218 || this.state.age.age2225 || this.state.age.age2530 || this.state.age.ageOver30
+    const edu = this.state.edu.abi || this.state.edu.ba || this.state.edu.ma || this.state.edu.dr
+    const course = this.state.course.cs || this.state.course.ce || this.state.course.hf || this.state.course.other
+
+    const result = gender && age && edu && course
+    return result
+  }
+
 // Main render method
   render() {
+    const submitEnabled = this.checkSubmit()
     return (
       <div className="demographics">
         <h4 className="header-demographics">Please select your demographics</h4>
@@ -287,8 +302,8 @@ class Demographics extends Component {
               Other
             </Checkbox>
           </div>
-          <div className="button-containerRating">
-            <i id="arrowRating" className="fa fa-arrow-right fa-6" aria-hidden="true" onClick={this.onSubmit}></i>
+          <div className= {`${submitEnabled ? 'button-containerRating' : 'button-containerRatingDisabled'}`} onClick={submitEnabled ? this.onSubmit : this.onAlert}>
+            <i id="arrowRating" className="fa fa-arrow-right fa-6" aria-hidden="true"></i>
           </div>
       </div>
     </div>
