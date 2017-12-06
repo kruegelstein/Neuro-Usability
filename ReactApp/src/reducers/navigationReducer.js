@@ -5,8 +5,8 @@ const initialState = {
   good: false,
   bad: false,
   admin: false,
-  rating: true,
-  demographics: false
+  rating: false,
+  demographics: true
 }
 
 const navigation = (state = initialState, action = {}) => {

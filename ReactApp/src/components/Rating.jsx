@@ -221,19 +221,25 @@ class RatingComponent extends Component {
             .map((a, index) => {
               return (
                 <div key={index} className="attribute-container">
-                  <p className="leftAttribute">{attributes[a].left}</p>
-                  <Form className="form-container">
-                    <FormGroup className="checkbox-container">
-                      <Checkbox className="checkbox" id={`${attributes[a].left}1`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}1`]}/>
-                      <Checkbox className="checkbox" id={`${attributes[a].left}2`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}2`]}/>
-                      <Checkbox className="checkbox" id={`${attributes[a].left}3`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}3`]}/>
-                      <Checkbox className="checkbox" id={`${attributes[a].left}4`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}4`]}/>
-                      <Checkbox className="checkbox" id={`${attributes[a].left}5`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}5`]}/>
-                      <Checkbox className="checkbox" id={`${attributes[a].left}6`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}6`]}/>
-                      <Checkbox className="checkbox" id={`${attributes[a].left}7`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}7`]}/>
-                    </FormGroup>
-                  </Form>
-                  <p className="rightAttribute">{attributes[a].right}</p>
+                  <div className="left-container">
+                    <p className="leftAttribute">{attributes[a].left}</p>
+                  </div>
+                  <div className="outer-form-container">
+                    <Form className="form-container">
+                      <FormGroup className="checkbox-container">
+                        <Checkbox className="checkbox" id={`${attributes[a].left}1`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}1`]}/>
+                        <Checkbox className="checkbox" id={`${attributes[a].left}2`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}2`]}/>
+                        <Checkbox className="checkbox" id={`${attributes[a].left}3`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}3`]}/>
+                        <Checkbox className="checkbox" id={`${attributes[a].left}4`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}4`]}/>
+                        <Checkbox className="checkbox" id={`${attributes[a].left}5`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}5`]}/>
+                        <Checkbox className="checkbox" id={`${attributes[a].left}6`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}6`]}/>
+                        <Checkbox className="checkbox" id={`${attributes[a].left}7`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}7`]}/>
+                      </FormGroup>
+                    </Form>
+                  </div>
+                  <div className="right-container">
+                    <p className="rightAttribute">{attributes[a].right}</p>
+                  </div>
                 </div>
               )
             })

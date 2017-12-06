@@ -6,7 +6,7 @@
 }
 
 .header-demographics {
-  height: 15%;
+  height: 6rem;
   text-align: center;
   color: #d9d6d0;
   font-size: 30px;
@@ -15,14 +15,14 @@
 .demographics-container {
   text-align: center;
   height: 70%;
-  margin-top: 5rem;
+  margin-top: 2rem;
 }
 
 .attributes-container {
   width: 50%;
   height: 15rem;
   margin: auto;
-  padding-top: 1rem;
+  padding-top: 0.5rem;
   border-bottom: 1px solid #d9d6d0;
 }
 
@@ -32,7 +32,7 @@
   font-size: 25px;
   text-align: center;
   text-decoration: underline;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .checkbox {
