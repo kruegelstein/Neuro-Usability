@@ -6,6 +6,16 @@ import { attributes } from '../constants/attrakDiff.js';
 import { submitResults, selectDemographics } from '../actions/actions.js';
 import { alphabetGood } from '../constants/alphabet.js';
 
+let einfach
+let hässlich
+let praktisch
+let stilvoll
+let voraussagbar
+let minderwertig
+let phantasielos
+let gut
+let verwirrend
+let lahm
 class RatingComponent extends Component {
   constructor(props) {
     super(props);
@@ -87,16 +97,6 @@ class RatingComponent extends Component {
   }
 
   onSubmit() {
-    let einfach
-    let hässlich
-    let praktisch
-    let stilvoll
-    let voraussagbar
-    let minderwertig
-    let phantasielos
-    let gut
-    let verwirrend
-    let lahm
     Object.keys(this.state)
       .map(k => {
         if(this.state[k]) {
@@ -187,6 +187,10 @@ class RatingComponent extends Component {
     this.props.goToDemographics()
   }
 
+  onAlert() {
+    alert('Please rate on every category')
+  }
+
   handler(e) {
     const clickedAttribute = e.target.id
     const attributeName = clickedAttribute.slice(0, -1)
@@ -211,8 +215,27 @@ class RatingComponent extends Component {
     }
   }
 
+  checkSubmit() {
+    const einfach = this.state.einfach1 || this.state.einfach2 || this.state.einfach3 || this.state.einfach4 || this.state.einfach5 || this.state.einfach6 || this.state.einfach7 ? true : false
+    const hässlich = this.state.hässlich1 || this.state.hässlich2 || this.state.hässlich3 || this.state.hässlich4 || this.state.hässlich5 || this.state.hässlich6 || this.state.hässlich7 ? true : false
+    const praktisch = this.state.praktisch1 || this.state.praktisch2 || this.state.praktisch3 || this.state.praktisch4 || this.state.praktisch5 || this.state.praktisch6 || this.state.praktisch7 ? true : false
+    const stilvoll = this.state.stilvoll1 || this.state.stilvoll2 || this.state.stilvoll3 || this.state.stilvoll4 || this.state.stilvoll5 || this.state.stilvoll6 || this.state.stilvoll7 ? true : false
+    const voraussagbar = this.state.voraussagbar1 || this.state.voraussagbar2 || this.state.voraussagbar3 || this.state.voraussagbar4 || this.state.voraussagbar5 || this.state.voraussagbar6 || this.state.voraussagbar7 ? true : false
+    const minderwertig = this.state.minderwertig1 || this.state.minderwertig2 || this.state.minderwertig3 || this.state.minderwertig4 || this.state.minderwertig5 || this.state.minderwertig6 || this.state.minderwertig7 ? true : false
+    const phantasielos = this.state.phantasielos1 || this.state.phantasielos2 || this.state.phantasielos3 || this.state.phantasielos4 || this.state.phantasielos5 || this.state.phantasielos6 || this.state.phantasielos7 ? true : false
+    const gut = this.state.gut1 || this.state.gut2 || this.state.gut3 || this.state.gut4 || this.state.gut5 || this.state.gut6 || this.state.gut7 ? true : false
+    const verwirrend = this.state.verwirrend1 || this.state.verwirrend2 || this.state.verwirrend3 || this.state.verwirrend4 || this.state.verwirrend5 || this.state.verwirrend6 || this.state.verwirrend7 ? true : false
+    const lahm = this.state.lahm1 || this.state.lahm2 || this.state.lahm3 || this.state.lahm4 || this.state.lahm5 || this.state.lahm6 || this.state.lahm7 ? true : false
+
+    const result = (einfach && hässlich && praktisch && stilvoll && voraussagbar && minderwertig && phantasielos && gut && verwirrend && lahm)
+
+    return result
+  }
+
 // Main render method
   render() {
+    // console.log('###', einfach, hässlich, praktisch, stilvoll, voraussagbar, minderwertig, phantasielos, gut, verwirrend, lahm)
+    const submitEnabled = this.checkSubmit()
     return (
       <div className="rating">
         <h4 className="header-rating">Please rate the app</h4>
@@ -245,8 +268,8 @@ class RatingComponent extends Component {
             })
           }
           </div>
-          <div className="button-containerRating">
-            <i id="arrowRating" className="fa fa-arrow-right fa-6" aria-hidden="true" onClick={this.onSubmit}></i>
+          <div className={`${submitEnabled ? 'button-containerRating' : 'button-containerRatingDisabled'}`} onClick={submitEnabled ? this.onSubmit : this.onAlert}>
+            <i id="arrowRating" className="fa fa-arrow-right fa-6" aria-hidden="true"></i>
           </div>
       </div>
     )
