@@ -132,9 +132,13 @@ class RatingComponent extends Component {
     const time1 = this.props.time1
     const time2 = this.props.time2
     const time3 = this.props.time3
+    const time4 = this.props.time4
+    const time5 = this.props.time5
     const letter1 = this.props.letter1
     const letter2 = this.props.letter2
     const letter3 = this.props.letter3
+    const letter4 = this.props.letter4
+    const letter5 = this.props.letter5
 
     const selectedIndizes1 = this.props.selectedIndizes1
     const selectedLetters1 = selectedIndizes1.map(i => alphabetGood[i])
@@ -144,6 +148,12 @@ class RatingComponent extends Component {
 
     const selectedIndizes3 = this.props.selectedIndizes3
     const selectedLetters3 = selectedIndizes3.map(i => alphabetGood[i])
+
+    const selectedIndizes4 = this.props.selectedIndizes4
+    const selectedLetters4 = selectedIndizes4.map(i => alphabetGood[i])
+
+    const selectedIndizes5 = this.props.selectedIndizes5
+    const selectedLetters5 = selectedIndizes5.map(i => alphabetGood[i])
     this.props.onSubmitResults(
       id,
       name,
@@ -151,12 +161,18 @@ class RatingComponent extends Component {
       time1,
       time2,
       time3,
+      time4,
+      time5,
       selectedLetters1,
       selectedLetters2,
       selectedLetters3,
+      selectedLetters4,
+      selectedLetters5,
       letter1,
       letter2,
       letter3,
+      letter4,
+      letter5,
       einfach,
       hässlich,
       praktisch,
@@ -205,19 +221,25 @@ class RatingComponent extends Component {
             .map((a, index) => {
               return (
                 <div key={index} className="attribute-container">
-                  <p className="leftAttribute">{attributes[a].left}</p>
-                  <Form className="form-container">
-                    <FormGroup className="checkbox-container">
-                      <Checkbox className="checkbox" id={`${attributes[a].left}1`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}1`]}/>
-                      <Checkbox className="checkbox" id={`${attributes[a].left}2`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}2`]}/>
-                      <Checkbox className="checkbox" id={`${attributes[a].left}3`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}3`]}/>
-                      <Checkbox className="checkbox" id={`${attributes[a].left}4`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}4`]}/>
-                      <Checkbox className="checkbox" id={`${attributes[a].left}5`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}5`]}/>
-                      <Checkbox className="checkbox" id={`${attributes[a].left}6`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}6`]}/>
-                      <Checkbox className="checkbox" id={`${attributes[a].left}7`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}7`]}/>
-                    </FormGroup>
-                  </Form>
-                  <p className="rightAttribute">{attributes[a].right}</p>
+                  <div className="left-container">
+                    <p className="leftAttribute">{attributes[a].left}</p>
+                  </div>
+                  <div className="outer-form-container">
+                    <Form className="form-container">
+                      <FormGroup className="checkbox-container">
+                        <Checkbox className="checkbox" id={`${attributes[a].left}1`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}1`]}/>
+                        <Checkbox className="checkbox" id={`${attributes[a].left}2`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}2`]}/>
+                        <Checkbox className="checkbox" id={`${attributes[a].left}3`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}3`]}/>
+                        <Checkbox className="checkbox" id={`${attributes[a].left}4`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}4`]}/>
+                        <Checkbox className="checkbox" id={`${attributes[a].left}5`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}5`]}/>
+                        <Checkbox className="checkbox" id={`${attributes[a].left}6`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}6`]}/>
+                        <Checkbox className="checkbox" id={`${attributes[a].left}7`} onClick={e => this.handler(e)} inline checked={this.state[`${attributes[a].left}7`]}/>
+                      </FormGroup>
+                    </Form>
+                  </div>
+                  <div className="right-container">
+                    <p className="rightAttribute">{attributes[a].right}</p>
+                  </div>
                 </div>
               )
             })
@@ -241,22 +263,34 @@ const mapStateToProps = (state, _ownProps) => {
   const time1 = state.form.round1.timeForRound
   const time2 = state.form.round2.timeForRound
   const time3 = state.form.round3.timeForRound
+  const time4 = state.form.round4.timeForRound
+  const time5 = state.form.round5.timeForRound
   const letter1 = state.form.round1.letterToFind
   const letter2 = state.form.round2.letterToFind
   const letter3 = state.form.round3.letterToFind
+  const letter4 = state.form.round4.letterToFind
+  const letter5 = state.form.round5.letterToFind
   const selectedIndizes1 = state.form.round1.selectedIndizes
   const selectedIndizes2 = state.form.round2.selectedIndizes
   const selectedIndizes3 = state.form.round3.selectedIndizes
+  const selectedIndizes4 = state.form.round4.selectedIndizes
+  const selectedIndizes5 = state.form.round5.selectedIndizes
   return {
     selectedIndizes1,
     selectedIndizes2,
     selectedIndizes3,
+    selectedIndizes4,
+    selectedIndizes5,
     time1,
     time2,
     time3,
+    time4,
+    time5,
     letter1,
     letter2,
     letter3,
+    letter4,
+    letter5,
     id,
     level,
     name,
@@ -264,7 +298,7 @@ const mapStateToProps = (state, _ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, _ownProps) => ({
-  onSubmitResults: (id, name, level, time1, time2, time3, selectedLetters1, selectedLetters2, selectedLetters3, letter1, letter2, letter3, einfach, hässlich, praktisch, stilvoll, voraussagbar, minderwertig, phantasielos, gut, verwirrend, lahm) => {
+  onSubmitResults: (id, name, level, time1, time2, time3, time4, time5, selectedLetters1, selectedLetters2, selectedLetters3, selectedLetters4, selectedLetters5, letter1, letter2, letter3, letter4, letter5, einfach, hässlich, praktisch, stilvoll, voraussagbar, minderwertig, phantasielos, gut, verwirrend, lahm) => {
     dispatch(
       submitResults(
         id,
@@ -273,12 +307,18 @@ const mapDispatchToProps = (dispatch, _ownProps) => ({
         time1,
         time2,
         time3,
+        time4,
+        time5,
         selectedLetters1,
         selectedLetters2,
         selectedLetters3,
+        selectedLetters4,
+        selectedLetters5,
         letter1,
         letter2,
         letter3,
+        letter4,
+        letter5,
         einfach,
         hässlich,
         praktisch,
