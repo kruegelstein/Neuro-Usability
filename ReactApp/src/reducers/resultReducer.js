@@ -13,6 +13,8 @@ const result = (state = initialState, action = {}) => {
     const time3 = action.payload.time3
     const time4 = action.payload.time4
     const time5 = action.payload.time5
+    let timeTotal = time1 + time2 + time3 + time4 + time5
+    timeTotal = parseFloat(timeTotal.toFixed(2))
     const selectedLetters1 = action.payload.selectedLetters1
     const selectedLetters2 = action.payload.selectedLetters2
     const selectedLetters3 = action.payload.selectedLetters3
@@ -44,6 +46,7 @@ const result = (state = initialState, action = {}) => {
         timeForRound3: time3,
         timeForRound4: time4,
         timeForRound5: time5,
+        timeTotal: timeTotal,
         selectedLettersRound1: selectedLetters1,
         selectedLettersRound2: selectedLetters2,
         selectedLettersRound3: selectedLetters3,
