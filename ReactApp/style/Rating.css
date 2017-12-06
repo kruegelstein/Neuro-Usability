@@ -95,6 +95,20 @@
   color: #39454f !important
 }
 
+.button-containerRatingDisabled {
+  display: inline-block;
+  float: right;
+  position: absolute;
+  text-align: center;
+  top: 3rem;
+  right: 4rem;
+  height: 6rem;
+  width: 6rem;
+  border-radius: 50% !important;
+  background-color: red !important;
+  color: #39454f !important
+}
+
 #arrowRating {
   font-size: 40px !important;
   padding-top: 7px !important;
