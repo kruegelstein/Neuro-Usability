@@ -12,13 +12,7 @@ class Demographics extends Component {
         male: false,
         female: false,
       },
-      age: {
-        ageUnder18: false,
-        age1822: false,
-        age2225: false,
-        age2530: false,
-        ageOver30: false,
-      },
+      age: 0,
       edu: {
         abi: false,
         ba: false,
@@ -33,24 +27,18 @@ class Demographics extends Component {
       }
     }
     this.onSubmit = this.onSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
   onSubmit() {
     let gender
-    let age
     let edu
     let course
+    const age = this.state.age
     Object.keys(this.state)
       .map(k => {
         switch(k) {
           case'gender':
             gender = this.state.gender.male ? 'male' : 'female'
-            return
-          case'age':
-            this.state.age.ageUnder18 ? age = 'under18' : null
-            this.state.age.age1822 ? age = '18-22' : null
-            this.state.age.age2225 ? age = '22-25' : null
-            this.state.age.age2530 ? age = '25-30' : null
-            this.state.age.ageOver30 ? age = 'over30' : null
             return
           case'edu':
             this.state.edu.abi ? edu = 'abi' : null
@@ -67,6 +55,7 @@ class Demographics extends Component {
         }
       })
     const id = this.props.id
+    console.log('###', age)
     this.props.onSubmitDemographics(id, gender, age, edu, course)
     this.props.goToIntro()
   }
@@ -94,53 +83,7 @@ class Demographics extends Component {
         return
     }
   }
-  handleAge(e) {
-    const clicked = e.target.id
-    switch(clicked) {
-      case 'ageUnder18':
-        if (!this.state.age.ageUnder18) {
-          this.setState({ age: { ageUnder18: true, age1822: false, age2225: false, age2530: false, ageOver30: false }})
-          return
-        } else {
-          this.setState({ age: { ageUnder18: false, age1822: false, age2225: false, age2530: false, ageOver30: false }})
-          return
-        }
-      case 'age1822':
-        if (!this.state.age.age1822) {
-          this.setState({ age: { ageUnder18: false, age1822: true, age2225: false, age2530: false, ageOver30: false }})
-          return
-        } else {
-          this.setState({ age: { ageUnder18: false, age1822: false, age2225: false, age2530: false, ageOver30: false }})
-          return
-        }
-      case 'age2225':
-        if (!this.state.age.age2225) {
-          this.setState({ age: { ageUnder18: false, age1822: false, age2225: true, age2530: false, ageOver30: false }})
-          return
-        } else {
-          this.setState({ age: { ageUnder18: false, age1822: false, age2225: false, age2530: false, ageOver30: false }})
-          return
-        }
-      case 'age2530':
-        if (!this.state.age.age2530) {
-          this.setState({ age: { ageUnder18: false, age1822: false, age2225: false, age2530: true, ageOver30: false }})
-          return
-        } else {
-          this.setState({ age: { ageUnder18: false, age1822: false, age2225: false, age2530: false, ageOver30: false }})
-          return
-        }
-      case 'ageOver30':
-        if (!this.state.age.ageOver30) {
-          this.setState({ age: { ageUnder18: false, age1822: false, age2225: false, age2530: false, ageOver30: true }})
-          return
-        } else {
-          this.setState({ age: { ageUnder18: false, age1822: false, age2225: false, age2530: false, ageOver30: false }})
-          return
-        }
-      default:
-        return
-    }
-  }
+
   handleEdu(e) {
     const clicked = e.target.id
     switch(clicked) {
@@ -180,6 +123,7 @@ class Demographics extends Component {
         return
     }
   }
+
   handleCourse(e) {
     const clicked = e.target.id
     switch(clicked) {
@@ -224,16 +168,17 @@ class Demographics extends Component {
     alert('Please check every question!')
   }
 
+  handleChange(e) {
+    let fieldVal = e.target.value;
+    this.setState({ age: fieldVal })
+  }
+
   checkSubmit() {
     const gender = this.state.gender.male || this.state.gender.female
-    const age = this.state.age.ageUnder18 || this.state.age.age182218 || this.state.age.age2225 || this.state.age.age2530 || this.state.age.ageOver30
+    const age = this.state.age
     const edu = this.state.edu.abi || this.state.edu.ba || this.state.edu.ma || this.state.edu.dr
     const course = this.state.course.cs || this.state.course.ce || this.state.course.hf || this.state.course.other
-    console.log(gender)
-    console.log(age)
-    console.log(edu)
-    console.log(course)
-    const result = gender && age && edu && course
+    const result = gender && age > 0 && edu && course
     return result
   }
 
@@ -255,21 +200,16 @@ class Demographics extends Component {
           </div>
           <div className="attributes-container">
             <p className="question">Age: </p>
-            <Checkbox id="ageUnder18" onClick={e => this.handleAge(e)} checked={this.state.age.ageUnder18}>
-              under 18
-            </Checkbox>
-            <Checkbox id="age1822" onClick={e => this.handleAge(e)} checked={this.state.age.age1822}>
-              18 - 22
-            </Checkbox>
-            <Checkbox id="age2225" onClick={e => this.handleAge(e)} checked={this.state.age.age2225}>
-              22-25
-            </Checkbox>
-            <Checkbox id="age2530" onClick={e => this.handleAge(e)} checked={this.state.age.age2530}>
-              25-30
-            </Checkbox>
-            <Checkbox id="ageOver30" onClick={e => this.handleAge(e)} checked={this.state.age.ageOver30}>
-              over 30
-            </Checkbox>
+            <FormGroup id="age">
+              <FormControl
+                autoFocus
+                name="age"
+                onChange={this.handleChange.bind(this)}
+                value={this.props.age}
+                id="ageField"
+                type="age"
+                placeholder="Age" />
+            </FormGroup>
           </div>
           <div className="attributes-container">
             <p className="question">Highest education: </p>
