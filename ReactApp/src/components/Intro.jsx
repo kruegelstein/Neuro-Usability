@@ -89,10 +89,10 @@ class Intro extends Component {
         </div>
         <div className="selectionLevel">
           <a className="level" onClick={this.selectGood}>
-            <i id="good" className="fa fa-smile-o fa-3" aria-hidden="true"></i>
+            <p className="version">Version 1</p>
           </a>
           <a className="level" onClick={this.selectBad}>
-            <i id="bad" className="fa fa-frown-o" aria-hidden="true"></i>
+            <p className="version">Version 2</p>
           </a>
         </div>
       </div>

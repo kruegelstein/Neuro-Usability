@@ -61,17 +61,18 @@
 .level {
   padding: 3rem;
   margin: auto;
+  display: inline-block;
 }
 
-#good {
-  font-size: 5rem;
-  color: green;
-  cursor: pointer;
+.version {
+  font-size: 20px;
+  color: black;
+  display: inline-block;
+  font-weight: bold;
 }
 
-#bad {
-  font-size: 5rem;
-  color: red;
+.version:hover {
+  text-decoration: none;
   cursor: pointer;
 }
 
