@@ -9,27 +9,32 @@ const initialState = {
   round1: {
     letterToFind: '',
     timeForRound: null,
-    selectedIndizes: []
+    selectedIndizes: [],
+    clicks: 0
   },
   round2: {
     letterToFind: '',
     timeForRound: null,
-    selectedIndizes: []
+    selectedIndizes: [],
+    clicks: 0
   },
   round3: {
     letterToFind: '',
     timeForRound: null,
-    selectedIndizes: []
+    selectedIndizes: [],
+    clicks: 0
   },
   round4: {
     letterToFind: '',
     timeForRound: null,
-    selectedIndizes: []
+    selectedIndizes: [],
+    clicks: 0
   },
   round5: {
     letterToFind: '',
     timeForRound: null,
-    selectedIndizes: []
+    selectedIndizes: [],
+    clicks: 0
   },
   rating: {
     einfach: null,
@@ -47,6 +52,54 @@ const initialState = {
 
 const form = (state = initialState, action = {}) => {
   switch (action.type) {
+  case ActionTypes.RecognizeClick: {
+    const round = action.payload.round
+    if(round === 1) {
+      return {
+        ...state,
+        round1: {
+          ...state.round1,
+          clicks: state.round1.clicks + 1
+        }
+      }
+    } else if(round === 2){
+      return {
+        ...state,
+        round2: {
+          ...state.round2,
+          clicks: state.round2.clicks + 1
+        }
+      }
+    } else if(round === 3){
+      return {
+        ...state,
+        round3: {
+          ...state.round3,
+          clicks: state.round3.clicks + 1
+        }
+      }
+    } else if(round === 4){
+      return {
+        ...state,
+        round4: {
+          ...state.round4,
+          clicks: state.round4.clicks + 1
+        }
+      }
+    } else if(round === 5){
+      return {
+        ...state,
+        round5: {
+          ...state.round5,
+          clicks: state.round5.clicks + 1
+        }
+      }
+    } else {
+      return {
+        ...state
+      }
+    }
+  }
   case ActionTypes.ChangeForm: {
     if(action.payload.field === 'name') {
       return {

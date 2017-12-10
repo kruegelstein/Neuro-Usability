@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Letter from './Letter.jsx';
 import { alphabetGood, alphabetBasic } from '../constants/alphabet.js';
 
-import { selectLetter, deselectLetter, selectRating, saveTime, selectRound2, selectRound3, selectRound4, selectRound5 } from '../actions/actions.js';
+import { recognizeClick, selectLetter, deselectLetter, selectRating, saveTime, selectRound2, selectRound3, selectRound4, selectRound5 } from '../actions/actions.js';
 
 let timeStampGoodStart
 let timeStampGoodEnd
@@ -14,9 +14,10 @@ class Good extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedLetters: []
+      selectedLetters: [],
     }
     this.onSubmit = this.onSubmit.bind(this)
+    this.countClick = this.countClick.bind(this)
   }
 
   componentDidMount() {
@@ -52,14 +53,21 @@ class Good extends Component {
     alert('Please select at least one letter!')
   }
 
+  countClick() {
+    const round = this.props.round
+    this.props.onRecognizeClick(round)
+  }
+
   handleClick(event, index) {
     const round = this.props.round
     const i = this.state.selectedLetters.indexOf(index)
     if(i > -1) {
       this.state.selectedLetters.splice(i, 1)
+      this.countClick()
       this.props.onDeselectLetter(round, index)
     } else {
       this.state.selectedLetters.push(index)
+      this.countClick()
       this.props.onSelectLetter(round, index)
     }
   }
@@ -85,7 +93,7 @@ class Good extends Component {
     }
     return (
       <div className="good">
-        <h4 className="header-good">Find all {letterToFind }</h4>
+        <h4 className="header-good" onClick={this.countClick}>Find all {letterToFind }</h4>
         <div className="alphabet-box-good">
           {alphabetGood
             .map((letter, index) =>
@@ -98,7 +106,7 @@ class Good extends Component {
             )
           }
         </div>
-        <div className="result-box-good">
+        <div className="result-box-good" onClick={this.countClick}>
           {selectedIndizes
             .map((i, index) =>
               <div key={index} className="letter-box">
@@ -184,6 +192,9 @@ const mapDispatchToProps = (dispatch, _ownProps) => ({
   },
   onSaveTime: (round, time) => {
     dispatch(saveTime(round, time))
+  },
+  onRecognizeClick: (round) => {
+    dispatch(recognizeClick(round))
   }
 });
 

@@ -7,7 +7,7 @@ import Distraction from './Distraction.jsx';
 
 import { alphabetBad, alphabetBasic } from '../constants/alphabet.js';
 
-import { selectLetter, selectRating, saveTime, selectRound2, selectRound3, selectRound4, selectRound5 } from '../actions/actions.js';
+import { recognizeClick,selectLetter, selectRating, saveTime, selectRound2, selectRound3, selectRound4, selectRound5 } from '../actions/actions.js';
 
 let timeStampBadStart
 let timeStampBadEnd
@@ -23,6 +23,7 @@ class Bad extends Component {
     this.disableSpinner = this.disableSpinner.bind(this)
     this.enableDistraction = this.enableDistraction.bind(this)
     this.disableDistraction = this.disableDistraction.bind(this)
+    this.countClick = this.countClick.bind(this)
 
   }
 
@@ -32,17 +33,13 @@ class Bad extends Component {
   }
 
   enableDistraction() {
-    console.log('enabling..')
     this.setState({ distraction: true }, () => {
-      console.log('enabled', this.state.distraction)
       setTimeout(this.disableDistraction, 5000)
     })
   }
 
   disableDistraction() {
-    console.log('disabling..')
     this.setState({ distraction: false }, () => {
-      console.log('enabled', this.state.distraction)
       setTimeout(this.enableDistraction, 5000)
     })
   }
@@ -75,8 +72,14 @@ class Bad extends Component {
     this.setState({ spinner: false })
   }
 
+  countClick() {
+    const round = this.props.round
+    this.props.onRecognizeClick(round)
+  }
+
   handleClick(event, index) {
     const round = this.props.round
+    this.countClick()
     this.props.onSelectLetter(round, index)
     this.setState({ spinner: true })
     this.mockDelay()
@@ -103,10 +106,10 @@ class Bad extends Component {
     }
     return (
       <div className="bad">
-        <Distraction enabled={this.state.distraction}/>
-        <h4 className="header-bad">Find all {letterToFind}</h4>
+        <Distraction enabled={this.state.distraction} countClick={this.countClick}/>
+        <h4 className="header-bad" onClick={this.countClick}>Find all {letterToFind}</h4>
         <div className="alphabet-box-bad">
-          <Spinner enabled={this.state.spinner}/>
+          <Spinner enabled={this.state.spinner} countClick={this.countClick}/>
           {alphabetBad
             .map((letter, index) => {
               const randomNumber = Math.floor(Math.random() * (3 - 0 + 1) + 0)
@@ -195,6 +198,9 @@ const mapDispatchToProps = (dispatch, _ownProps) => ({
   },
   onSaveTime: (round, time) => {
     dispatch(saveTime(round, time))
+  },
+  onRecognizeClick: (round) => {
+    dispatch(recognizeClick(round))
   }
 });
 

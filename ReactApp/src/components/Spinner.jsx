@@ -7,7 +7,7 @@ export class Spinner extends Component {
   render() {
     if (this.props.enabled) {
       return (
-        <SpinnerComp className="spinner" enabled/>
+        <SpinnerComp className="spinner" enabled onClick={this.props.countClick}/>
       );
     }
     return (

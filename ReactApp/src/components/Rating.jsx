@@ -139,6 +139,11 @@ class RatingComponent extends Component {
     const letter3 = this.props.letter3
     const letter4 = this.props.letter4
     const letter5 = this.props.letter5
+    const clicks1 = this.props.clicks1
+    const clicks2 = this.props.clicks2
+    const clicks3 = this.props.clicks3
+    const clicks4 = this.props.clicks4
+    const clicks5 = this.props.clicks5
 
     const selectedIndizes1 = this.props.selectedIndizes1
     const selectedLetters1 = selectedIndizes1.map(i => alphabetGood[i])
@@ -183,6 +188,11 @@ class RatingComponent extends Component {
       gut,
       verwirrend,
       lahm,
+      clicks1,
+      clicks2,
+      clicks3,
+      clicks4,
+      clicks5,
     )
     this.props.goToDemographics()
   }
@@ -288,6 +298,11 @@ const mapStateToProps = (state, _ownProps) => {
   const time3 = state.form.round3.timeForRound
   const time4 = state.form.round4.timeForRound
   const time5 = state.form.round5.timeForRound
+  const clicks1 = state.form.round1.clicks
+  const clicks2 = state.form.round2.clicks
+  const clicks3 = state.form.round3.clicks
+  const clicks4 = state.form.round4.clicks
+  const clicks5 = state.form.round5.clicks
   const letter1 = state.form.round1.letterToFind
   const letter2 = state.form.round2.letterToFind
   const letter3 = state.form.round3.letterToFind
@@ -309,6 +324,11 @@ const mapStateToProps = (state, _ownProps) => {
     time3,
     time4,
     time5,
+    clicks1,
+    clicks2,
+    clicks3,
+    clicks4,
+    clicks5,
     letter1,
     letter2,
     letter3,
@@ -321,7 +341,7 @@ const mapStateToProps = (state, _ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, _ownProps) => ({
-  onSubmitResults: (id, name, level, time1, time2, time3, time4, time5, selectedLetters1, selectedLetters2, selectedLetters3, selectedLetters4, selectedLetters5, letter1, letter2, letter3, letter4, letter5, einfach, hässlich, praktisch, stilvoll, voraussagbar, minderwertig, phantasielos, gut, verwirrend, lahm) => {
+  onSubmitResults: (id, name, level, time1, time2, time3, time4, time5, selectedLetters1, selectedLetters2, selectedLetters3, selectedLetters4, selectedLetters5, letter1, letter2, letter3, letter4, letter5, einfach, hässlich, praktisch, stilvoll, voraussagbar, minderwertig, phantasielos, gut, verwirrend, lahm, clicks1, clicks2, clicks3, clicks4, clicks5) => {
     dispatch(
       submitResults(
         id,
@@ -352,6 +372,11 @@ const mapDispatchToProps = (dispatch, _ownProps) => ({
         gut,
         verwirrend,
         lahm,
+        clicks1,
+        clicks2,
+        clicks3,
+        clicks4,
+        clicks5,
       )
     )
   },

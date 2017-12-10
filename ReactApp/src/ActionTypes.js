@@ -23,6 +23,7 @@ const actionTypes = {
   SelectRound3: 'select_round3',
   SelectRound4: 'select_round4',
   SelectRound5: 'select_round5',
+  RecognizeClick: 'recognize_click',
 };
 
 export default actionTypes;
