@@ -55,7 +55,6 @@ class Demographics extends Component {
         }
       })
     const id = this.props.id
-    console.log('###', age)
     this.props.onSubmitDemographics(id, gender, age, edu, course)
     this.props.goToIntro()
   }
