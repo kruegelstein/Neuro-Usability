@@ -12,3 +12,14 @@ export const calculateLetterError = (selectedLetters, letter) => {
   }
   return error
 }
+
+// Calculates the error concerning clicks
+export const calaculateBasicClickError = (clicks) => {
+  if(clicks === 5) {
+    return 0
+  } else if(clicks > 5) {
+    return clicks - 5
+  } else {
+    return 5 - clicks
+  }
+}

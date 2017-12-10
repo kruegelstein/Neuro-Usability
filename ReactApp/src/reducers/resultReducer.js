@@ -1,5 +1,5 @@
 import ActionTypes from '../ActionTypes.js';
-import { calculateLetterError } from '../helpers/helpers.js';
+import { calculateLetterError, calaculateBasicClickError } from '../helpers/helpers.js';
 
 const initialState = {}
 
@@ -37,12 +37,20 @@ const result = (state = initialState, action = {}) => {
     const letterErrors4 = calculateLetterError(selectedLetters4, letter4)
     const letterErrors5 = calculateLetterError(selectedLetters5, letter5)
     const totalLetterErrors = letterErrors1 + letterErrors2 + letterErrors3 + letterErrors4 + letterErrors5
-    // Clcks in each round
+    // Clicks in each round
     const clicks1 = action.payload.clicks1
     const clicks2 = action.payload.clicks2
     const clicks3 = action.payload.clicks3
     const clicks4 = action.payload.clicks4
     const clicks5 = action.payload.clicks5
+    const totalClicks = clicks1 + clicks2 + clicks3 + clicks4 + clicks5
+    // Errors for clicks
+    const clickError1 = calaculateBasicClickError(clicks1)
+    const clickError2 = calaculateBasicClickError(clicks2)
+    const clickError3 = calaculateBasicClickError(clicks3)
+    const clickError4 = calaculateBasicClickError(clicks4)
+    const clickError5 = calaculateBasicClickError(clicks5)
+    const totalClickError = clickError1 + clickError2 + clickError3 + clickError4 + clickError5
     // AttrakDiff
     const einfach = action.payload.einfach
     const hässlich = action.payload.hässlich
@@ -65,34 +73,46 @@ const result = (state = initialState, action = {}) => {
           letterToFind: letter1,
           selectedLetters: selectedLetters1,
           letterErrors: letterErrors1,
+          clicks: clicks1,
+          clickError: clickError1,
         },
         round2: {
           time: time2,
           letterToFind: letter2,
           selectedLetters: selectedLetters2,
           letterErrors: letterErrors2,
+          clicks: clicks2,
+          clickError: clickError2,
         },
         round3: {
           time: time3,
           letterToFind: letter3,
           selectedLetters: selectedLetters3,
           letterErrors: letterErrors3,
+          clicks: clicks3,
+          clickError: clickError3,
         },
         round4: {
           time: time4,
           letterToFind: letter4,
           selectedLetters: selectedLetters4,
           letterErrors: letterErrors4,
+          clicks: clicks4,
+          clickError: clickError4,
         },
         round5: {
           time: time5,
           letterToFind: letter4,
           selectedLetters: selectedLetters5,
           letterErrors: letterErrors5,
+          clicks: clicks5,
+          clickError: clickError5,
         },
         total: {
           time: timeTotal,
           letterErrors: totalLetterErrors,
+          clicks: totalClicks,
+          clickError: totalClickError,
         },
         einfach: einfach,
         hässlich: hässlich,
