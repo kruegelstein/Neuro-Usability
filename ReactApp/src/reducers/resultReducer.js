@@ -1,5 +1,5 @@
 import ActionTypes from '../ActionTypes.js';
-import { calculateLetterError } from '../helpers/helpers.js';
+import { calculateAbsoluteLetterError, calculatePercentageLetterError, calaculateDistanceToPerfectClicks, calaculateTotalDistanceToPerfectClicks } from '../helpers/helpers.js';
 
 const initialState = {}
 
@@ -31,18 +31,33 @@ const result = (state = initialState, action = {}) => {
     const letter4 = action.payload.letter4
     const letter5 = action.payload.letter5
     // Errors for letters
-    const letterErrors1 = calculateLetterError(selectedLetters1, letter1)
-    const letterErrors2 = calculateLetterError(selectedLetters2, letter2)
-    const letterErrors3 = calculateLetterError(selectedLetters3, letter3)
-    const letterErrors4 = calculateLetterError(selectedLetters4, letter4)
-    const letterErrors5 = calculateLetterError(selectedLetters5, letter5)
-    const totalLetterErrors = letterErrors1 + letterErrors2 + letterErrors3 + letterErrors4 + letterErrors5
-    // Clcks in each round
+    const absoluteLetterError1 = calculateAbsoluteLetterError(selectedLetters1, letter1)
+    const absoluteLetterError2 = calculateAbsoluteLetterError(selectedLetters2, letter2)
+    const absoluteLetterError3 = calculateAbsoluteLetterError(selectedLetters3, letter3)
+    const absoluteLetterError4 = calculateAbsoluteLetterError(selectedLetters4, letter4)
+    const absoluteLetterError5 = calculateAbsoluteLetterError(selectedLetters5, letter5)
+    const totalAbsoluteLetterError = absoluteLetterError1 + absoluteLetterError2 + absoluteLetterError3 + absoluteLetterError4 + absoluteLetterError5
+
+    const percentageLetterError1 = calculatePercentageLetterError(absoluteLetterError1)
+    const percentageLetterError2 = calculatePercentageLetterError(absoluteLetterError2)
+    const percentageLetterError3 = calculatePercentageLetterError(absoluteLetterError3)
+    const percentageLetterError4 = calculatePercentageLetterError(absoluteLetterError4)
+    const percentageLetterError5 = calculatePercentageLetterError(absoluteLetterError5)
+    const totalPercentageLetterError = (totalAbsoluteLetterError / 25) * 100
+    // Clicks in each round
     const clicks1 = action.payload.clicks1
     const clicks2 = action.payload.clicks2
     const clicks3 = action.payload.clicks3
     const clicks4 = action.payload.clicks4
     const clicks5 = action.payload.clicks5
+    const totalClicks = clicks1 + clicks2 + clicks3 + clicks4 + clicks5
+    // Errors for clicks
+    const clickError1 = calaculateDistanceToPerfectClicks(clicks1)
+    const clickError2 = calaculateDistanceToPerfectClicks(clicks2)
+    const clickError3 = calaculateDistanceToPerfectClicks(clicks3)
+    const clickError4 = calaculateDistanceToPerfectClicks(clicks4)
+    const clickError5 = calaculateDistanceToPerfectClicks(clicks5)
+    const totalClickError = calaculateTotalDistanceToPerfectClicks(clicks1 + clicks2 + clicks3 + clicks4 + clicks5)
     // AttrakDiff
     const einfach = action.payload.einfach
     const hässlich = action.payload.hässlich
@@ -64,35 +79,53 @@ const result = (state = initialState, action = {}) => {
           time: time1,
           letterToFind: letter1,
           selectedLetters: selectedLetters1,
-          letterErrors: letterErrors1,
+          absoluteLetterError: absoluteLetterError1,
+          percentageLetterError: `${percentageLetterError1}%`,
+          clicks: clicks1,
+          distanceToPerfectClicks: clickError1,
         },
         round2: {
           time: time2,
           letterToFind: letter2,
           selectedLetters: selectedLetters2,
-          letterErrors: letterErrors2,
+          absoluteLetterError: absoluteLetterError2,
+          percentageLetterError: `${percentageLetterError2}%`,
+          clicks: clicks2,
+          distanceToPerfectClicks: clickError2,
         },
         round3: {
           time: time3,
           letterToFind: letter3,
           selectedLetters: selectedLetters3,
-          letterErrors: letterErrors3,
+          absoluteLetterError: absoluteLetterError3,
+          percentageLetterError: `${percentageLetterError3}%`,
+          clicks: clicks3,
+          distanceToPerfectClicks: clickError3,
         },
         round4: {
           time: time4,
           letterToFind: letter4,
           selectedLetters: selectedLetters4,
-          letterErrors: letterErrors4,
+          absoluteLetterError: absoluteLetterError4,
+          percentageLetterError: `${percentageLetterError4}%`,
+          clicks: clicks4,
+          distanceToPerfectClicks: clickError4,
         },
         round5: {
           time: time5,
           letterToFind: letter4,
           selectedLetters: selectedLetters5,
-          letterErrors: letterErrors5,
+          absoluteLetterError: absoluteLetterError5,
+          percentageLetterError: `${percentageLetterError5}%`,
+          clicks: clicks5,
+          distanceToPerfectClicks: clickError5,
         },
         total: {
           time: timeTotal,
-          letterErrors: totalLetterErrors,
+          totalAbsoluteLetterError: totalAbsoluteLetterError,
+          totalPercentageLetterError: `${totalPercentageLetterError}%`,
+          clicks: totalClicks,
+          distanceToPerfectClicks: totalClickError,
         },
         einfach: einfach,
         hässlich: hässlich,
