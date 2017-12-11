@@ -10,31 +10,36 @@ const initialState = {
     letterToFind: '',
     timeForRound: null,
     selectedIndizes: [],
-    clicks: 0
+    clicks: 0,
+    clickPositions: {}
   },
   round2: {
     letterToFind: '',
     timeForRound: null,
     selectedIndizes: [],
-    clicks: 0
+    clicks: 0,
+    clickPositions: {}
   },
   round3: {
     letterToFind: '',
     timeForRound: null,
     selectedIndizes: [],
-    clicks: 0
+    clicks: 0,
+    clickPositions: {}
   },
   round4: {
     letterToFind: '',
     timeForRound: null,
     selectedIndizes: [],
-    clicks: 0
+    clicks: 0,
+    clickPositions: {}
   },
   round5: {
     letterToFind: '',
     timeForRound: null,
     selectedIndizes: [],
-    clicks: 0
+    clicks: 0,
+    clickPositions: {}
   },
   rating: {
     einfach: null,
@@ -52,6 +57,88 @@ const initialState = {
 
 const form = (state = initialState, action = {}) => {
   switch (action.type) {
+  case ActionTypes.SaveClickPosition: {
+    const roundIndex = action.payload.round
+    const round = `round${roundIndex}`
+    const id = Object.keys(state[round].clickPositions).length + 1
+    const x = action.payload.x
+    const y = action.payload.y
+    if(roundIndex === 1) {
+      return {
+        ...state,
+        round1: {
+          ...state.round1,
+          clickPositions: {
+            ...state.round1.clickPositions,
+            [id]: {
+              x: x,
+              y: y
+            }
+          }
+        }
+      }
+    } else if(roundIndex === 2){
+      return {
+        ...state,
+        round2: {
+          ...state.round2,
+          clickPositions: {
+            ...state.round2.clickPositions,
+            [id]: {
+              x: x,
+              y: y
+            }
+          }
+        }
+      }
+    } else if(roundIndex === 3){
+      return {
+        ...state,
+        round3: {
+          ...state.round3,
+          clickPositions: {
+            ...state.round3.clickPositions,
+            [id]: {
+              x: x,
+              y: y
+            }
+          }
+        }
+      }
+    } else if(roundIndex === 4){
+      return {
+        ...state,
+        round4: {
+          ...state.round4,
+          clickPositions: {
+            ...state.round4.clickPositions,
+            [id]: {
+              x: x,
+              y: y
+            }
+          }
+        }
+      }
+    } else if(roundIndex === 5){
+      return {
+        ...state,
+        round5: {
+          ...state.round5,
+          clickPositions: {
+            ...state.round5.clickPositions,
+            [id]: {
+              x: x,
+              y: y
+            }
+          }
+        }
+      }
+    } else {
+      return {
+        ...state
+      }
+    }
+  }
   case ActionTypes.RecognizeClick: {
     const round = action.payload.round
     if(round === 1) {
