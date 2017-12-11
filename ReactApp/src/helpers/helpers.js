@@ -47,3 +47,5 @@ export const concatObjects = (obj1, obj2, obj3, obj4, obj5) => {
   }
   return allClickInformation
 }
+
+// Calculate the time between 2 clicks in each round
