@@ -3,8 +3,8 @@ module.exports = {
     './src/index.js'
   ],
   output: {
-    path: path.join(__dirname, '/'),
-    publicPath: '/',
+    path: __dirname,
+    publicPath: '/Neuro-Usability/',
     filename: 'bundle.js'
   },
   devtool: '#eval-source-map',
