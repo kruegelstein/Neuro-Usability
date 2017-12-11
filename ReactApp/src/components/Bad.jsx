@@ -7,7 +7,7 @@ import Distraction from './Distraction.jsx';
 
 import { alphabetBad, alphabetBasic } from '../constants/alphabet.js';
 
-import { recognizeClick,selectLetter, selectRating, saveTime, selectRound2, selectRound3, selectRound4, selectRound5 } from '../actions/actions.js';
+import { recognizeClick, saveClickPosition, selectLetter, selectRating, saveTime, selectRound2, selectRound3, selectRound4, selectRound5 } from '../actions/actions.js';
 
 let timeStampBadStart
 let timeStampBadEnd
@@ -72,14 +72,17 @@ class Bad extends Component {
     this.setState({ spinner: false })
   }
 
-  countClick() {
+  countClick(event) {
+    const x = event.clientX
+    const y = event.clientY
     const round = this.props.round
+    this.props.onSaveClickPosition(x, y, round)
     this.props.onRecognizeClick(round)
   }
 
   handleClick(event, index) {
     const round = this.props.round
-    this.countClick()
+    this.countClick(event)
     this.props.onSelectLetter(round, index)
     this.setState({ spinner: true })
     this.mockDelay()
@@ -106,10 +109,10 @@ class Bad extends Component {
     }
     return (
       <div className="bad">
-        <Distraction enabled={this.state.distraction} countClick={this.countClick}/>
-        <h4 className="header-bad" onClick={this.countClick}>Find all {letterToFind}</h4>
+        <Distraction enabled={this.state.distraction} countClick={e => this.countClick(e)}/>
+        <h4 className="header-bad" onClick={e => this.countClick(e)}>Find all {letterToFind}</h4>
         <div className="alphabet-box-bad">
-          <Spinner enabled={this.state.spinner} countClick={this.countClick}/>
+          <Spinner enabled={this.state.spinner} countClick={e => this.countClick(e)}/>
           {alphabetBad
             .map((letter, index) => {
               const randomNumber = Math.floor(Math.random() * (3 - 0 + 1) + 0)
@@ -201,6 +204,9 @@ const mapDispatchToProps = (dispatch, _ownProps) => ({
   },
   onRecognizeClick: (round) => {
     dispatch(recognizeClick(round))
+  },
+  onSaveClickPosition: (x, y, round) => {
+    dispatch(saveClickPosition(x, y, round))
   }
 });
 
