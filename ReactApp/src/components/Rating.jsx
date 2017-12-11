@@ -129,21 +129,30 @@ class RatingComponent extends Component {
     const id = this.props.id
     const name = this.props.name
     const level = this.props.level
+
     const time1 = this.props.time1
     const time2 = this.props.time2
     const time3 = this.props.time3
     const time4 = this.props.time4
     const time5 = this.props.time5
+
     const letter1 = this.props.letter1
     const letter2 = this.props.letter2
     const letter3 = this.props.letter3
     const letter4 = this.props.letter4
     const letter5 = this.props.letter5
+
     const clicks1 = this.props.clicks1
     const clicks2 = this.props.clicks2
     const clicks3 = this.props.clicks3
     const clicks4 = this.props.clicks4
     const clicks5 = this.props.clicks5
+
+    const clickInformation1 = this.props.clickInformation1
+    const clickInformation2 = this.props.clickInformation2
+    const clickInformation3 = this.props.clickInformation3
+    const clickInformation4 = this.props.clickInformation4
+    const clickInformation5 = this.props.clickInformation5
 
     const selectedIndizes1 = this.props.selectedIndizes1
     const selectedLetters1 = selectedIndizes1.map(i => alphabetGood[i])
@@ -193,6 +202,11 @@ class RatingComponent extends Component {
       clicks3,
       clicks4,
       clicks5,
+      clickInformation1,
+      clickInformation2,
+      clickInformation3,
+      clickInformation4,
+      clickInformation5,
     )
     this.props.goToDemographics()
   }
@@ -313,12 +327,22 @@ const mapStateToProps = (state, _ownProps) => {
   const selectedIndizes3 = state.form.round3.selectedIndizes
   const selectedIndizes4 = state.form.round4.selectedIndizes
   const selectedIndizes5 = state.form.round5.selectedIndizes
+  const clickInformation1 = state.form.round1.clickInformation
+  const clickInformation2 = state.form.round2.clickInformation
+  const clickInformation3 = state.form.round3.clickInformation
+  const clickInformation4 = state.form.round4.clickInformation
+  const clickInformation5 = state.form.round5.clickInformation
   return {
     selectedIndizes1,
     selectedIndizes2,
     selectedIndizes3,
     selectedIndizes4,
     selectedIndizes5,
+    clickInformation1,
+    clickInformation2,
+    clickInformation3,
+    clickInformation4,
+    clickInformation5,
     time1,
     time2,
     time3,
@@ -341,7 +365,7 @@ const mapStateToProps = (state, _ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, _ownProps) => ({
-  onSubmitResults: (id, name, level, time1, time2, time3, time4, time5, selectedLetters1, selectedLetters2, selectedLetters3, selectedLetters4, selectedLetters5, letter1, letter2, letter3, letter4, letter5, einfach, hässlich, praktisch, stilvoll, voraussagbar, minderwertig, phantasielos, gut, verwirrend, lahm, clicks1, clicks2, clicks3, clicks4, clicks5) => {
+  onSubmitResults: (id, name, level, time1, time2, time3, time4, time5, selectedLetters1, selectedLetters2, selectedLetters3, selectedLetters4, selectedLetters5, letter1, letter2, letter3, letter4, letter5, einfach, hässlich, praktisch, stilvoll, voraussagbar, minderwertig, phantasielos, gut, verwirrend, lahm, clicks1, clicks2, clicks3, clicks4, clicks5, clickInformation1, clickInformation2, clickInformation3, clickInformation4, clickInformation5) => {
     dispatch(
       submitResults(
         id,
@@ -377,6 +401,11 @@ const mapDispatchToProps = (dispatch, _ownProps) => ({
         clicks3,
         clicks4,
         clicks5,
+        clickInformation1,
+        clickInformation2,
+        clickInformation3,
+        clickInformation4,
+        clickInformation5,
       )
     )
   },

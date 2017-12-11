@@ -1,5 +1,5 @@
 import ActionTypes from '../ActionTypes.js';
-import { calculateAbsoluteLetterError, calculatePercentageLetterError, calaculateDistanceToPerfectClicks, calaculateTotalDistanceToPerfectClicks } from '../helpers/helpers.js';
+import { calculateAbsoluteLetterError, calculatePercentageLetterError, calaculateDistanceToPerfectClicks, calaculateTotalDistanceToPerfectClicks, concatObjects } from '../helpers/helpers.js';
 
 const initialState = {}
 
@@ -69,6 +69,14 @@ const result = (state = initialState, action = {}) => {
     const gut = action.payload.gut
     const verwirrend = action.payload.verwirrend
     const lahm = action.payload.lahm
+    // ClickInformation
+    const clickInformation1 = action.payload.clickInformation1
+    const clickInformation2 = action.payload.clickInformation2
+    const clickInformation3 = action.payload.clickInformation3
+    const clickInformation4 = action.payload.clickInformation4
+    const clickInformation5 = action.payload.clickInformation5
+    const totalClickInformation = concatObjects(clickInformation1, clickInformation2, clickInformation3, clickInformation4, clickInformation5)
+
     return {
       ...state,
       [id]: {
@@ -83,6 +91,7 @@ const result = (state = initialState, action = {}) => {
           percentageLetterError: `${percentageLetterError1}%`,
           clicks: clicks1,
           distanceToPerfectClicks: clickError1,
+          clickInformation: clickInformation1,
         },
         round2: {
           time: time2,
@@ -92,6 +101,7 @@ const result = (state = initialState, action = {}) => {
           percentageLetterError: `${percentageLetterError2}%`,
           clicks: clicks2,
           distanceToPerfectClicks: clickError2,
+          clickInformation: clickInformation2,
         },
         round3: {
           time: time3,
@@ -101,6 +111,7 @@ const result = (state = initialState, action = {}) => {
           percentageLetterError: `${percentageLetterError3}%`,
           clicks: clicks3,
           distanceToPerfectClicks: clickError3,
+          clickInformation: clickInformation3,
         },
         round4: {
           time: time4,
@@ -110,6 +121,7 @@ const result = (state = initialState, action = {}) => {
           percentageLetterError: `${percentageLetterError4}%`,
           clicks: clicks4,
           distanceToPerfectClicks: clickError4,
+          clickInformation: clickInformation4,
         },
         round5: {
           time: time5,
@@ -119,6 +131,7 @@ const result = (state = initialState, action = {}) => {
           percentageLetterError: `${percentageLetterError5}%`,
           clicks: clicks5,
           distanceToPerfectClicks: clickError5,
+          clickInformation: clickInformation5,
         },
         total: {
           time: timeTotal,
@@ -126,6 +139,7 @@ const result = (state = initialState, action = {}) => {
           totalPercentageLetterError: `${totalPercentageLetterError}%`,
           clicks: totalClicks,
           distanceToPerfectClicks: totalClickError,
+          totalClickInformation: totalClickInformation,
         },
         einfach: einfach,
         hässlich: hässlich,
