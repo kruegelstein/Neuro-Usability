@@ -5,7 +5,7 @@ const ROOT_URL = 'http://localhost:3090';
 
 // actions in frontend
 export const recognizeClick = (round) => ({ type: ActionTypes.RecognizeClick,  payload: { round } })
-export const saveClickPosition = (x, y, round) => ({ type: ActionTypes.SaveClickPosition,  payload: { x, y, round } })
+export const saveClickPosition = (x, y, time, round) => ({ type: ActionTypes.SaveClickPosition,  payload: { x, y, time, round } })
 export const changeFormValue = (field, value) => ({ type: ActionTypes.ChangeForm,  payload: { field, value } })
 export const selectAdmin = () => ({ type: ActionTypes.SelectAdmin,  payload: {} })
 export const selectRating = () => ({ type: ActionTypes.SelectRating,  payload: {} })
@@ -54,7 +54,12 @@ export const submitResults = (
   clicks2,
   clicks3,
   clicks4,
-  clicks5) => ({
+  clicks5,
+  clickInformation1,
+  clickInformation2,
+  clickInformation3,
+  clickInformation4,
+  clickInformation5) => ({
   type: ActionTypes.Submit,  payload: {
     id,
     name,
@@ -88,7 +93,12 @@ export const submitResults = (
     clicks2,
     clicks3,
     clicks4,
-    clicks5
+    clicks5,
+    clickInformation1,
+    clickInformation2,
+    clickInformation3,
+    clickInformation4,
+    clickInformation5
   } })
 export const saveTime = (round, time) => ({ type: ActionTypes.SaveTime,  payload: { round, time } })
 export const submitUserId = (id) => ({ type: ActionTypes.SubmitUserId,  payload: { id } })

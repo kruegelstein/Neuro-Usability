@@ -11,35 +11,35 @@ const initialState = {
     timeForRound: null,
     selectedIndizes: [],
     clicks: 0,
-    clickPositions: {}
+    clickInformation: {}
   },
   round2: {
     letterToFind: '',
     timeForRound: null,
     selectedIndizes: [],
     clicks: 0,
-    clickPositions: {}
+    clickInformation: {}
   },
   round3: {
     letterToFind: '',
     timeForRound: null,
     selectedIndizes: [],
     clicks: 0,
-    clickPositions: {}
+    clickInformation: {}
   },
   round4: {
     letterToFind: '',
     timeForRound: null,
     selectedIndizes: [],
     clicks: 0,
-    clickPositions: {}
+    clickInformation: {}
   },
   round5: {
     letterToFind: '',
     timeForRound: null,
     selectedIndizes: [],
     clicks: 0,
-    clickPositions: {}
+    clickInformation: {}
   },
   rating: {
     einfach: null,
@@ -60,19 +60,21 @@ const form = (state = initialState, action = {}) => {
   case ActionTypes.SaveClickPosition: {
     const roundIndex = action.payload.round
     const round = `round${roundIndex}`
-    const id = Object.keys(state[round].clickPositions).length + 1
+    const id = Object.keys(state[round].clickInformation).length + 1
     const x = action.payload.x
     const y = action.payload.y
+    const time = action.payload.time
     if(roundIndex === 1) {
       return {
         ...state,
         round1: {
           ...state.round1,
-          clickPositions: {
-            ...state.round1.clickPositions,
+          clickInformation: {
+            ...state.round1.clickInformation,
             [id]: {
               x: x,
-              y: y
+              y: y,
+              time: time
             }
           }
         }
@@ -82,11 +84,12 @@ const form = (state = initialState, action = {}) => {
         ...state,
         round2: {
           ...state.round2,
-          clickPositions: {
-            ...state.round2.clickPositions,
+          clickInformation: {
+            ...state.round2.clickInformation,
             [id]: {
               x: x,
-              y: y
+              y: y,
+              time: time
             }
           }
         }
@@ -96,11 +99,12 @@ const form = (state = initialState, action = {}) => {
         ...state,
         round3: {
           ...state.round3,
-          clickPositions: {
-            ...state.round3.clickPositions,
+          clickInformation: {
+            ...state.round3.clickInformation,
             [id]: {
               x: x,
-              y: y
+              y: y,
+              time: time
             }
           }
         }
@@ -110,11 +114,12 @@ const form = (state = initialState, action = {}) => {
         ...state,
         round4: {
           ...state.round4,
-          clickPositions: {
-            ...state.round4.clickPositions,
+          clickInformation: {
+            ...state.round4.clickInformation,
             [id]: {
               x: x,
-              y: y
+              y: y,
+              time: time
             }
           }
         }
@@ -124,11 +129,12 @@ const form = (state = initialState, action = {}) => {
         ...state,
         round5: {
           ...state.round5,
-          clickPositions: {
-            ...state.round5.clickPositions,
+          clickInformation: {
+            ...state.round5.clickInformation,
             [id]: {
               x: x,
-              y: y
+              y: y,
+              time: time
             }
           }
         }

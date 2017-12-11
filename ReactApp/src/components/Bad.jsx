@@ -75,8 +75,9 @@ class Bad extends Component {
   countClick(event) {
     const x = event.clientX
     const y = event.clientY
+    const time = Date.now()
     const round = this.props.round
-    this.props.onSaveClickPosition(x, y, round)
+    this.props.onSaveClickPositionAndTime(x, y, time, round)
     this.props.onRecognizeClick(round)
   }
 
@@ -205,8 +206,8 @@ const mapDispatchToProps = (dispatch, _ownProps) => ({
   onRecognizeClick: (round) => {
     dispatch(recognizeClick(round))
   },
-  onSaveClickPosition: (x, y, round) => {
-    dispatch(saveClickPosition(x, y, round))
+  onSaveClickPositionAndTime: (x, y, time, round) => {
+    dispatch(saveClickPosition(x, y, time, round))
   }
 });
 

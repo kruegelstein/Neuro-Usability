@@ -35,3 +35,17 @@ export const calaculateTotalDistanceToPerfectClicks = (clicks) => {
     return 25 - clicks
   }
 }
+
+// Concatinate 5 objects to one object
+export const concatObjects = (obj1, obj2, obj3, obj4, obj5) => {
+  const allClickInformation = {
+    round1: obj1,
+    round2: obj2,
+    round3: obj3,
+    round4: obj4,
+    round5: obj5,
+  }
+  return allClickInformation
+}
+
+// Calculate the time between 2 clicks in each round
