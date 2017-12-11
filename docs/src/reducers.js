@@ -9,5 +9,5 @@ import result from './reducers/resultReducer';
 export default combineReducers({
   navigation,
   form,
-  result
+  result,
 });

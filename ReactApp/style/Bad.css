@@ -1,0 +1,165 @@
+.bad {
+  background-color: #fff700;
+  width: 100%;
+  height: 100%;
+  font-style: Bold Italic;
+  font-family: Tangerine;
+}
+
+.header-bad {
+  text-align: center;
+  color: #25ff03;
+  font-size: 40px;
+  margin-bottom: 3rem
+}
+
+.alphabet-box-bad {
+  width: 70%;
+  margin: auto;
+}
+
+.letter-container-bad {
+  display: inline-table;
+  width: 5rem;
+  height: 5rem;
+  text-align: center;
+}
+
+@keyframes wiggle {
+  0% { transform: rotate(0deg); }
+  80% { transform: rotate(0deg); }
+  85% { transform: rotate(50deg); }
+  95% { transform: rotate(-50deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.letter-container-bad-animated {
+  animation: wiggle 2s infinite;
+  display: inline-table;
+  width: 5rem;
+  height: 5rem;
+  text-align: center;
+}
+
+.letter-container-bad-animated:hover {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.letter-container-bad:hover {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.letter-bad {
+  color: #25ff03;
+  font-size: 20px;
+  margin: 0;
+}
+
+.result-box-bad {
+  width: 70%;
+  height: 12rem;
+  text-align: center;
+  margin: auto;
+}
+
+.letter-box-bad {
+  text-align: center;
+  display: inline-block;
+  border-radius: 50%;
+  border: .5px solid #25ff03;
+  width: 10rem;
+  height: 10rem;
+  margin: 2rem;
+  animation-name: fadeIn;
+  animation-duration: 1s;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0}
+  to {opacity: 1}
+}
+
+.selected-letter-bad {
+  color: #ff7b00;
+  vertical-align: middle;
+  font-size: 30px;
+  margin: 0;
+  padding-top: 2.5rem
+}
+
+.button-containerBad {
+  display: inline-block;
+  float: right;
+  position: absolute;
+  text-align: center;
+  top: 3rem;
+  right: 4rem;
+  height: 6rem;
+  width: 6rem;
+  border-radius: 50% !important;
+  background-color: #ff7b00 !important;
+  color: #25ff03 !important
+}
+
+.button-containerBad:hover {
+  cursor: pointer;
+}
+
+.button-containerBadDisabled:hover {
+  cursor: pointer;
+}
+
+.button-containerBadDisabled {
+  display: inline-block;
+  float: right;
+  position: absolute;
+  text-align: center;
+  top: 3rem;
+  right: 4rem;
+  height: 6rem;
+  width: 6rem;
+  border-radius: 50% !important;
+  background-color: red !important;
+  color: black !important
+}
+
+#arrowBad {
+  font-size: 40px !important;
+  padding-top: 7px !important;
+}
+
+#crossBad {
+  font-size: 40px !important;
+  padding-top: 7px !important;
+}
+
+.distraction-container {
+  width: 30rem;
+  height: 20rem;
+  position: absolute;
+  z-index: 99;
+  top: 7rem;
+  left: 0
+  -webkit-transform: translateX(-115%);
+  transform: translateX(-115%);
+  animation: slide-in 8s forwards;
+}
+
+.santa {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes slide-in {
+  20% {transform: translateX(+0%);}
+  40% {transform: translateX(-115%);}
+  100% {transform: translateX(+1000%);}
+}
+
+.round-indicator-bad {
+  margin-top: 1rem;
+  color: #ff7b00;
+  font-size: 30px;
+}

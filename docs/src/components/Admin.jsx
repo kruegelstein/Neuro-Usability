@@ -47,14 +47,32 @@ class Admin extends Component {
           <tr>
             <th>User ID</th>
             <th>User name</th>
-            <th>Selected letters</th>
+            <th>Level</th>
+            <th>Time for round 1</th>
+            <th>Time for round 2</th>
+            <th>Time for round 3</th>
+            <th>Selected letters round 1</th>
+            <th>Selected letters round 2</th>
+            <th>Selected letters round 3</th>
+            <th>Letter for round 1</th>
+            <th>Letter for round 2</th>
+            <th>Letter for round 3</th>
           </tr>
             {Object.keys(result)
               .map(k =>
                 <tr key={result[k].id}>
                   <td>{result[k].id}</td>
                   <td>{result[k].name}</td>
-                  <td>{result[k].selectedLetters}</td>
+                  <td>{result[k].level}</td>
+                  <td>{result[k].timeForRound1}</td>
+                  <td>{result[k].timeForRound2}</td>
+                  <td>{result[k].timeForRound3}</td>
+                  <td>{result[k].selectedLettersRound1}</td>
+                  <td>{result[k].selectedLettersRound2}</td>
+                  <td>{result[k].selectedLettersRound3}</td>
+                  <td>{result[k].letterForRound1}</td>
+                  <td>{result[k].letterForRound2}</td>
+                  <td>{result[k].letterForRound3}</td>
                 </tr>
               )
             }

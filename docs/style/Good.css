@@ -1,5 +1,5 @@
 .good {
-  background-color: #6534ff;
+  background-color: black;
   width: 100%;
   height: 100%;
   font-family: Raleway;
@@ -7,7 +7,7 @@
 
 .header-good {
   text-align: center;
-  color: #fccdd3;
+  color: #c79316;
   font-size: 40px;
   margin-bottom: 3rem
 }
@@ -24,8 +24,18 @@
   text-align: center;
 }
 
+.letter-container:hover {
+  cursor: pointer;
+  text-decoration: none;
+}
+
 .letter {
-  color: #fccdd3;
+  color: #c79316;
+  font-size: 20px;
+}
+
+.letterActive {
+  color: red;
   font-size: 20px;
 }
 
@@ -40,7 +50,7 @@
   text-align: center;
   display: inline-block;
   border-radius: 50%;
-  border: .5px solid #fccdd3;
+  border: .5px solid #c79316;
   width: 10rem;
   height: 10rem;
   margin: 2rem;
@@ -62,11 +72,53 @@
 }
 
 .button-container {
-  margin-top: 3rem;
+  display: inline-block;
+  float: right;
+  position: absolute;
   text-align: center;
+  top: 3rem;
+  right: 4rem;
+  height: 6rem;
+  width: 6rem;
+  border-radius: 50% !important;
+  background-color: #c79316 !important;
+  color: black !important
 }
 
-.submitButton {
-  background-color: #fccdd3 !important;
-  color: #6534ff !important
+.button-container:hover {
+  cursor: pointer;
+}
+
+.button-containerDisabled:hover {
+  cursor: pointer;
+}
+
+.button-containerDisabled {
+  display: inline-block;
+  float: right;
+  position: absolute;
+  text-align: center;
+  top: 3rem;
+  right: 4rem;
+  height: 6rem;
+  width: 6rem;
+  border-radius: 50% !important;
+  background-color: red !important;
+  color: black !important
+}
+
+#arrow {
+  font-size: 40px !important;
+  padding-top: 7px !important;
+}
+
+#cross {
+  font-size: 40px !important;
+  padding-top: 7px !important;
+}
+
+.round-indicator {
+  margin-top: 1rem;
+  color: #c79316;
+  font-size: 30px;
 }
