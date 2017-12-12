@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup, Col, FormControl, Checkbox } from 'react-bootstrap';
-import { selectIntro, submitDemographics } from '../actions/actions.js';
+import { selectThanks, submitDemographics } from '../actions/actions.js';
 
 class Demographics extends Component {
   constructor(props) {
@@ -55,8 +55,9 @@ class Demographics extends Component {
         }
       })
     const id = this.props.id
+
     this.props.onSubmitDemographics(id, gender, age, edu, course)
-    this.props.goToIntro()
+    this.props.goToThanks()
   }
 
   handleGender(e) {
@@ -263,8 +264,8 @@ const mapDispatchToProps = (dispatch, _ownProps) => ({
   onSubmitDemographics: (id, gender, age, edu, course) => {
     dispatch(submitDemographics(id, gender, age, edu, course))
   },
-  goToIntro: () => {
-    dispatch(selectIntro())
+  goToThanks: () => {
+    dispatch(selectThanks())
   }
 });
 

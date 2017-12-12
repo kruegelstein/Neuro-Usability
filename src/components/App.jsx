@@ -8,6 +8,7 @@ import Bad from './Bad.jsx';
 import Admin from './Admin.jsx';
 import Rating from './Rating.jsx';
 import Demographics from './Demographics.jsx';
+import Thanks from './Thanks.jsx';
 
 class App extends Component {
 
@@ -19,6 +20,7 @@ class App extends Component {
     const admin = this.props.admin
     const rating = this.props.rating
     const demographics = this.props.demographics
+    const thanks = this.props.thanks
     return (
       <div className="app">
         { intro ? <Intro /> : null}
@@ -27,6 +29,7 @@ class App extends Component {
         { admin ? <Admin /> : null}
         { rating ? <Rating /> : null}
         { demographics ? <Demographics /> : null}
+        { thanks ? <Thanks /> : null}
       </div>
     )
   }
@@ -39,6 +42,7 @@ App.propTypes = {
   admin: PropTypes.bool,
   rating: PropTypes.bool,
   demographics: PropTypes.bool,
+  thanks: PropTypes.bool
 }
 
 const mapStateToProps = (state, _ownProps) => {
@@ -49,6 +53,7 @@ const mapStateToProps = (state, _ownProps) => {
     admin: state.navigation.admin,
     rating: state.navigation.rating,
     demographics: state.navigation.demographics,
+    thanks: state.navigation.thanks,
   };
 };
 

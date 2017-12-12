@@ -1,5 +1,6 @@
 import ActionTypes from '../ActionTypes.js';
 import axios from 'axios';
+import { firebaseApp, database } from '../firebase.js';
 
 const ROOT_URL = 'http://localhost:3090';
 
@@ -11,6 +12,7 @@ export const selectAdmin = () => ({ type: ActionTypes.SelectAdmin,  payload: {} 
 export const selectRating = () => ({ type: ActionTypes.SelectRating,  payload: {} })
 export const selectDemographics = () => ({ type: ActionTypes.SelectDemographics,  payload: {} })
 export const selectIntro = () => ({ type: ActionTypes.SelectIntro,  payload: {} })
+export const selectThanks = () => ({ type: ActionTypes.SelectThanks,  payload: {} })
 export const selectRound2 = () => ({ type: ActionTypes.SelectRound2,  payload: {} })
 export const selectRound3 = () => ({ type: ActionTypes.SelectRound3,  payload: {} })
 export const selectRound4 = () => ({ type: ActionTypes.SelectRound4,  payload: {} })
@@ -105,7 +107,24 @@ export const submitUserId = (id) => ({ type: ActionTypes.SubmitUserId,  payload:
 export const setLettersToFind = (index1, index2, index3, index4, index5) => ({ type: ActionTypes.SetLettersToFind,  payload: { index1, index2, index3, index4, index5 } })
 
 // Actions to backend
+export const submitResultsToDB = (results, callback = null) => ((dispatch) => {
+  console.log('calling firebase with...', results)
+  console.log('###', firebaseApp)
+  console.log('###', firebaseApp.database())
+  dispatch(storeInDB(results))
+  return firebase.database().ref('users/' + userId).set({ results: results})
+    .then(
+      (r) => {
+        if (callback) { callback(true, r); }
+        dispatch(storeInDBSuccess(r));
+      },
+      (e) => {
+        if (callback) { callback(false, e); }
+        dispatch(storeInDBError(e));
+      }
+    )
 
+})
 // call to server to access db
 export const addUserToDb = (id, name, callback = null) => ((dispatch) => {
   console.log('*******')
@@ -143,5 +162,26 @@ function addUserError(error) {
   return {
     type: ActionTypes.AddUserError,
     payload: error,
+  }
+}
+
+function storeInDB(results) {
+  return {
+    type: ActionTypes.StoreInDB,
+    payload: results
+  }
+}
+
+function storeInDBSuccess(r) {
+  return {
+    type: ActionTypes.StoreInDBSuccess,
+    payload: r
+  }
+}
+
+function storeInDB(e) {
+  return {
+    type: ActionTypes.StoreInDBError,
+    payload: e
   }
 }

@@ -25,6 +25,10 @@ const actionTypes = {
   SelectRound5: 'select_round5',
   RecognizeClick: 'recognize_click',
   SaveClickPosition: 'save_click_position',
+  SelectThanks: 'select_thanks',
+  StoreInDB: 'store_in_db',
+  StoreInDBSuccess: 'store_in_db_success',
+  StoreInDBError: 'store_in_db_error',
 };
 
 export default actionTypes;
