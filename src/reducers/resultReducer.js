@@ -5,6 +5,9 @@ const initialState = {}
 
 const result = (state = initialState, action = {}) => {
   switch (action.type) {
+  case ActionTypes.SelectIntro: {
+    return initialState
+  }
   case ActionTypes.Submit: {
     // General
     const id = action.payload.id

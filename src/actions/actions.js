@@ -108,11 +108,14 @@ export const setLettersToFind = (index1, index2, index3, index4, index5) => ({ t
 
 // Actions to backend
 export const submitResultsToDB = (results, callback = null) => ((dispatch) => {
-  console.log('calling firebase with...', results)
-  console.log('###', firebaseApp)
-  console.log('###', firebaseApp.database())
+  let id
+  let cleanResult
+  Object.keys(results).map(k => {
+    id = k
+    cleanResult = results[k]
+  })
   dispatch(storeInDB(results))
-  return firebase.database().ref('users/' + userId).set({ results: results})
+  return firebaseApp.database().ref(`/${id}`).set({ result: cleanResult })
     .then(
       (r) => {
         if (callback) { callback(true, r); }
@@ -125,45 +128,9 @@ export const submitResultsToDB = (results, callback = null) => ((dispatch) => {
     )
 
 })
-// call to server to access db
-export const addUserToDb = (id, name, callback = null) => ((dispatch) => {
-  console.log('*******')
-  dispatch(addUser(id, name));
-  return axios.post(`${ROOT_URL}/addUser`, {id, name})
-    .then(
-      (r) => {
-        if (callback) { callback(true, r); }
-        dispatch(addUserSuccess(r));
-      },
-      (e) => {
-        if (callback) { callback(false, e); }
-        dispatch(addUserError(e));
-      }
-    );
-});
 
 
 // actions recieved by success or error
-function addUserSuccess(r) {
-  return {
-    type: ActionTypes.AddUserSuccess,
-    payload: r
-  }
-}
-
-function addUser(id, name) {
-  return {
-    type: ActionTypes.AddUser,
-    resource: {id, name}
-  };
-}
-
-function addUserError(error) {
-  return {
-    type: ActionTypes.AddUserError,
-    payload: error,
-  }
-}
 
 function storeInDB(results) {
   return {

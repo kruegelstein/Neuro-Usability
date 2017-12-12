@@ -202,7 +202,6 @@ class Demographics extends Component {
             <p className="question">Age: </p>
             <FormGroup id="age">
               <FormControl
-                autoFocus
                 name="age"
                 onChange={this.handleChange.bind(this)}
                 value={this.props.age}
