@@ -21,7 +21,7 @@ export const attributes = {
   },
   '4': {
     left: 'predictable',
-    right: 'impredictable'
+    right: 'unpredictable'
   },
   '5': {
     left: 'cheap',
