@@ -4,43 +4,43 @@ export const rightAttributes = ['kompliziert', 'schön', 'unpraktisch', 'stillos
 
 export const attributes = {
   '0': {
-    left: 'einfach',
-    right: 'kompliziert'
+    left: 'simple',
+    right: 'complicated'
   },
   '1': {
-    left: 'hässlich',
-    right: 'schön'
+    left: 'ugly',
+    right: 'pretty'
   },
   '2': {
-    left: 'praktisch',
-    right: 'unpraktisch'
+    left: 'practical',
+    right: 'impractical'
   },
   '3': {
-    left: 'stilvoll',
-    right: 'stillos'
+    left: 'stylish',
+    right: 'in bad stlye'
   },
   '4': {
-    left: 'voraussagbar',
-    right: 'unberechenbar'
+    left: 'predictable',
+    right: 'impredictable'
   },
   '5': {
-    left: 'minderwertig',
-    right: 'wertvoll'
+    left: 'cheap',
+    right: 'valuable'
   },
   '6': {
-    left: 'phantasielos',
-    right: 'kreativ'
+    left: 'uninspired',
+    right: 'creative'
   },
   '7': {
-    left: 'gut',
-    right: 'schlecht'
+    left: 'good',
+    right: 'bad'
   },
   '8': {
-    left: 'verwirrend',
-    right: 'übersichtlich'
+    left: 'confusing',
+    right: 'clear'
   },
   '9': {
-    left: 'lahm',
-    right: 'fesselnd'
+    left: 'lame',
+    right: 'exciting'
   },
 }
