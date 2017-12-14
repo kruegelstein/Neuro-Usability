@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { Button, Form, FormGroup, Checkbox } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { attributes } from '../constants/attrakDiff.js';
+import { attributes, attributesEng } from '../constants/attrakDiff.js';
 import { submitResults, selectDemographics } from '../actions/actions.js';
 import { alphabetGood } from '../constants/alphabet.js';
 
@@ -269,7 +269,7 @@ class RatingComponent extends Component {
               return (
                 <div key={index} className="attribute-container">
                   <div className="left-container">
-                    <p className="leftAttribute">{attributes[a].left}</p>
+                    <p className="leftAttribute">{attributesEng[a].left}</p>
                   </div>
                   <div className="outer-form-container">
                     <Form className="form-container">
@@ -285,7 +285,7 @@ class RatingComponent extends Component {
                     </Form>
                   </div>
                   <div className="right-container">
-                    <p className="rightAttribute">{attributes[a].right}</p>
+                    <p className="rightAttribute">{attributesEng[a].right}</p>
                   </div>
                 </div>
               )
